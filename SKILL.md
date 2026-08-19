@@ -1,28 +1,29 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 10-agent design ensemble. Runs Grill Me discovery, dispatches 10 specialized subagents (orchestration, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y) plus the optional Design Arena bake-off, to build high-craft, AI-discoverable, bug-free UIs."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off, to build high-craft, AI-discoverable, bug-free UIs."
 metadata:
-  triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build
+  triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
 ---
 
-# 🚀 BuildMe: 10-Agent Design & Development Orchestrator (v3)
+# 🚀 BuildMe: 13-Agent Design & Development Orchestrator (v4)
 
-The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **10 specialized subagents plus one optional feature mode**.
+The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **13 specialized subagents plus one optional feature mode**.
 
-Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches the ensemble across 5 phases — design, build, synthesis, quality gates, and AI discoverability — with a Master Orchestrator coordinating every dispatch and a Design Arena mode available when direction is uncertain.
+Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches the ensemble across 6 phases — preflight analysis, design, build, synthesis, quality gates, and AI discoverability — with a Master Orchestrator coordinating every dispatch, versioned design snapshots, and an optional Design Arena mode when direction is uncertain.
 
 ---
 
 ## 📋 Workflow Execution Phasing
 
 ```
-[Phase 0: Orchestration Setup] ➔ [Phase 1: Grill Me Discovery] ➔ [Phase 2: 10-Agent Dispatch]
-➔ [Phase 3: Integration & Craft Synthesis] ➔ [Phase 4: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)]
-➔ [Phase 5: AI Discoverability (llms.txt)]
+[Phase 0: Orchestration Setup] ➔ [Phase 1: Preflight (Reference Analysis)] ➔ [Phase 2: Grill Me Discovery]
+➔ [Phase 3: 13-Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
+➔ [Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)] ➔ [Phase 6: AI Discoverability (llms.txt)]
+➔ [Post-Deploy: Live Monitoring]
 ```
 
-> **Optional branch**: between Phases 1 and 2, run the **Design Arena** (bake-off mode) when the visual direction is uncertain — see `design-arena/SKILL.md`.
+> **Optional branch**: between Phases 2 and 3, run the **Design Arena** (bake-off mode) when the visual direction is uncertain — see `design-arena/SKILL.md`.
 
 ---
 
@@ -58,7 +59,19 @@ Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before
 
 ---
 
-## Phase 2: 10-Agent Dispatch
+## Phase 1: Preflight — Reference Analysis
+
+Run **Agent 11 (Reference & Competitor Analyzer)** per `reference-analyzer/SKILL.md` when the user names reference sites or a market category:
+
+1. Tear down 2–3 reference/competitor sites into per-site reference files (`references/`).
+2. Synthesize one-page `REFERENCES.md`: **Steal / Beat / Avoid / sharper Grill Me questions**.
+3. Pass the brief into Grill Me and every agent's context slice.
+
+> Skip gracefully if the user has no references and declines SERP research.
+
+---
+
+## Phase 3: 13-Agent Dispatch
 
 Launch subagents per their dependency contracts using `invoke_subagent`. Agents marked **(parallel)** can run concurrently; others are serialized by the orchestrator:
 
@@ -91,6 +104,16 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   },
   {
     "TypeName": "self",
+    "Role": "Agent 12: Design Token Snapshotter",
+    "Prompt": "You are Agent 12 (Design Token Snapshotter). Read `.../skills/buildme/token-snapshotter/SKILL.md`. Take versioned snapshots at each trigger: after the design system lands (snap-001), after arena-winner application, after every quality-gate fix round, after copy lands, and pre-deploy (snap-final). Each snapshot: diffable design.md tokens, component token bindings, consistent-viewport screenshots (1440 + 390), and a delta.md vs the previous snapshot. Run drift guard checks and provide diffs on demand."
+  },
+  {
+    "TypeName": "self",
+    "Role": "Agent 13: Post-Launch Monitor",
+    "Prompt": "You are Agent 13 (Post-Launch Monitor). Read `.../skills/buildme/post-launch-monitor/SKILL.md`. After deployment: verify deploy integrity (live URL, no 404s, llms.txt serving byte-identical to repo, robots.txt, sitemap), run live Lighthouse against budgets, baseline AI discoverability exposure (record observed facts vs a saved baseline), and write monitor/MONITOR.md. Report observations only — never promise rankings."
+  },
+  {
+    "TypeName": "self",
     "Role": "Agent 6: AI Discoverability & llms.txt Specialist",
     "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/buildme/llm-txt-skill/SKILL.md`. After Phase 3 synthesis: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
   },
@@ -118,6 +141,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
 ```
 
 **Dependency order (orchestrator enforces):**
+- **Preflight**: Agent 11 (references) before Grill Me; its brief feeds every agent.
 - **Early (before build)**: Agent 9 (copy) and Agents 1–3 (design system) feed the build.
 - **Build**: Agent 2 + Agent 5 (parallel, token vs motion work units).
 - **Late gates (after build)**: Agents 7, 8, 10 (run in this order — slop → bugs → perf/a11y).
@@ -125,7 +149,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
 
 ---
 
-## Phase 3: Integration & Craft Synthesis
+## Phase 4: Integration & Craft Synthesis
 
 1. **Synthesize Subagent Outputs**:
    Combine the design system tokens, layout structure, anti-slop rules, UX state handoffs, and animation primitives into clean, production-ready code.
@@ -138,7 +162,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
 
 ---
 
-## Phase 4: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)
+## Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)
 
 Run **Agents 7, 8, 10** as sequential gates after the build:
 
@@ -146,11 +170,11 @@ Run **Agents 7, 8, 10** as sequential gates after the build:
 2. **Agent 8** — zero block + major bugs; each fix verified by its own reproduction re-run.
 3. **Agent 10** — all metric budgets hit; keyboard + screen-reader + honesty passes complete.
 
-Only after all three gates pass does the build advance to Phase 5.
+Only after all three gates pass does the build advance to Phase 6.
 
 ---
 
-## Phase 5: AI Discoverability (`llms.txt`)
+## Phase 6: AI Discoverability (`llms.txt`)
 
 Run **Agent 6** as the final gate, after the site passes all quality gates:
 
@@ -162,7 +186,7 @@ Run **Agent 6** as the final gate, after the site passes all quality gates:
 
 ## 🏟️ Optional: Design Arena Mode
 
-When the visual direction is uncertain or the current design is a local maximum, run the **Design Arena** between Phases 1 and 2: 2–4 agents each redesign **one screen** on informed and/or blind tracks; the user judges a gallery; the winner's apply-plan ships. Full protocol: `design-arena/SKILL.md`. Warn the user of token cost before spawning.
+When the visual direction is uncertain or the current design is a local maximum, run the **Design Arena** between Phases 2 and 3: 2–4 agents each redesign **one screen** on informed and/or blind tracks; the user judges a gallery; the winner's apply-plan ships. Full protocol: `design-arena/SKILL.md`. Warn the user of token cost before spawning.
 
 ---
 
@@ -181,6 +205,9 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 8** | **Bug Hunter & Fixer** | [`bug-hunter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/bug-hunter/SKILL.md) | Reproduce → fix → verified-fix loop; responsive, a11y, state edge cases; regression guards |
 | **Agent 9** | **Content & Copy Voice** | [`content-voice/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/content-voice/SKILL.md) | VOICE.md, distinctive brand copy, SEO meta, zero banned buzzwords |
 | **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
+| **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
+| **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
+| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---

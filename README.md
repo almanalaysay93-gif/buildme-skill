@@ -1,14 +1,14 @@
-# 🚀 BuildMe Skill (`/Buildme`) — v3
+# 🚀 BuildMe Skill (`/Buildme`) — v4
 
-> **10-Agent Design & Development Orchestrator for AI Coding Agents**
+> **13-Agent Design & Development Orchestrator for AI Coding Agents**
 
 BuildMe (`/Buildme`) is an advanced multi-agent orchestrator skill designed for AI coding assistants (Antigravity, Claude Code, Gemini CLI, Cursor, Codex).
 
-Before writing code, BuildMe runs an interactive **Grill Me** interview, then dispatches **10 parallel subagents** across five phases — orchestration, design, synthesis, quality gates, and AI discoverability — plus an optional **Design Arena** bake-off mode when the visual direction is uncertain.
+Before writing code, BuildMe runs an interactive **Grill Me** interview, then dispatches **13 parallel subagents** across six phases — orchestration, preflight reference analysis, design, synthesis, quality gates, and AI discoverability — plus versioned design snapshots, post-launch monitoring, and an optional **Design Arena** bake-off mode when the visual direction is uncertain.
 
 ---
 
-## 🛠️ The 10-Agent Ensemble
+## 🛠️ The 13-Agent Ensemble
 
 | Agent | Assigned Skill | Core Responsibility |
 |---|---|---|
@@ -23,6 +23,9 @@ Before writing code, BuildMe runs an interactive **Grill Me** interview, then di
 | **Agent 8** | **Bug Hunter & Fixer** | Reproduce → fix → verified-fix loop, responsive/a11y/state checks, regression guards, before/after evidence |
 | **Agent 9** | **Content & Copy Voice** | `VOICE.md`, distinctive brand copy and SEO meta, zero banned buzzwords |
 | **Agent 10** | **Perf & A11y Auditor** | Web Vitals budgets (LCP < 2.5s, CLS < 0.1), WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
+| **Agent 11** | **Reference Analyzer** | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal / Beat / Avoid brief |
+| **Agent 12** | **Token Snapshotter** | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
+| **Agent 13** | **Post-Launch Monitor** | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Feature** | **Design Arena** | Informed vs blind design bake-off — multiple agents redesign one screen, user judges, winner ships |
 
 ---
@@ -50,13 +53,15 @@ Simply type `/Buildme` or `/buildme` in your AI coding agent chat:
 ```
 
 1. **Grill Me Phase**: Answer 3–5 targeted questions to specify your app's goal, tech stack, visual vibe, and motion preferences.
-2. **Orchestration Setup**: Agent 0 decomposes the brief into work units, contracts, and token budgets.
-3. **Parallel Dispatch**: The ensemble spawns specialized subagents working simultaneously (plus the optional Design Arena bake-off).
-4. **Craft Synthesis**: All design, UX, layout, motion, and copy work integrates into production-ready code.
-5. **Quality Gates**: Agents 7 → 8 → 10 (anti-slop → bug hunt → perf/a11y) must all pass before the build advances.
-6. **AI Discoverability**: Agent 6 generates a spec-compliant `llms.txt` at `public/llms.txt`.
+2. **Preflight (optional)**: Agent 11 tears down your reference/competitor sites before the interview.
+3. **Orchestration Setup**: Agent 0 decomposes the brief into work units, contracts, and token budgets.
+4. **Parallel Dispatch**: The ensemble spawns specialized subagents working simultaneously (plus the optional Design Arena bake-off).
+5. **Craft Synthesis**: All design, UX, layout, motion, and copy work integrates into production-ready code — snapshot after each major change (Agent 12).
+6. **Quality Gates**: Agents 7 → 8 → 10 (anti-slop → bug hunt → perf/a11y) must all pass before the build advances.
+7. **AI Discoverability**: Agent 6 generates a spec-compliant `llms.txt` at `public/llms.txt`.
+8. **Post-Launch**: Agent 13 verifies the live site (deploy integrity, live Lighthouse, llms.txt checksum, AI-discoverability baseline).
 
-**Optional**: between steps 1 and 2, ask for a **Design Arena** when the direction is uncertain — several agents each take a full swing at one screen, you judge the gallery, and the winner ships.
+**Optional**: between steps 1 and 3, ask for a **Design Arena** when the direction is uncertain — several agents each take a full swing at one screen, you judge the gallery, and the winner ships.
 
 ---
 
