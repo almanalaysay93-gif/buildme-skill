@@ -50,5 +50,36 @@ Simply type `/Buildme` or `/buildme` in your AI coding agent chat:
 
 ---
 
+## 🔄 Keeping the Ensemble Up to Date
+
+The 5 design skills (Agents 1–5) live in their own upstream repos and are installed separately from the orchestrator. To pull the latest versions at any time, run:
+
+```bash
+# Agent 3 — Taste Skill
+npx skills add https://github.com/Leonxlnx/taste-skill
+
+# Agent 1 — Impeccable
+npx skills add https://github.com/pbakaus/impeccable
+
+# Agent 4 — UI UX Pro Max
+npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+
+# Agent 2 — Frontend Design (official Anthropic skill)
+npx skills add https://github.com/anthropics/skills --skill frontend-design
+
+# Agent 5 — Emil's Design Engineering (multi-skill pack incl. emil-design-eng)
+npx skills add https://github.com/plainspace/devour-skills
+```
+
+Then update the orchestrator itself:
+
+```bash
+npx skills add https://github.com/almanalaysay93-gif/buildme-skill
+```
+
+> **Tip:** Re-run these commands periodically (monthly is a good cadence) — all 5 upstream repos are actively maintained and receive anti-slop rules and design improvements frequently.
+
+---
+
 ## 📄 License
 [Apache 2.0](LICENSE) © [AL Manalaysay](https://github.com/almanalaysay93-gif)
