@@ -1,23 +1,23 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 5-agent design ensemble. First runs an interactive Grill Me discovery to align on requirements, then launches 5 subagents (Impeccable, Frontend Design, Taste Skill, UI UX Pro Max, Emil's Design Engineering) to build high-craft UIs."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 6-agent design ensemble. First runs an interactive Grill Me discovery to align on requirements, then launches 6 subagents (Impeccable, Frontend Design, Taste Skill, UI UX Pro Max, Emil's Design Engineering, and AI Discoverability/llms.txt) to build high-craft, AI-discoverable UIs."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble
   slash_command: /Buildme
 ---
 
-# 🚀 BuildMe: 5-Agent Design & Development Orchestrator
+# 🚀 BuildMe: 6-Agent Design & Development Orchestrator
 
-The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **5 specialized design & engineering subagents**.
+The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **6 specialized design & engineering subagents**.
 
-Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches 5 concurrent subagents—each enforcing a world-class design skill—to shape, build, audit, and polish your web application.
+Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches 6 concurrent subagents—each enforcing a world-class design skill—to shape, build, audit, and polish your web application, and finally make it discoverable by AI assistants via `llms.txt`.
 
 ---
 
 ## 📋 Workflow Execution Phasing
 
 ```
-[Phase 1: Grill Me Discovery] ➔ [Phase 2: 5-Agent Parallel Dispatch] ➔ [Phase 3: Integration & Craft Synthesis]
+[Phase 1: Grill Me Discovery] ➔ [Phase 2: 6-Agent Parallel Dispatch] ➔ [Phase 3: Integration & Craft Synthesis] ➔ [Phase 4: AI Discoverability (llms.txt)]
 ```
 
 ---
@@ -43,9 +43,9 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 ---
 
-## Phase 2: 5-Agent Parallel Dispatch
+## Phase 2: 6-Agent Parallel Dispatch
 
-Launch **5 subagents concurrently** using `invoke_subagent`. Each subagent is assigned a specific design domain and reads its authoritative skill instruction file:
+Launch **6 subagents concurrently** using `invoke_subagent`. Each subagent is assigned a specific design domain and reads its authoritative skill instruction file:
 
 ```json
 [
@@ -73,6 +73,11 @@ Launch **5 subagents concurrently** using `invoke_subagent`. Each subagent is as
     "TypeName": "self",
     "Role": "Agent 5: Emil's Motion & Animation Specialist",
     "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read the skill instruction file at `C:\\Users\\Admin\\.gemini\\config\\skills\\emil-design-eng\\SKILL.md` (and reference skills `apple-design`, `review-animations`, `animation-vocabulary`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish."
+  },
+  {
+    "TypeName": "self",
+    "Role": "Agent 6: AI Discoverability & llms.txt Specialist",
+    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read the skill instruction file at `C:\\Users\\Admin\\.gemini\\config\\skills\\buildme\\llm-txt-skill\\SKILL.md`. Run after Phase 3 synthesis: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and the final site content; self-verify against the checklist."
   }
 ]
 ```
@@ -94,7 +99,17 @@ Launch **5 subagents concurrently** using `invoke_subagent`. Each subagent is as
 
 ---
 
-## 🛠️ The 5-Agent Skill Ensemble Reference
+## Phase 4: AI Discoverability (`llms.txt`)
+
+Run **Agent 6 (AI Discoverability & llms.txt Specialist)** as the final gate, after the site builds successfully:
+
+1. **Generate `public/llms.txt`** per `llm-txt-skill/SKILL.md`, grounded strictly in `PRODUCT.md` and final site content.
+2. **Verify** the file builds into the deploy output (`dist/llms.txt`) and self-verify checklist passes.
+3. **Confirm discoverability keywords** are present (product category + location + intent), so AI assistants can recommend the business for free.
+
+---
+
+## 🛠️ The 6-Agent Skill Ensemble Reference
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
@@ -103,3 +118,4 @@ Launch **5 subagents concurrently** using `invoke_subagent`. Each subagent is as
 | **Agent 3** | **Taste Skill** | [`taste-skill/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/taste-skill/SKILL.md) | Brief inference, anti-slop discipline, anti-default styling |
 | **Agent 4** | **UI UX Pro Max** | [`ui-ux-pro-max/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/ui-ux-pro-max/SKILL.md) | Component state audit, accessibility (a11y), UX friction & touch targets |
 | **Agent 5** | **Emil's Skills** | [`emil-design-eng/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/emil-design-eng/SKILL.md) | Fluid animations, spring physics, motion vocabulary & micro-interactions |
+| **Agent 6** | **AI Discoverability (llms.txt)** | [`llm-txt-skill/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/llm-txt-skill/SKILL.md) | `llms.txt` / `llms-full.txt` generation so AI assistants can read and recommend the site |
