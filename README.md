@@ -4,7 +4,24 @@
 
 BuildMe (`/Buildme`) is an advanced multi-agent orchestrator skill designed for AI coding assistants (Antigravity, Claude Code, Gemini CLI, Cursor, Codex).
 
-Before writing code, BuildMe runs an interactive **Grill Me** interview, then dispatches **13 parallel subagents** across six phases — orchestration, preflight reference analysis, design, synthesis, quality gates, and AI discoverability — plus versioned design snapshots, post-launch monitoring, and an optional **Design Arena** bake-off mode when the visual direction is uncertain.
+Before writing code, BuildMe runs an interactive **Grill Me** interview, then dispatches **13 specialized subagents** across six phases — orchestration, preflight reference analysis, design, synthesis, quality gates, and AI discoverability — plus versioned design snapshots, post-launch monitoring, and an optional **Design Arena** bake-off mode when the visual direction is uncertain.
+
+---
+
+## Important: why `npx skills add` only shows ~5 agents
+
+This repo installs as **one orchestrator skill** (`buildme`).
+
+Agents **1–5 are external skills**. They are **not** inside this repo. A single `npx skills add` of this URL will not create 13 separate agent skills.
+
+| Source | Agents |
+|---|---|
+| This repo | Agent 0, 6–13 + Design Arena (subfolders under `skills/buildme/`) |
+| External installs (required) | Agents 1–5 |
+
+If your CLI only registered 5 items, install the five upstream skills below, then re-add this repo.
+
+Also change the GitHub repo **About** description from “5-Agent…” to “13-Agent…” (Settings → General → Description). That field is not in git.
 
 ---
 
@@ -30,23 +47,34 @@ Before writing code, BuildMe runs an interactive **Grill Me** interview, then di
 
 ---
 
-## 📦 Quick Start / Installation
+## 📦 Full install (13-agent ensemble)
 
-### Install globally via GitHub:
+Run **all** of these:
+
 ```bash
+# Agents 1–5 — external (required)
+npx skills add https://github.com/pbakaus/impeccable
+npx skills add https://github.com/anthropics/skills --skill frontend-design
+npx skills add https://github.com/Leonxlnx/taste-skill
+npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+npx skills add https://github.com/emilkowalski/skills
+
+# Agents 0, 6–13 + Design Arena — this repo
 npx skills add https://github.com/almanalaysay93-gif/buildme-skill
 ```
 
-### Manual Installation:
-Copy `SKILL.md` (and the `buildme/` skill folders) to your agent's skills folder:
+### Manual Installation
+
+Copy `SKILL.md` **and every folder** under `skills/buildme/` into your agent's skills directory so each sub-skill has its own `SKILL.md`:
+
 - **Global**: `~/.gemini/config/skills/buildme/`
 - **Project**: `.agents/skills/buildme/` or `.gemini/skills/buildme/`
+
+Bundled sub-skills: `master-orchestrator`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`.
 
 ---
 
 ## ⚡ Usage
-
-Simply type `/Buildme` or `/buildme` in your AI coding agent chat:
 
 ```bash
 /Buildme
@@ -55,42 +83,19 @@ Simply type `/Buildme` or `/buildme` in your AI coding agent chat:
 1. **Grill Me Phase**: Answer 3–5 targeted questions to specify your app's goal, tech stack, visual vibe, and motion preferences.
 2. **Preflight (optional)**: Agent 11 tears down your reference/competitor sites before the interview.
 3. **Orchestration Setup**: Agent 0 decomposes the brief into work units, contracts, and token budgets.
-4. **Parallel Dispatch**: The ensemble spawns specialized subagents working simultaneously (plus the optional Design Arena bake-off).
-5. **Craft Synthesis**: All design, UX, layout, motion, and copy work integrates into production-ready code — snapshot after each major change (Agent 12).
-6. **Quality Gates**: Agents 7 → 8 → 10 (anti-slop → bug hunt → perf/a11y) must all pass before the build advances.
-7. **AI Discoverability**: Agent 6 generates a spec-compliant `llms.txt` at `public/llms.txt`.
-8. **Post-Launch**: Agent 13 verifies the live site (deploy integrity, live Lighthouse, llms.txt checksum, AI-discoverability baseline).
+4. **Parallel Dispatch**: The ensemble spawns specialized subagents (plus optional Design Arena).
+5. **Craft Synthesis**: Design, UX, layout, motion, and copy integrate into production-ready code — snapshot after each major change (Agent 12).
+6. **Quality Gates**: Agents 7 → 8 → 10 must all pass before the build advances.
+7. **AI Discoverability**: Agent 6 generates `public/llms.txt`.
+8. **Post-Launch**: Agent 13 verifies the live site.
 
-**Optional**: between steps 1 and 3, ask for a **Design Arena** when the direction is uncertain — several agents each take a full swing at one screen, you judge the gallery, and the winner ships.
+**Optional**: between steps 1 and 3, ask for a **Design Arena** when the direction is uncertain.
 
 ---
 
 ## 🔄 Keeping the Ensemble Up to Date
 
-The ensemble agents consume externally installed skills. To pull the latest versions at any time, run:
-
-```bash
-# Agent 1 — Impeccable
-npx skills add https://github.com/pbakaus/impeccable
-
-# Agent 2 — Frontend Design (official Anthropic skill)
-npx skills add https://github.com/anthropics/skills --skill frontend-design
-
-# Agent 3 — Taste Skill
-npx skills add https://github.com/Leonxlnx/taste-skill
-
-# Agent 4 — UI UX Pro Max
-npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
-
-# Agent 5 — Emil Kowalski's official skills
-# (emil-design-eng + apple-design, review-animations, animation-vocabulary)
-npx skills add https://github.com/emilkowalski/skills
-
-# Agents 6–10 + Design Arena + Orchestrator — this repo itself
-npx skills add https://github.com/almanalaysay93-gif/buildme-skill
-```
-
-> **Tip:** Re-run these commands periodically (monthly is a good cadence) — all upstream repos are actively maintained and receive anti-slop rules and design improvements frequently.
+Re-run the full install commands monthly. Upstream repos change often.
 
 ---
 
