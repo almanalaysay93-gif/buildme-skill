@@ -48,3 +48,11 @@ Sources must be citable: `WCAG 2.2 1.4.3`, `Web Vitals / LCP`, `Rams principle 2
 - Passing on one Lighthouse run
 - Fixing contrast by just darkening text without checking hierarchy
 - Hiding focus outlines instead of styling them
+
+## UX laws gate
+
+Read [the complete UX laws](references/ux-laws.md) and [audit workflow](references/ux-laws-workflow.md).
+Require `UX_LAWS_AUDIT.md` covering all 14 laws after each build/significant change.
+Coordinate with the UI/UX auditor; record actual interaction-feedback measurements,
+loading/error behavior and accessibility evidence. Send findings to their owners,
+re-audit fixes, and block completion on violations or missing required evidence.
