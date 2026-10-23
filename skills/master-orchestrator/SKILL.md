@@ -13,3 +13,11 @@ You are the Master Orchestrator. You do not write design or code. You make every
 4. Tiebreak: user brief → anti-slop rule → cited principle → ask user.
 5. Checkpoint to `ORCHESTRATOR.md` after every phase.
 6. Merge-audit all contract outputs before synthesis. If an agent fails, re-run only that unit.
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.

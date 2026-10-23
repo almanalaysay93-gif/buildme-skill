@@ -48,3 +48,11 @@ npx skills add https://github.com/emilkowalski/skills
 
 ## License
 [Apache 2.0](LICENSE) © [AL Manalaysay](https://github.com/almanalaysay93-gif)
+
+## Superlite execution
+
+This skill now uses a bundled [Superlite execution adapter](skills/master-orchestrator/references/superlite-integration.md) for
+dependency-aware tasks, single-owner file contracts, targeted repairs and fresh
+final review. Its specialty workflow and quality gates remain in charge. No native
+plugin or model service is required. The reference includes optional native-plugin
+setup and host limitations. Never enable Superlite alongside Superpowers.

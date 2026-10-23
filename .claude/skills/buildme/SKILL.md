@@ -223,3 +223,11 @@ The ensemble agents 1–5 consume externally installed skills. Keep them current
 | taste-skill | `github.com/Leonxlnx/taste-skill` |
 | ui-ux-pro-max | `github.com/nextlevelbuilder/ui-ux-pro-max-skill` |
 | emil-design-eng (+ apple-design, review-animations, animation-vocabulary) | `github.com/emilkowalski/skills` |
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.

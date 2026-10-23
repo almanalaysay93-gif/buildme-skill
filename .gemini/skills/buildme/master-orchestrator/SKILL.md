@@ -61,3 +61,11 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - Re-briefing agents from scratch on every turn instead of checkpointing
 - Silently overriding one agent's output with another's without a cited reason
 - Spending the session budget on a single agent exploring broadly instead of shipping
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.
