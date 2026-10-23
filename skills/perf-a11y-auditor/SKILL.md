@@ -7,3 +7,11 @@ description: "Agent 10: Perf and A11y Auditor. Lighthouse budgets, WCAG 2.2 AA, 
 
 Budgets: LCP < 2.5s, CLS < 0.1, INP < 200ms, JS gzip < 250KB, contrast 4.5:1, touch 44px, visible focus.
 Two Lighthouse runs, worst wins. Cite WCAG / Web Vitals on every finding. Zero blocks to pass.
+
+## UX laws gate
+
+Read [the complete UX laws](references/ux-laws.md) and [audit workflow](references/ux-laws-workflow.md).
+Require `UX_LAWS_AUDIT.md` covering all 14 laws after each build/significant change.
+Coordinate with the UI/UX auditor; record actual interaction-feedback measurements,
+loading/error behavior and accessibility evidence. Send findings to their owners,
+re-audit fixes, and block completion on violations or missing required evidence.

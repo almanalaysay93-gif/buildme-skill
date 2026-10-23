@@ -136,3 +136,20 @@ When direction is uncertain, run `design-arena/SKILL.md` between Phases 2 and 3.
 | taste-skill | `github.com/Leonxlnx/taste-skill` |
 | ui-ux-pro-max | `github.com/nextlevelbuilder/ui-ux-pro-max-skill` |
 | emil-design-eng (+ apple-design, review-animations, animation-vocabulary) | `github.com/emilkowalski/skills` |
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.
+
+## Mandatory UX laws
+
+Before planning or building, read the complete [UX laws reference](references/ux-laws.md)
+and [its workflow](references/ux-laws-workflow.md). Map all 14 laws in the plan and
+include the relevant checks in every specialist handoff. After every build or
+significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
+completion. The audit is mandatory even when optional UX tools are skipped.
+Unresolved violations or missing evidence block completion; existing repair caps apply.

@@ -13,3 +13,20 @@ You are the Master Orchestrator. You do not write design or code. You make every
 4. Tiebreak: user brief → anti-slop rule → cited principle → ask user.
 5. Checkpoint to `ORCHESTRATOR.md` after every phase.
 6. Merge-audit all contract outputs before synthesis. If an agent fails, re-run only that unit.
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.
+
+## Mandatory UX laws
+
+Before planning or building, read the complete [UX laws reference](references/ux-laws.md)
+and [its workflow](references/ux-laws-workflow.md). Map all 14 laws in the plan and
+include the relevant checks in every specialist handoff. After every build or
+significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
+completion. The audit is mandatory even when optional UX tools are skipped.
+Unresolved violations or missing evidence block completion; existing repair caps apply.

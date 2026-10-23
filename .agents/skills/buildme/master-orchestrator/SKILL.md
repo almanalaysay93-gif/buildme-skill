@@ -61,3 +61,20 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - Re-briefing agents from scratch on every turn instead of checkpointing
 - Silently overriding one agent's output with another's without a cited reason
 - Spending the session budget on a single agent exploring broadly instead of shipping
+
+## Superlite execution
+
+Read the [Superlite execution adapter](references/superlite-integration.md) before
+planning dispatch. It supplies request sizing, dependency tasks, ownership contracts,
+targeted repairs and a fresh final review. The Master Orchestrator remains the sole
+coordinator. Use the host's actual delegation tools (sequential roles if unavailable),
+not a hard-coded `invoke_subagent` API. Existing discovery and quality gates apply.
+
+## Mandatory UX laws
+
+Before planning or building, read the complete [UX laws reference](references/ux-laws.md)
+and [its workflow](references/ux-laws-workflow.md). Map all 14 laws in the plan and
+include the relevant checks in every specialist handoff. After every build or
+significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
+completion. The audit is mandatory even when optional UX tools are skipped.
+Unresolved violations or missing evidence block completion; existing repair caps apply.
