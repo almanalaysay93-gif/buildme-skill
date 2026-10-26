@@ -85,7 +85,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 2: Lead Frontend Architect",
-    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure."
+    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `assets/icons/` (see `references/icons.md`)."
   },
   {
     "TypeName": "self",
@@ -240,3 +240,11 @@ include the relevant checks in every specialist handoff. After every build or
 significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
 completion. The audit is mandatory even when optional UX tools are skipped.
 Unresolved violations or missing evidence block completion; existing repair caps apply.
+
+## Icons
+
+BuildMe bundles 58 Material Symbols icons (Outlined, 24px, Apache 2.0) in `assets/icons/`.
+Read [the icon reference](references/icons.md) before adding any icon. Use the bundled
+icons first, keep one icon style per product, make decorative icons hidden from assistive
+technology, give icon-only controls an accessible name, and keep `LICENSE` and `NOTICE.md`
+with the icons. Do not use third-party brand logos from the icon set.

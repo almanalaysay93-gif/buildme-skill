@@ -64,3 +64,11 @@ implementation and post-build review. Plans map the laws to actual flows; every
 build or significant change produces `UX_LAWS_AUDIT.md` with evidence, fixes and
 re-audit results. Completion requires no violations and documented reasons for
 any justified Partial results. See [the audit workflow](skills/buildme/references/ux-laws-workflow.md).
+
+## Icons
+
+BuildMe bundles 58 common Material Symbols icons (Outlined, 24px, Apache 2.0) in
+[`skills/buildme/assets/icons/`](skills/buildme/assets/icons/), so builds use one icon
+family without a network call. See [the icon reference](skills/buildme/references/icons.md)
+for usage, accessibility rules and how to add more icons. The icons' `LICENSE` and
+`NOTICE.md` must stay with them.
