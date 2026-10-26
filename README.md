@@ -72,3 +72,11 @@ BuildMe bundles 58 common Material Symbols icons (Outlined, 24px, Apache 2.0) in
 family without a network call. See [the icon reference](skills/buildme/references/icons.md)
 for usage, accessibility rules and how to add more icons. The icons' `LICENSE` and
 `NOTICE.md` must stay with them.
+
+## In-product AI agents (Agent 14)
+
+Agent 14 (`skills/adk-agent-builder/`) builds an AI agent that the product itself runs, using
+[Google's Agent Development Kit](https://github.com/google/adk-python) (`google-adk`). The
+orchestrator dispatches it only when the brief asks for an assistant, a tool-using agent or
+a multi-step AI workflow. It writes the agent in `agent/`, adds tests and checks it with the
+`adk` CLI. Keys come from environment variables, and every run has a call limit.
