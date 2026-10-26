@@ -43,6 +43,12 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - Run a **merge audit**: verify every dispatched output file exists, is non-empty, and matches its contract before Phase 3 synthesis begins.
 - If ≥ 1 agent failed or was killed, **degrade gracefully**: proceed with remaining outputs, note the gaps, and offer a focused re-run of only the missing unit (never re-run the whole ensemble).
 
+### 6. Conditional Agents
+- Dispatch **Agent 14 (ADK Agent Builder, `adk-agent-builder/SKILL.md`)** only when the confirmed brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow).
+- Give it sole ownership of `agent/` and `AGENT_NOTES.md`. No other unit writes there, so it can run in parallel with Agent 2.
+- Its gates (construction, recorded-session tests, run check) must pass, or be explicitly marked "not run" when no valid model key exists, before Agent 7 starts.
+- If the brief does not need an agent, record "Agent 14: not required" in `ORCHESTRATOR.md`.
+
 ---
 
 ## 🧪 Self-Verify Before Every Dispatch
@@ -52,6 +58,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - [ ] `ORCHESTRATOR.md` checkpoint exists and is current
 - [ ] Per-agent token budget ≤ 20% of session budget
 - [ ] Maximum 2 revision rounds budgeted per agent
+- [ ] Agent 14 dispatched only if the brief needs an in-product AI agent (else "not required" recorded)
 
 ---
 

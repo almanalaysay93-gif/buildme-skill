@@ -85,7 +85,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 2: Lead Frontend Architect",
-    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure."
+    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `.../skills/buildme/assets/icons/` (see `.../skills/buildme/references/icons.md`)."
   },
   {
     "TypeName": "self",
@@ -136,6 +136,11 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
     "TypeName": "self",
     "Role": "Agent 10: Performance & Accessibility Auditor",
     "Prompt": "You are Agent 10 (Performance & Accessibility Auditor). Read `.../skills/buildme/perf-a11y-auditor/SKILL.md`. After Phase 3: run Lighthouse (2 runs, worst wins) and the keyboard/screen-reader/honesty passes against the fixed budgets (LCP<2.5s, CLS<0.1, INP<200ms, bundle<250KB gz, contrast 4.5:1, touch 44px). Every finding cites its source (WCAG 2.2, Web Vitals, Rams). Gate: zero block findings."
+  },
+  {
+    "TypeName": "self",
+    "Role": "Agent 14: ADK Agent Builder (conditional)",
+    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow), write `AGENT_NOTES.md`, and pass that skill's gates: construction check, recorded-session tests (`adk test agent --rebuild`, then `adk test agent`), and an `adk run` check. Any gate that needs a valid model key is marked 'not run' when none is available, never 'passed'. Keys from environment variables only; set a call limit with RunConfig(max_llm_calls=N). Gate: all run gates passed or explicitly marked not run."
   }
 ]
 ```
@@ -144,6 +149,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
 - **Preflight**: Agent 11 (references) before Grill Me; its brief feeds every agent.
 - **Early (before build)**: Agent 9 (copy) and Agents 1–3 (design system) feed the build.
 - **Build**: Agent 2 + Agent 5 (parallel, token vs motion work units).
+- **Conditional (in-product AI agent only)**: Agent 14 (ADK) runs in parallel with Agent 2 after Agents 1–3 and 9 are done. It owns only `agent/`, so it does not overlap the frontend work units. Its gates run before Agent 7.
 - **Late gates (after build)**: Agents 7, 8, 10 (run in this order — slop → bugs → perf/a11y).
 - **Final**: Agent 6 (llms.txt) on the verified, passing build.
 
@@ -208,6 +214,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
 | **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
 | **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
+| **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---
@@ -240,3 +247,11 @@ include the relevant checks in every specialist handoff. After every build or
 significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
 completion. The audit is mandatory even when optional UX tools are skipped.
 Unresolved violations or missing evidence block completion; existing repair caps apply.
+
+## Icons
+
+BuildMe bundles 58 Material Symbols icons (Outlined, 24px, Apache 2.0) in `assets/icons/`.
+Read [the icon reference](references/icons.md) before adding any icon. Use the bundled
+icons first, keep one icon style per product, make decorative icons hidden from assistive
+technology, give icon-only controls an accessible name, and keep `LICENSE` and `NOTICE.md`
+with the icons. Do not use third-party brand logos from the icon set.

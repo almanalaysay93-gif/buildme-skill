@@ -10,11 +10,11 @@ npx skills add https://github.com/almanalaysay93-gif/buildme-skill
 
 That registers these skills together:
 
-`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`
+`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`
 
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
-Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as 13 separate chat bots, they appear as 15 installed skills.
+Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 17 installed skills.
 
 Optional upstream upgrades (richer than the bundled role skills):
 
@@ -44,6 +44,7 @@ npx skills add https://github.com/emilkowalski/skills
 | 11 | reference-analyzer |
 | 12 | token-snapshotter |
 | 13 | post-launch-monitor |
+| 14 (conditional) | adk-agent-builder |
 | Feature | design-arena |
 
 ## License

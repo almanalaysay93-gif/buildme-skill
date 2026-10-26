@@ -85,7 +85,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 2: Lead Frontend Architect",
-    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `assets/icons/` (see `references/icons.md`)."
+    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `.../skills/buildme/assets/icons/` (see `.../skills/buildme/references/icons.md`)."
   },
   {
     "TypeName": "self",
@@ -140,7 +140,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 14: ADK Agent Builder (conditional)",
-    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow), write `AGENT_NOTES.md`, and pass the gates: construction check, `adk test agent`, and a `adk run` check when a model key is configured (otherwise mark it not run). Keys from environment variables only; set a call limit with RunConfig(max_llm_calls=N). Gate: all run gates passed or explicitly marked not run."
+    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow), write `AGENT_NOTES.md`, and pass that skill's gates: construction check, recorded-session tests (`adk test agent --rebuild`, then `adk test agent`), and an `adk run` check. Any gate that needs a valid model key is marked 'not run' when none is available, never 'passed'. Keys from environment variables only; set a call limit with RunConfig(max_llm_calls=N). Gate: all run gates passed or explicitly marked not run."
   }
 ]
 ```
@@ -214,7 +214,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
 | **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
 | **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
-| **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](skills/buildme/adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
+| **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---
