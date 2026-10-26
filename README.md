@@ -12,6 +12,18 @@ That registers these skills together:
 
 `buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`
 
+### Install BuildMe and its companion skills (required)
+
+BuildMe needs five companion skills to run Agents 1–5. They ship in this repo and are installed with it. Install them every time you use BuildMe:
+
+```bash
+git clone https://github.com/almanalaysay93-gif/buildme-skill
+cd buildme-skill
+bash scripts/install.sh
+```
+
+The script installs BuildMe and these companions, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`, for Claude Code, Codex, Grok and Antigravity on this machine. It only replaces skills with the same names. If a companion is missing, BuildMe stops before Phase 3 and tells you which one to install.
+
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
 Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 17 installed skills.

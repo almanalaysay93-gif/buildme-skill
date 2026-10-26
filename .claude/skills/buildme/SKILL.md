@@ -29,6 +29,10 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 ---
 
+## Prerequisites: companion skills
+
+Agents 1–5 need these skills installed next to `buildme`: `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`. They ship in this repo. Install them with `bash scripts/install.sh` from a clone of the repo. Before Phase 3, confirm each one is present (its `SKILL.md` exists in the shared skills folder). If one is missing, stop, name the missing skill and ask the user to install it. Do not dispatch Agents 1–5 without them.
+
 ## Phase 0: Orchestration Setup
 
 Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before anything else*:
