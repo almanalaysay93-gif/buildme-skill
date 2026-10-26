@@ -83,27 +83,27 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 1: Impeccable Design Director",
-    "Prompt": "You are Agent 1 (Impeccable Design Director). Read `.../skills/impeccable/SKILL.md`. Initialize design context (PRODUCT.md and DESIGN.md), run anti-pattern scans against the 59 deterministic detector rules, enforce craft floor standards, and audit visual hierarchy and identity."
+    "Prompt": "You are Agent 1 (Impeccable Design Director). Read `.../skills/impeccable-director/SKILL.md` (bundled; if the optional upstream `impeccable` skill is installed, also read `.../skills/impeccable/SKILL.md`). Initialize design context (PRODUCT.md and DESIGN.md), run anti-pattern scans against the 59 deterministic detector rules, enforce craft floor standards, and audit visual hierarchy and identity."
   },
   {
     "TypeName": "self",
     "Role": "Agent 2: Lead Frontend Architect",
-    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-design/SKILL.md`. Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `.../skills/buildme/assets/icons/` (see `.../skills/buildme/references/icons.md`)."
+    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-architect/SKILL.md` (bundled; if the optional upstream `frontend-design` skill is installed, also read `.../skills/frontend-design/SKILL.md`). Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `.../skills/buildme/assets/icons/` (see `.../skills/buildme/references/icons.md`)."
   },
   {
     "TypeName": "self",
     "Role": "Agent 3: Anti-Slop Taste Specialist",
-    "Prompt": "You are Agent 3 (Anti-Slop Taste Specialist). Read `.../skills/taste-skill/SKILL.md`. Enforce anti-default discipline (eliminating generic AI purple gradients, slate card grids, and cookie-cutter layouts). Apply contextual vibe alignment and high-taste visual decisions based on the project brief."
+    "Prompt": "You are Agent 3 (Anti-Slop Taste Specialist). Read `.../skills/taste-specialist/SKILL.md` (bundled; if the optional upstream `taste-skill` is installed, also read `.../skills/taste-skill/SKILL.md`). Enforce anti-default discipline (eliminating generic AI purple gradients, slate card grids, and cookie-cutter layouts). Apply contextual vibe alignment and high-taste visual decisions based on the project brief."
   },
   {
     "TypeName": "self",
     "Role": "Agent 4: UI/UX & A11y Auditor",
-    "Prompt": "You are Agent 4 (UI/UX & A11y Auditor). Read `.../skills/ui-ux-pro-max/SKILL.md`. Audit component interaction states (hover, active, focus, disabled, loading, empty, error), touch target sizing, contrast ratios, keyboard navigation, cognitive load reduction, and user flow friction points."
+    "Prompt": "You are Agent 4 (UI/UX & A11y Auditor). Read `.../skills/ui-ux-auditor/SKILL.md` (bundled; if the optional upstream `ui-ux-pro-max` is installed, also read `.../skills/ui-ux-pro-max/SKILL.md`). Audit component interaction states (hover, active, focus, disabled, loading, empty, error), touch target sizing, contrast ratios, keyboard navigation, cognitive load reduction, and user flow friction points."
   },
   {
     "TypeName": "self",
     "Role": "Agent 5: Emil's Motion & Animation Specialist",
-    "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read `.../skills/emil-design-eng/SKILL.md` (and reference skills `apple-design`, `review-animations`, `animation-vocabulary` from `emilkowalski/skills`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish."
+    "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read `.../skills/motion-specialist/SKILL.md` (bundled; if the optional upstream `emil-design-eng` skill is installed, also read `.../skills/emil-design-eng/SKILL.md` and its references `apple-design`, `review-animations`, `animation-vocabulary` from `emilkowalski/skills`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish."
   },
   {
     "TypeName": "self",
@@ -224,7 +224,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 ## 📦 Upstream Skill Dependencies
 
-The ensemble agents 1–5 consume externally installed skills. Keep them current per the README's "Keeping the Ensemble Up to Date" section. Canonical sources:
+Agents 1–5 run on the bundled skills (`impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`), which work on a fresh install. The upstream skills below are optional richer versions; when installed, the agent reads them too. Canonical sources:
 
 | Skill | Canonical Repo |
 |---|---|
