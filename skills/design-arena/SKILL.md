@@ -1,6 +1,6 @@
 ---
 name: design-arena
-description: "Design Arena bake-off. 2-4 agents redesign one screen informed and/or blind; user judges; winner ships. Use when visual direction is uncertain."
+description: "Design Arena bake-off. 2-4 agents redesign one screen informed and/or blind; user judges; winner ships. Use when visual direction is uncertain. Not for a full multi-agent site build (use buildme)."
 ---
 
 # Design Arena

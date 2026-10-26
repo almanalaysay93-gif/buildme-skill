@@ -1,6 +1,6 @@
 ---
 name: ui-ux-auditor
-description: "Agent 4: UI/UX and A11y Auditor. Component states, touch targets, contrast, keyboard flow, friction. Use when /Buildme audits UX."
+description: "Agent 4: UI/UX and A11y Auditor. Component states, touch targets, contrast, keyboard flow, friction. Use when /Buildme audits UX during design and build. Not for Lighthouse budgets or the final WCAG gate (use perf-a11y-auditor)."
 ---
 
 # Agent 4: UI/UX & A11y Auditor

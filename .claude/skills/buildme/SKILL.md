@@ -1,6 +1,6 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off, to build high-craft, AI-discoverable, bug-free UIs."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off and a conditional ADK agent builder (Agent 14) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
@@ -38,27 +38,6 @@ Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before
 
 ---
 
-## Phase 1: Interactive Alignment ("Grill Me")
-
-> **CRITICAL RULE**: Do NOT start building or spawning subagents until Phase 1 is complete and requirements are confirmed.
-
-1. **Conduct the Discovery Interview**:
-   Ask the user 3 to 5 targeted questions (bullet points or concise text) covering:
-   * **Product & Goal**: What specific application/feature are you building, and who is the primary target audience?
-   * **Tech Stack**: What framework and styling tools do you prefer? (e.g. Vanilla HTML/CSS/JS, Vite + React, Next.js, Tailwind, etc.)
-   * **Visual Vibe & Aesthetic**: What design language fits best? (e.g. *Linear-clean, Apple-fluid, Editorial/Minimalist, Neo-Brutalist, Soft/Tactile, High-energy Dark Tech, etc.*)
-   * **Motion & Animation Level**: What level of motion do you want? (e.g. *Subtle micro-interactions, Fluid Apple-style spring physics, High-octane kinetic motion, or Calm/Static*)
-   * **Core Scope & Priority**: What are the top 1-3 screens or components that must wow the user immediately?
-
-2. **Formulate the Design Read**:
-   Synthesize the user's answers into a single-line **Design Read**:
-   > *"Reading this as: [Page/App Type] for [Audience] in a [Visual Vibe] language using [Tech Stack]."*
-
-3. **Confirm & Proceed**:
-   Obtain the user's confirmation before launching Phase 2.
-
----
-
 ## Phase 1: Preflight — Reference Analysis
 
 Run **Agent 11 (Reference & Competitor Analyzer)** per `reference-analyzer/SKILL.md` when the user names reference sites or a market category:
@@ -68,6 +47,28 @@ Run **Agent 11 (Reference & Competitor Analyzer)** per `reference-analyzer/SKILL
 3. Pass the brief into Grill Me and every agent's context slice.
 
 > Skip gracefully if the user has no references and declines SERP research.
+
+---
+
+## Phase 2: Interactive Alignment ("Grill Me")
+
+> **CRITICAL RULE**: Do NOT start building or spawning subagents until Phase 2 is complete and requirements are confirmed.
+
+1. **Conduct the Discovery Interview**:
+   Ask the user 3 to 6 targeted questions (bullet points or concise text) covering:
+   * **Product & Goal**: What specific application/feature are you building, and who is the primary target audience?
+   * **Tech Stack**: What framework and styling tools do you prefer? (e.g. Vanilla HTML/CSS/JS, Vite + React, Next.js, Tailwind, etc.)
+   * **Visual Vibe & Aesthetic**: What design language fits best? (e.g. *Linear-clean, Apple-fluid, Editorial/Minimalist, Neo-Brutalist, Soft/Tactile, High-energy Dark Tech, etc.*)
+   * **Motion & Animation Level**: What level of motion do you want? (e.g. *Subtle micro-interactions, Fluid Apple-style spring physics, High-octane kinetic motion, or Calm/Static*)
+   * **Core Scope & Priority**: What are the top 1-3 screens or components that must wow the user immediately?
+   * **AI Features**: Does the product need an AI assistant, chat, tool-using agent or AI workflow inside it? (A yes dispatches Agent 14; a no records "Agent 14: not required".)
+
+2. **Formulate the Design Read**:
+   Synthesize the user's answers into a single-line **Design Read**:
+   > *"Reading this as: [Page/App Type] for [Audience] in a [Visual Vibe] language using [Tech Stack]."*
+
+3. **Confirm & Proceed**:
+   Obtain the user's confirmation before launching Phase 3.
 
 ---
 
@@ -115,7 +116,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 6: AI Discoverability & llms.txt Specialist",
-    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/buildme/llm-txt-skill/SKILL.md`. After Phase 3 synthesis: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
+    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/buildme/llm-txt-skill/SKILL.md`. In Phase 6, after the Phase 5 quality gates pass: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
   },
   {
     "TypeName": "self",
@@ -196,26 +197,26 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 ---
 
-## 🛠️ The 10-Agent Skill Ensemble Reference
+## 🛠️ Skill Ensemble Reference (Agents 0–14)
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
-| **Agent 0** | **Master Orchestrator** | [`master-orchestrator/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/master-orchestrator/SKILL.md) | Plan decomposition, dispatch contracts, token budgets, conflict resolution, session checkpointing |
-| **Agent 1** | **Impeccable** | [`impeccable/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/impeccable/SKILL.md) | `PRODUCT.md` / `DESIGN.md` setup, 59 anti-pattern rules, craft floor & polish |
-| **Agent 2** | **Frontend Design** | [`frontend-design/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/frontend-design/SKILL.md) | Color palettes, typography scale, CSS tokens & grid architecture |
-| **Agent 3** | **Taste Skill** | [`taste-skill/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/taste-skill/SKILL.md) | Brief inference, anti-slop discipline, anti-default styling |
-| **Agent 4** | **UI UX Pro Max** | [`ui-ux-pro-max/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/ui-ux-pro-max/SKILL.md) | Component state audit, accessibility (a11y), UX friction & touch targets |
-| **Agent 5** | **Emil's Skills** | [`emil-design-eng/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/emil-design-eng/SKILL.md) | Fluid animations, spring physics, motion vocabulary & micro-interactions |
-| **Agent 6** | **AI Discoverability (llms.txt)** | [`llm-txt-skill/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/llm-txt-skill/SKILL.md) | `llms.txt` / `llms-full.txt` generation so AI assistants can read and recommend the site |
-| **Agent 7** | **Anti-Slop Enforcer** | [`anti-slop-enforcer/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/anti-slop-enforcer/SKILL.md) | 13 deterministic slop detectors (visual, copy, motion) with veto gate |
-| **Agent 8** | **Bug Hunter & Fixer** | [`bug-hunter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/bug-hunter/SKILL.md) | Reproduce → fix → verified-fix loop; responsive, a11y, state edge cases; regression guards |
-| **Agent 9** | **Content & Copy Voice** | [`content-voice/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/content-voice/SKILL.md) | VOICE.md, distinctive brand copy, SEO meta, zero banned buzzwords |
-| **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
-| **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
-| **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
-| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
+| **Agent 0** | **Master Orchestrator** | [`master-orchestrator/SKILL.md`](master-orchestrator/SKILL.md) | Plan decomposition, dispatch contracts, token budgets, conflict resolution, session checkpointing |
+| **Agent 1** | **Impeccable** | [`impeccable/SKILL.md`](https://github.com/pbakaus/impeccable) | `PRODUCT.md` / `DESIGN.md` setup, 59 anti-pattern rules, craft floor & polish |
+| **Agent 2** | **Frontend Design** | [`frontend-design/SKILL.md`](https://github.com/anthropics/skills) | Color palettes, typography scale, CSS tokens & grid architecture |
+| **Agent 3** | **Taste Skill** | [`taste-skill/SKILL.md`](https://github.com/Leonxlnx/taste-skill) | Brief inference, anti-slop discipline, anti-default styling |
+| **Agent 4** | **UI UX Pro Max** | [`ui-ux-pro-max/SKILL.md`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Component state audit, accessibility (a11y), UX friction & touch targets |
+| **Agent 5** | **Emil's Skills** | [`emil-design-eng/SKILL.md`](https://github.com/emilkowalski/skills) | Fluid animations, spring physics, motion vocabulary & micro-interactions |
+| **Agent 6** | **AI Discoverability (llms.txt)** | [`llm-txt-skill/SKILL.md`](llm-txt-skill/SKILL.md) | `llms.txt` / `llms-full.txt` generation so AI assistants can read and recommend the site |
+| **Agent 7** | **Anti-Slop Enforcer** | [`anti-slop-enforcer/SKILL.md`](anti-slop-enforcer/SKILL.md) | 13 deterministic slop detectors (visual, copy, motion) with veto gate |
+| **Agent 8** | **Bug Hunter & Fixer** | [`bug-hunter/SKILL.md`](bug-hunter/SKILL.md) | Reproduce → fix → verified-fix loop; responsive, a11y, state edge cases; regression guards |
+| **Agent 9** | **Content & Copy Voice** | [`content-voice/SKILL.md`](content-voice/SKILL.md) | VOICE.md, distinctive brand copy, SEO meta, zero banned buzzwords |
+| **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
+| **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
+| **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
+| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
-| **Feature** | **Design Arena** | [`design-arena/SKILL.md`](file:///C:/Users/Admin/.gemini/config/skills/buildme/design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
+| **Feature** | **Design Arena** | [`design-arena/SKILL.md`](design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---
 

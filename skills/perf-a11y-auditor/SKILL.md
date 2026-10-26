@@ -1,6 +1,6 @@
 ---
 name: perf-a11y-auditor
-description: "Agent 10: Perf and A11y Auditor. Lighthouse budgets, WCAG 2.2 AA, keyboard and screen-reader passes. Use as a BuildMe quality gate."
+description: "Agent 10: Perf and A11y Auditor. Lighthouse budgets, WCAG 2.2 AA, keyboard and screen-reader passes. Use as a BuildMe quality gate after the build. Not for design-time component states or UX friction reviews (use ui-ux-auditor)."
 ---
 
 # Agent 10: Performance & Accessibility Auditor

@@ -40,7 +40,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - **Cap rounds**: a maximum of 2 revision rounds per agent. After 2 rounds, escalate to the user or accept with a documented caveat.
 
 ### 5. Final Merge & Gate
-- Run a **merge audit**: verify every dispatched output file exists, is non-empty, and matches its contract before Phase 3 synthesis begins.
+- Run a **merge audit**: verify every dispatched output file exists, is non-empty, and matches its contract before Phase 4 synthesis begins.
 - If ≥ 1 agent failed or was killed, **degrade gracefully**: proceed with remaining outputs, note the gaps, and offer a focused re-run of only the missing unit (never re-run the whole ensemble).
 
 ### 6. Conditional Agents

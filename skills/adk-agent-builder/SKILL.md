@@ -1,6 +1,6 @@
 ---
 name: adk-agent-builder
-description: "Agent 14 (conditional): ADK Agent Builder. Designs and builds an AI agent inside the product with Google's Agent Development Kit (google-adk): LlmAgent, tools, multi-agent Workflow graphs, sessions and tests. Use when the BuildMe brief asks for an in-product AI assistant, chatbot, tool-using agent or multi-step AI workflow. Skip for static sites."
+description: "Agent 14 (conditional): ADK Agent Builder. Designs and builds an AI agent inside the product with Google's Agent Development Kit (google-adk): LlmAgent, tools, multi-agent Workflow graphs, sessions and tests. Use when the BuildMe brief asks for an in-product AI assistant, chatbot, tool-using agent or multi-step AI workflow. Skip for static sites. Not for building the site, its UI or its copy (use buildme)."
 ---
 
 # Agent 14: ADK Agent Builder (conditional)

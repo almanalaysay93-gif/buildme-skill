@@ -1,6 +1,6 @@
 ---
 name: design-arena
-description: "Feature: Design Arena — a design bake-off mode where 2-4 subagents each redesign one screen (informed and/or blind), the user judges a gallery, and the winner gets applied. Use when the direction is uncertain or the current design feels stuck."
+description: "Feature: Design Arena — a design bake-off mode where 2-4 subagents each redesign one screen (informed and/or blind), the user judges a gallery, and the winner gets applied. Use when the direction is uncertain or the current design feels stuck. Not for a full multi-agent site build (use buildme)."
 metadata:
   mode: optional
   triggers: design arena, bake-off, redesign contest, blind design

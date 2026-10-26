@@ -1,6 +1,6 @@
 ---
 name: perf-a11y-auditor
-description: "Agent 10: Performance & Accessibility Auditor. Runs Rams-style and Lighthouse-grade audits — a11y, contrast, keyboard navigation, LCP/CLS/bundle size — and returns citable findings with fixes."
+description: "Agent 10: Performance & Accessibility Auditor. Runs Rams-style and Lighthouse-grade audits — a11y, contrast, keyboard navigation, LCP/CLS/bundle size — and returns citable findings with fixes. Use after the build as a quality gate. Not for design-time component states or UX friction reviews (use ui-ux-auditor)."
 metadata:
   run_after: buildme_phase3
   mode: gate
