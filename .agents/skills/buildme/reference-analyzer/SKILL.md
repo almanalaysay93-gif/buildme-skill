@@ -16,7 +16,7 @@ You are the **Reference & Competitor Analyzer**. You run **before the Grill Me i
 
 ### 1. Collect
 - Ask the user for **2–3 reference sites** (URLs or app names) and the **business category / target market**.
-- If no references given, offer to find the **top 3 organic competitors** in the category from public search results (SERP research) — confirm before consuming extra tokens.
+- If no references given, offer to find the **top 3 organic competitors** in the category from public search results, using the host agent's built-in web search only (no SERP or SEO APIs, see the [zero-cost policy](../references/zero-cost.md)) — confirm before consuming extra tokens.
 
 ### 2. Tear Down Each Reference
 Visit each live site (browser, desktop + mobile viewport) and record, per site, in `references/REFERENCE_NAME.md`:

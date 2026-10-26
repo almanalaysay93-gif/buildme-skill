@@ -46,8 +46,14 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 ### 6. Conditional Agents
 - Dispatch **Agent 14 (ADK Agent Builder, `adk-agent-builder/SKILL.md`)** only when the confirmed brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow).
 - Give it sole ownership of `agent/` and `AGENT_NOTES.md`. No other unit writes there, so it can run in parallel with Agent 2.
-- Its gates (construction, recorded-session tests, run check) must pass, or be explicitly marked "not run" when no valid model key exists, before Agent 7 starts.
+- It runs on a free local Ollama model. Its gates (offline construction, offline tool tests, local acceptance runs, no-keys check) must pass before Agent 7 starts. If Ollama is not installed, the acceptance runs are marked "not run", never "passed", and no hosted model is used.
 - If the brief does not need an agent, record "Agent 14: not required" in `ORCHESTRATOR.md`.
+
+### 7. Zero-Cost Enforcement
+- Read the [zero-cost policy](../references/zero-cost.md) before planning. No dispatch may require an API key, a paid service, credits or an account.
+- Every contract names the free tool the agent will use (local Lighthouse, Chrome DevTools MCP, host web search, local Ollama).
+- A task that can only be done with a paid service is marked "not run (needs a paid service)" with the closest free alternative; it never blocks or fails the rest of the build.
+- Keep `Cost: $0 — no API keys or paid services used.` in `ORCHESTRATOR.md`.
 
 ---
 
@@ -59,6 +65,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - [ ] Per-agent token budget ≤ 20% of session budget
 - [ ] Maximum 2 revision rounds budgeted per agent
 - [ ] Agent 14 dispatched only if the brief needs an in-product AI agent (else "not required" recorded)
+- [ ] No dispatch needs an API key, paid service or account; `Cost: $0` recorded
 
 ---
 

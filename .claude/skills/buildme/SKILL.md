@@ -1,6 +1,6 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off and a conditional ADK agent builder (Agent 14) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off and a conditional ADK agent builder (Agent 14) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free to run: no API keys or paid services. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
@@ -22,6 +22,8 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 ➔ [Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)] ➔ [Phase 6: AI Discoverability (llms.txt)]
 ➔ [Post-Deploy: Live Monitoring]
 ```
+
+> **Zero-cost rule**: BuildMe is free to run. No API keys, no paid services, no accounts. Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
 
 > **Optional branch**: between Phases 2 and 3, run the **Design Arena** (bake-off mode) when the visual direction is uncertain — see `design-arena/SKILL.md`.
 
@@ -141,7 +143,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
   {
     "TypeName": "self",
     "Role": "Agent 14: ADK Agent Builder (conditional)",
-    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow), write `AGENT_NOTES.md`, and pass that skill's gates: construction check, recorded-session tests (`adk test agent --rebuild`, then `adk test agent`), and an `adk run` check. Any gate that needs a valid model key is marked 'not run' when none is available, never 'passed'. Keys from environment variables only; set a call limit with RunConfig(max_llm_calls=N). Gate: all run gates passed or explicitly marked not run."
+    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow) on a free local Ollama model via LiteLlm (no API key, no hosted model), write `AGENT_NOTES.md`, and pass that skill's gates: offline construction check, offline tool tests (`python -m pytest -q agent/tests`), acceptance runs on the local model (`adk run agent ...`), and a no-keys check. If Ollama is not installed, mark the acceptance runs 'not run', never 'passed', and never fall back to a hosted model. Set a call limit with RunConfig(max_llm_calls=N)."
   }
 ]
 ```

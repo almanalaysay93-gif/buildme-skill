@@ -7,6 +7,7 @@ description: "Agent 10: Perf and A11y Auditor. Lighthouse budgets, WCAG 2.2 AA, 
 
 Budgets: LCP < 2.5s, CLS < 0.1, INP < 200ms, JS gzip < 250KB, contrast 4.5:1, touch 44px, visible focus.
 Two Lighthouse runs, worst wins. Cite WCAG / Web Vitals on every finding. Zero blocks to pass.
+Run Lighthouse locally for free (`npx lighthouse <url> --output=json --chrome-flags="--headless"` or the Chrome DevTools MCP `lighthouse_audit` tool). Never use a keyed API or paid scanner ([zero-cost policy](../buildme/references/zero-cost.md)).
 
 ## UX laws gate
 

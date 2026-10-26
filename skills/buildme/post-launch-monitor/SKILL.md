@@ -28,7 +28,7 @@ You are the **Post-Launch Monitor**. Your job starts **after deployment**: verif
 - Flag if live LCP exceeds local by > 30% (hosting/CDN issue — prescribe caching or image CDN).
 
 ### 3. AI Discoverability Exposure
-- Confirm the site is findable by AI assistants: paste the business's category+location query into a public AI answer engine (or check the brand's appearance in Perplexity/ChatGPT public web results) and record whether the business appears, what it is called, and whether the facts match `llms.txt`.
+- Confirm the site is findable by AI assistants: run the business's category+location query with the host agent's own web search (free, no login) and record whether the business appears, what it is called, and whether the facts match `llms.txt`. Never log in to ChatGPT, Perplexity or other answer engines and never use a paid AI-visibility tracker; if a check would need one, record it as "not checked" ([zero-cost policy](../references/zero-cost.md)).
 - **Baseline the answer**: save it to `monitor/discovery-baseline.md`. This becomes the comparison point for future re-checks.
 - Never promise rankings; report only observed facts.
 

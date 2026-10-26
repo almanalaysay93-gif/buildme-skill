@@ -58,6 +58,17 @@ final review. Its specialty workflow and quality gates remain in charge. No nati
 plugin or model service is required. The reference includes optional native-plugin
 setup and host limitations. Never enable Superlite alongside Superpowers.
 
+## Free to run: no API keys
+
+BuildMe needs no API keys, paid services or accounts. Every agent uses free tools: local
+Lighthouse or the Chrome DevTools MCP for audits and screenshots, the host agent's own web
+search for research, bundled Material Symbols icons, and a local Ollama model for in-product AI
+agents. A task that would need a paid service is skipped with a free alternative and never
+reported as passed. See [the zero-cost policy](skills/buildme/references/zero-cost.md).
+
+Optional free setup for Agent 14 and audits: [Node.js](https://nodejs.org) (for `npx lighthouse`),
+[Ollama](https://ollama.com) with `ollama pull qwen2.5:1.5b`, and `uv` for the Python packages.
+
 ## Mandatory UX laws
 
 The bundled [14-law UX reference](skills/buildme/references/ux-laws.md) now applies to planning,
@@ -77,7 +88,8 @@ for usage, accessibility rules and how to add more icons. The icons' `LICENSE` a
 ## In-product AI agents (Agent 14)
 
 Agent 14 (`skills/adk-agent-builder/`) builds an AI agent that the product itself runs, using
-[Google's Agent Development Kit](https://github.com/google/adk-python) (`google-adk`). The
-orchestrator dispatches it only when the brief asks for an assistant, a tool-using agent or
-a multi-step AI workflow. It writes the agent in `agent/`, adds tests and checks it with the
-`adk` CLI. Keys come from environment variables, and every run has a call limit.
+[Google's Agent Development Kit](https://github.com/google/adk-python) (`google-adk`) on a free
+local model through [Ollama](https://ollama.com) (default `qwen2.5:1.5b`). No API key or hosted
+model is used. The orchestrator dispatches it only when the brief asks for an assistant, a
+tool-using agent or a multi-step AI workflow. It writes the agent in `agent/`, adds offline tool
+tests, runs the acceptance questions on the local model, and sets a call limit on every run.
