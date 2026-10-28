@@ -1,6 +1,6 @@
 # 🚀 BuildMe Skill (`/Buildme`) — v4
 
-> **13-Agent Design & Development Orchestrator for AI Coding Agents**
+> **Design & Development Orchestrator — Agents 0–15 for AI Coding Agents**
 
 One command installs the orchestrator **and every agent skill** as sibling folders under `skills/`.
 
@@ -10,7 +10,7 @@ npx skills add https://github.com/almanalaysay93-gif/buildme-skill
 
 That registers these skills together:
 
-`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`
+`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`, `competitor-researcher`
 
 ### Install BuildMe and its companion skills (required)
 
@@ -26,7 +26,7 @@ The script installs BuildMe and these companions, `impeccable-director`, `fronte
 
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
-Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 17 installed skills.
+Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 18 installed skills.
 
 Optional upstream upgrades (richer than the bundled role skills):
 
@@ -57,6 +57,7 @@ npx skills add https://github.com/emilkowalski/skills
 | 12 | token-snapshotter |
 | 13 | post-launch-monitor |
 | 14 (conditional) | adk-agent-builder |
+| 15 | competitor-researcher |
 | Feature | design-arena |
 
 ## License
@@ -105,3 +106,23 @@ local model through [Ollama](https://ollama.com) (default `qwen2.5:1.5b`). No AP
 model is used. The orchestrator dispatches it only when the brief asks for an assistant, a
 tool-using agent or a multi-step AI workflow. It writes the agent in `agent/`, adds offline tool
 tests, runs the acceptance questions on the local model, and sets a call limit on every run.
+
+## Full-build Grill Me
+
+[41 questions across 12 groups](skills/buildme/references/discovery-questions.md)
+cover product/platform, research, users/journeys, visuals/content, backend/data/auth,
+integrations, AI, mobile/native/offline, motion, accessibility/performance,
+discoverability, testing and operations. Questions arrive in manageable rounds;
+existing answers are reused. Approve the [brief and activation matrix](skills/buildme/templates/BUILD_BRIEF.md)
+before implementation. Every Agent 0–15 is assessed; applicable roles run,
+monitoring is deferred until deployment and AI building remains conditional.
+
+## Competitor and repository discovery
+
+[Agent 15](skills/competitor-researcher/SKILL.md) finds competitors, websites and
+public GitHub references, checks provenance/licenses and hands Agent 11 a shortlist
+for deeper analysis. It supports actual available Agent-Reach, OpenComputer and
+BrowserAct routes, with a public-web/local-browser fallback. These tools are not
+bundled. BrowserAct's API requires a key; documented OpenComputer cloud use requires
+login. Both stay disabled by the default policy unless explicitly overridden.
+See [tool routing and sources](skills/buildme/references/research-tools.md).
