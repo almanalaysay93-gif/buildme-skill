@@ -45,6 +45,15 @@ Scan the actual code and rendered output. Each detector returns **pass / fail** 
 
 ---
 
+## 👀 Review Subagent Work in Chromium
+
+Before the detectors run, look at what each subagent built, not only the final page:
+
+1. Start the built site locally and run `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/slop --widths 390,1440`.
+2. Open each screenshot with the image reader. Check every section, route and component that a subagent produced against its brief and against `DESIGN.md` and `VOICE.md`.
+3. Record what you saw per subagent. Any visual detector hit becomes a finding that names the responsible agent, its file and the fix.
+4. If the runner reports `NEED_SETUP`, mark the visual pass "not run" and say so. Do not infer from source alone.
+
 ## 🛠️ Enforcement Protocol
 
 1. **Detect**: run all detectors against the build output. List every failure as `file:line | detector | signal | severity (block / warn)`.

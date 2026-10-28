@@ -12,6 +12,7 @@
 #
 # Companion skills (installed with BuildMe, required for Agents 1-5):
 #   impeccable-director, frontend-architect, taste-specialist, ui-ux-auditor, motion-specialist
+# Optional richer companions are reported at the end, not installed here.
 #
 # It replaces only skills with the same name as one in this repo. Other skills are left alone.
 set -euo pipefail
@@ -78,4 +79,14 @@ for name in buildme master-orchestrator impeccable-director frontend-architect t
   fi
 done
 [ "$missing" -eq 0 ] && echo "BuildMe, its companion skills and Agent-Reach are installed."
+
+# Report optional richer companions (read by Agents 2-5 when present; never blocking).
+optional=""
+missing_optional=""
+for name in frontend-design taste-skill ui-ux-pro-max impeccable emil-design-eng motion-design-lottie; do
+  if [ -f "$SHARED/$name/SKILL.md" ]; then optional="$optional $name"; else missing_optional="$missing_optional $name"; fi
+done
+echo "Optional companions found:${optional:- none}"
+echo "Optional companions not installed:${missing_optional:- none}"
+echo "  (install any you want with: npx skills add <repo>; see README.md)"
 exit "$missing"

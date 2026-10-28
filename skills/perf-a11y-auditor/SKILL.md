@@ -27,7 +27,7 @@ You are the **Performance & Accessibility Auditor** — the gate that makes the 
 
 ## 🧭 Audit Sequence
 
-1. **Automated pass**: run the build through Lighthouse locally (`npx lighthouse <url> --output=json --chrome-flags="--headless"`, or the Chrome DevTools MCP `lighthouse_audit` tool) and record scores; no passing on a single lucky run — 2 runs, worst score wins. Free tools only: no PageSpeed API key, no paid scanners ([zero-cost policy](../buildme/references/zero-cost.md)).
+1. **Automated pass**: run the build through Lighthouse locally (free Chromium command in [browser QA runner](../buildme/references/browser-qa.md); the runner's `report.json` keyboard and overflow data feeds the keyboard and responsive passes) (`npx lighthouse <url> --output=json --chrome-flags="--headless"`, or the Chrome DevTools MCP `lighthouse_audit` tool) and record scores; no passing on a single lucky run — 2 runs, worst score wins. Free tools only: no PageSpeed API key, no paid scanners ([zero-cost policy](../buildme/references/zero-cost.md)).
 2. **Keyboard-only walkthrough**: every flow (nav, forms, modals, dropdowns) using Tab/Shift-Tab/Enter/Esc only. Log every trap and every missing focus style.
 3. **Screen-reader sanity**: semantic landmarks (`<main>`, `<nav>`, headings in order), aria labels on icon-only buttons, live regions for dynamic content.
 4. **Honesty pass (Rams)**: does the UI mislead? Hidden costs, disguised ads-as-content, forced continuity, dark patterns — flag any.
