@@ -30,12 +30,11 @@ If a task can only be done with a paid or keyed service, stop that task, mark it
 
 In `ORCHESTRATOR.md`, keep a **Cost** line: `Cost: $0 — no API keys or paid services used.` If any task was skipped because it needed a paid service, list it there with the free alternative offered.
 
-## Research-provider compatibility
+## Agent-Reach research
 
-See [tool routing](research-tools.md). Agent-Reach uses only keyless public channels
-without importing authenticated sessions. BrowserAct's documented API requires a
-key; OpenComputer's documented cloud route requires login. Both are disabled by
-default. Use only actual configured capabilities after explicit user authorization
-to override this policy for the named provider. Record exceptions accurately
-instead of emitting an unverified Cost: $0 claim. Host public search/fetch and a
-local browser remain the default fallback.
+See [research tools](research-tools.md). The full Buildme installer provisions
+Agent-Reach and its upstream skill from the official GitHub release. Use only
+public/keyless channels with an explicit public-web backend where supported;
+never import authenticated sessions, configure keys or enable paid channels.
+A configured local browser and host public search/fetch are free fallbacks.
+Installation does not prove live research works; record actual results.

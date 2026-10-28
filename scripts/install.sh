@@ -4,6 +4,7 @@
 # Usage (from a clone of this repo):  bash scripts/install.sh
 #
 # What it does:
+#   0. Installs Agent-Reach from its official GitHub release, runs setup and verifies its skill.
 #   1. Copies every skill folder under skills/ into ~/.agents/skills/ (the shared folder).
 #   2. Links them into ~/.claude/skills and ~/.grok/skills (only if those agents are installed).
 #   3. Links them into ~/.gemini/config/skills (Antigravity global skills).
@@ -23,6 +24,18 @@ if [ ! -d "$SRC" ]; then
   echo "error: $SRC not found. Run this from a clone of the buildme-skill repo." >&2
   exit 1
 fi
+
+# Install the research dependency before registering Buildme as ready. This does
+# not configure keys, accounts, optional channels or browser-session imports.
+if command -v python3 >/dev/null 2>&1; then
+  BUILDME_PYTHON="$(command -v python3)"
+elif command -v python >/dev/null 2>&1; then
+  BUILDME_PYTHON="$(command -v python)"
+else
+  echo "error: Python 3.10+ is required to install Agent-Reach." >&2
+  exit 1
+fi
+"$BUILDME_PYTHON" "$REPO/scripts/install_agent_reach.py" --skills-dir "$SHARED"
 
 mkdir -p "$SHARED"
 count=0
@@ -64,5 +77,5 @@ for name in buildme master-orchestrator impeccable-director frontend-architect t
     missing=1
   fi
 done
-[ "$missing" -eq 0 ] && echo "BuildMe and the five companion skills are installed."
+[ "$missing" -eq 0 ] && echo "BuildMe, its companion skills and Agent-Reach are installed."
 exit "$missing"
