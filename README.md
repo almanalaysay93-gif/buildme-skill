@@ -37,6 +37,14 @@ npx skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
 npx skills add https://github.com/emilkowalski/skills
 ```
 
+## Orchestrator rule 1: research unfamiliar features first
+
+For unfamiliar features, first search GitHub for open-source projects, compare
+approaches, then implement. Agent 15 gathers candidates; the coordinator and worker
+record a reuse/adapt/independent implementation decision before coding in
+`research/FEATURE_APPROACHES.md`. The rule also applies to unfamiliar details found
+mid-task. See [the protocol](skills/buildme/references/research-first.md).
+
 ## Ensemble
 
 | Agent | Skill folder |

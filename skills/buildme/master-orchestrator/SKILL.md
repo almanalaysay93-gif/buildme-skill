@@ -12,6 +12,23 @@ You are the **Master Orchestrator** — the conductor that runs the whole BuildM
 
 ---
 
+## Rule 1 — Research unfamiliar features before implementation
+
+> For unfamiliar features, don't write from scratch—first search GitHub for
+> open-source projects, compare approaches, then get started.
+
+This is the orchestrator's first implementation rule. Apply it to each unfamiliar
+feature, not just the initial competitor search. Before dispatching coding work,
+read [the research-first protocol](../references/research-first.md) and record the GitHub search, comparison
+and implementation decision in `research/FEATURE_APPROACHES.md`.
+
+Agent 15 gathers candidates; the coordinator and implementation owner compare
+fit, license, maintenance, dependencies, security and integration tradeoffs. Reuse
+or adapt an appropriate project when justified. Build from scratch only after the
+comparison records why existing approaches are unsuitable. If a worker discovers
+an unfamiliar subfeature mid-task, pause that work and research it first; continue
+unaffected work. Missing source access is BLOCKED, never research completed.
+
 ## 📌 Core Responsibilities
 
 ### 1. Plan Decomposition
@@ -58,6 +75,8 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 ---
 
 ## 🧪 Self-Verify Before Every Dispatch
+
+- [ ] Each unfamiliar implementation feature has a GitHub search, approach comparison and recorded decision; unresolved research blocks that work
 
 - [ ] Every work unit has exactly one owner and no overlapping file targets
 - [ ] Contracts attached: inputs, outputs, format, acceptance criteria
@@ -108,7 +127,7 @@ interfaces, toolchains and appropriate verification. Do not equate assessing all
 roles with forcing unnecessary features or claiming deferred work has passed.
 
 Agent 15 owns only research/COMPETITORS.md, research/REPOSITORIES.md,
-research/SOURCE_LEDGER.md and research/TOOLS.md. It follows
+research/SOURCE_LEDGER.md, research/TOOLS.md and research/FEATURE_APPROACHES.md. It follows
 [tool routing](../references/research-tools.md) and returns a three-reference
 shortlist. The full installer provisions Agent-Reach and its upstream skill. Verify actual
 readiness, use public/keyless routes only, and record any host public-web/local-browser

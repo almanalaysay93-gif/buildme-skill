@@ -59,3 +59,9 @@ deliverables; never mark them passed.
 Design Arena selected/skipped and reason:
 Open decisions, capability gaps and agreed defaults:
 Additional host implementation owners for backend/native/offline tasks:
+
+## Rule 1: unfamiliar feature research
+
+List unfamiliar feature/task IDs, implementation owners and constraints. Link each
+GitHub search, candidate comparison, selected approach and rationale from
+research/FEATURE_APPROACHES.md. Mark READY/BLOCKED before implementation dispatch.
