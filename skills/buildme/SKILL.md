@@ -1,14 +1,14 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the 13-agent design ensemble. Runs reference analysis, Grill Me discovery, dispatches 13 specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus the optional Design Arena bake-off and a conditional ADK agent builder (Agent 14) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free to run: no API keys or paid services. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free to run: no API keys or paid services. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
 ---
 
-# 🚀 BuildMe: 13-Agent Design & Development Orchestrator (v4)
+# 🚀 BuildMe: Design & Development Orchestrator (Agents 0–15) (v4)
 
-The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **13 specialized subagents plus one optional feature mode**.
+The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **16 numbered roles (Agents 0–15) plus optional Design Arena**.
 
 Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches the ensemble across 6 phases — preflight analysis, design, build, synthesis, quality gates, and AI discoverability — with a Master Orchestrator coordinating every dispatch, versioned design snapshots, and an optional Design Arena mode when direction is uncertain.
 
@@ -18,7 +18,7 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 ```
 [Phase 0: Orchestration Setup] ➔ [Phase 1: Preflight (Reference Analysis)] ➔ [Phase 2: Grill Me Discovery]
-➔ [Phase 3: 13-Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
+➔ [Phase 3: Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
 ➔ [Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)] ➔ [Phase 6: AI Discoverability (llms.txt)]
 ➔ [Post-Deploy: Live Monitoring]
 ```
@@ -44,43 +44,54 @@ Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before
 
 ---
 
-## Phase 1: Preflight — Reference Analysis
+## Phase 1: Seed brief and research preflight
 
-Run **Agent 11 (Reference & Competitor Analyzer)** per `reference-analyzer/SKILL.md` when the user names reference sites or a market category:
+Ask the seed questions in [the full-build question bank](references/discovery-questions.md):
+product/job, audience, platform, category/region and constraints. Reuse known answers.
+Initialize [BUILD_BRIEF.md](templates/BUILD_BRIEF.md).
 
-1. Tear down 2–3 reference/competitor sites into per-site reference files (`references/`).
-2. Synthesize one-page `REFERENCES.md`: **Steal / Beat / Avoid / sharper Grill Me questions**.
-3. Pass the brief into Grill Me and every agent's context slice.
+Run Agent 15 per [competitor-researcher/SKILL.md](competitor-researcher/SKILL.md) to
+discover competitors, websites and public repos using [available research tools](references/research-tools.md).
+Agent 15 qualifies sources; Agent 11 then deep-analyzes the best three references
+and writes REFERENCES.md. Never duplicate discovery or fabricate observations.
+If research is declined, record both roles' dispositions and use known material.
 
-> Skip gracefully if the user has no references and declines SERP research.
-
----
-
-## Phase 2: Interactive Alignment ("Grill Me")
-
-> **CRITICAL RULE**: Do NOT start building or spawning subagents until Phase 2 is complete and requirements are confirmed.
-
-1. **Conduct the Discovery Interview**:
-   Ask the user 3 to 6 targeted questions (bullet points or concise text) covering:
-   * **Product & Goal**: What specific application/feature are you building, and who is the primary target audience?
-   * **Tech Stack**: What framework and styling tools do you prefer? (e.g. Vanilla HTML/CSS/JS, Vite + React, Next.js, Tailwind, etc.)
-   * **Visual Vibe & Aesthetic**: What design language fits best? (e.g. *Linear-clean, Apple-fluid, Editorial/Minimalist, Neo-Brutalist, Soft/Tactile, High-energy Dark Tech, etc.*)
-   * **Motion & Animation Level**: What level of motion do you want? (e.g. *Subtle micro-interactions, Fluid Apple-style spring physics, High-octane kinetic motion, or Calm/Static*)
-   * **Core Scope & Priority**: What are the top 1-3 screens or components that must wow the user immediately?
-   * **AI Features**: Does the product need an AI assistant, chat, tool-using agent or AI workflow inside it? (A yes dispatches Agent 14; a no records "Agent 14: not required".)
-
-2. **Formulate the Design Read**:
-   Synthesize the user's answers into a single-line **Design Read**:
-   > *"Reading this as: [Page/App Type] for [Audience] in a [Visual Vibe] language using [Tech Stack]."*
-
-3. **Confirm & Proceed**:
-   Obtain the user's confirmation before launching Phase 3.
+Agent 0 coordinates this preflight. Only research dispatch is allowed before
+brief approval; implementation agents wait for Phase 2 confirmation.
 
 ---
 
-## Phase 3: 13-Agent Dispatch
+## Phase 2: Full-build Grill Me and activation review
 
-Launch subagents per their dependency contracts using `invoke_subagent`. Agents marked **(parallel)** can run concurrently; others are serialized by the orchestrator:
+Read [all 41 questions in 12 groups](references/discovery-questions.md). Ask rounds
+of 3–6 related questions covering product/platform, market, users/journeys,
+visuals/content, data/backend/auth, integrations/payments, AI, mobile/native/offline,
+motion, accessibility/performance, discoverability/privacy, testing and delivery.
+Reuse supplied answers and research. Give conditional topics a not-applicable
+reason instead of forcing unnecessary features.
+
+Write BUILD_BRIEF.md using [the template](templates/BUILD_BRIEF.md). Include screens,
+flows, stack/platform, scope, data/API contracts, implementation owners, acceptance
+evidence and an activation matrix assessing every Agent 0–15. Activate applicable
+roles; defer monitoring until deployment and Agent 14 unless in-product AI is needed.
+Record Design Arena selection and blocked/not-applicable roles with reasons.
+Do not invent AI, public SEO or animation solely to fill the roster.
+
+Backend/native/offline needs require named host implementation owners, toolchains
+and platform-specific validation. Frontend specialty roles alone do not implement
+those capabilities. Identify gaps and agree scope before promising completion.
+
+Present the Design Read, brief, activation matrix, unresolved choices and acceptance
+plan. Obtain confirmation before Phase 3 implementation. Existing explicit approval
+for that same scope counts; do not restart the interview.
+
+---
+
+## Phase 3: Agent Dispatch
+
+Use the host's actual delegation tools, or execute roles sequentially if unavailable.
+The prompts below are contract examples, not literal API arguments. Run only
+independent work concurrently and follow the approved activation matrix:
 
 ```json
 [
@@ -153,7 +164,7 @@ Launch subagents per their dependency contracts using `invoke_subagent`. Agents 
 ```
 
 **Dependency order (orchestrator enforces):**
-- **Preflight**: Agent 11 (references) before Grill Me; its brief feeds every agent.
+- **Preflight**: Agent 15 discovers from seed answers; Agent 11 deep-analyzes the shortlist. Both feed Grill Me before implementation.
 - **Early (before build)**: Agent 9 (copy) and Agents 1–3 (design system) feed the build.
 - **Build**: Agent 2 + Agent 5 (parallel, token vs motion work units).
 - **Conditional (in-product AI agent only)**: Agent 14 (ADK) runs in parallel with Agent 2 after Agents 1–3 and 9 are done. It owns only `agent/`, so it does not overlap the frontend work units. Its gates run before Agent 7.
@@ -203,7 +214,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 ---
 
-## 🛠️ Skill Ensemble Reference (Agents 0–14)
+## 🛠️ Skill Ensemble Reference (Agents 0–15)
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
@@ -222,6 +233,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
 | **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
+| **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; routes available Agent-Reach/OpenComputer/BrowserAct and supplies Agent 11 a cited shortlist |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---
