@@ -96,8 +96,9 @@ Unresolved violations or missing evidence block completion; existing repair caps
 ## Full-build discovery and activation
 
 Read [the question bank](../references/discovery-questions.md) and initialize
-[the brief and activation matrix](../templates/BUILD_BRIEF.md). Ask bounded
-rounds, reuse answers and assess every role 0–15. Agent 15 discovers sources;
+[the brief and activation matrix](../templates/BUILD_BRIEF.md). Ask exactly 10 unanswered,
+relevant questions per round, then wait for answers; use fewer only when fewer than
+10 remain. Reuse answers and assess every role 0–15. Agent 15 discovers sources;
 Agent 11 deep-analyzes the shortlist. Research is the only pre-confirmation
 delegation exception. No implementation starts before brief confirmation.
 

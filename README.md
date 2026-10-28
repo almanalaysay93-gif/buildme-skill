@@ -112,7 +112,8 @@ tests, runs the acceptance questions on the local model, and sets a call limit o
 [41 questions across 12 groups](skills/buildme/references/discovery-questions.md)
 cover product/platform, research, users/journeys, visuals/content, backend/data/auth,
 integrations, AI, mobile/native/offline, motion, accessibility/performance,
-discoverability, testing and operations. Questions arrive in manageable rounds;
+discoverability, testing and operations. Questions arrive 10 at a time, with answers collected before the next round
+(and fewer only when fewer unanswered, relevant questions remain);
 existing answers are reused. Approve the [brief and activation matrix](skills/buildme/templates/BUILD_BRIEF.md)
 before implementation. Every Agent 0–15 is assessed; applicable roles run,
 monitoring is deferred until deployment and AI building remains conditional.
