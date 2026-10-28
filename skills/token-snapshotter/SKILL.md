@@ -20,7 +20,7 @@ Each snapshot is a numbered folder `snapshots/snap-NNN/` containing:
 
 1. **`design.md`** — the full current design system as plain text: color tokens (hex + OKLCH), type scale, spacing scale, radius, shadows, breakpoints, motion easings/durations. Machine-diffable, no prose.
 2. **`components.md`** — inventory of implemented components with their token bindings (which token each component uses, so a token change's blast radius is visible).
-3. **`screenshots/`** — desktop + mobile screenshots of every shipped screen, consistently framed (same viewport widths: 1440 and 390).
+3. **`screenshots/`** — desktop + mobile screenshots of every shipped screen, consistently framed (same viewport widths: 1440 and 390). Capture with `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> <snapshot>/screenshots --widths 390,1440` ([browser QA runner](../buildme/references/browser-qa.md)).
 4. **`delta.md`** — the *diff against the previous snapshot*: tokens added/changed/removed, components added/changed, and a one-line "what this snapshot changed" summary. The first snapshot has no delta.
 
 ## 🧭 Snapshot Triggers (the orchestrator calls you at each)

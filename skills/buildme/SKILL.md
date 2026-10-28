@@ -33,6 +33,10 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 Agents 1–5 need these skills installed next to `buildme`: `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`. They ship in this repo. Install them with `bash scripts/install.sh` from a clone of the repo. Before Phase 3, confirm each one is present (its `SKILL.md` exists in the shared skills folder). If one is missing, stop, name the missing skill and ask the user to install it. Do not dispatch Agents 1–5 without them.
 
+**Optional richer companions** (read by Agents 2–5 when present; `scripts/install.sh` reports which are found): `frontend-design`, `taste-skill`, `ui-ux-pro-max`, `impeccable`, `emil-design-eng`, and motion/animation skills `motion-design-lottie` and `gsap-*`. Missing optional companions never block the build; the agent notes that it worked from the bundled skill.
+
+**Browser QA runner (free):** Agents 8, 10 and 12 use the bundled `scripts/browser-qa.mjs` (Playwright + local Chromium) for screenshots, console/network errors, overflow and keyboard focus. Setup: [browser QA runner](references/browser-qa.md).
+
 Agent-Reach and its upstream skill are also required research dependencies.
 `bash scripts/install.sh` installs both the ensemble and Agent-Reach. Confirm
 `agent-reach version`, `agent-reach skill` and `agent-reach channels` succeed before
@@ -59,7 +63,7 @@ Wait for answers before research or the next round. Use fewer only if fewer than
 10 unanswered, relevant questions remain. Reuse known answers.
 Initialize [BUILD_BRIEF.md](templates/BUILD_BRIEF.md).
 
-Run Agent 15 per [competitor-researcher/SKILL.md](competitor-researcher/SKILL.md) to
+Run Agent 15 per [competitor-researcher/SKILL.md](../competitor-researcher/SKILL.md) to
 discover competitors, websites and public repos using [available research tools](references/research-tools.md).
 Agent 15 qualifies sources; Agent 11 then deep-analyzes the best three references
 and writes REFERENCES.md. Never duplicate discovery or fabricate observations.
@@ -134,47 +138,47 @@ independent work concurrently and follow the approved activation matrix:
   {
     "TypeName": "self",
     "Role": "Agent 5: Emil's Motion & Animation Specialist",
-    "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read `.../skills/motion-specialist/SKILL.md` (bundled; if the optional upstream `emil-design-eng` skill is installed, also read `.../skills/emil-design-eng/SKILL.md` and its references `apple-design`, `review-animations`, `animation-vocabulary` from `emilkowalski/skills`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish."
+    "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read `.../skills/motion-specialist/SKILL.md` (bundled; if the optional upstream `emil-design-eng` skill is installed, also read `.../skills/emil-design-eng/SKILL.md` and its references `apple-design`, `review-animations`, `animation-vocabulary` from `emilkowalski/skills`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish. If present, also read `.../skills/motion-design-lottie/SKILL.md` for timing, easing and choreography rules, and `.../skills/gsap-core/SKILL.md` plus the gsap skill matching the stack (`gsap-react`, `gsap-scrolltrigger` or `gsap-timeline`) when GSAP is the chosen engine."
   },
   {
     "TypeName": "self",
     "Role": "Agent 12: Design Token Snapshotter",
-    "Prompt": "You are Agent 12 (Design Token Snapshotter). Read `.../skills/buildme/token-snapshotter/SKILL.md`. Take versioned snapshots at each trigger: after the design system lands (snap-001), after arena-winner application, after every quality-gate fix round, after copy lands, and pre-deploy (snap-final). Each snapshot: diffable design.md tokens, component token bindings, consistent-viewport screenshots (1440 + 390), and a delta.md vs the previous snapshot. Run drift guard checks and provide diffs on demand."
+    "Prompt": "You are Agent 12 (Design Token Snapshotter). Read `.../skills/token-snapshotter/SKILL.md`. Take versioned snapshots at each trigger: after the design system lands (snap-001), after arena-winner application, after every quality-gate fix round, after copy lands, and pre-deploy (snap-final). Each snapshot: diffable design.md tokens, component token bindings, consistent-viewport screenshots (1440 + 390), and a delta.md vs the previous snapshot. Run drift guard checks and provide diffs on demand."
   },
   {
     "TypeName": "self",
     "Role": "Agent 13: Post-Launch Monitor",
-    "Prompt": "You are Agent 13 (Post-Launch Monitor). Read `.../skills/buildme/post-launch-monitor/SKILL.md`. After deployment: verify deploy integrity (live URL, no 404s, llms.txt serving byte-identical to repo, robots.txt, sitemap), run live Lighthouse against budgets, baseline AI discoverability exposure (record observed facts vs a saved baseline), and write monitor/MONITOR.md. Report observations only — never promise rankings."
+    "Prompt": "You are Agent 13 (Post-Launch Monitor). Read `.../skills/post-launch-monitor/SKILL.md`. After deployment: verify deploy integrity (live URL, no 404s, llms.txt serving byte-identical to repo, robots.txt, sitemap), run live Lighthouse against budgets, baseline AI discoverability exposure (record observed facts vs a saved baseline), and write monitor/MONITOR.md. Report observations only — never promise rankings."
   },
   {
     "TypeName": "self",
     "Role": "Agent 6: AI Discoverability & llms.txt Specialist",
-    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/buildme/llm-txt-skill/SKILL.md`. In Phase 6, after the Phase 5 quality gates pass: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
+    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/llm-txt-skill/SKILL.md`. In Phase 6, after the Phase 5 quality gates pass: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
   },
   {
     "TypeName": "self",
     "Role": "Agent 7: Anti-Slop Enforcer",
-    "Prompt": "You are Agent 7 (Anti-Slop Enforcer). Read `.../skills/buildme/anti-slop-enforcer/SKILL.md`. After Phase 3: run all 13 deterministic slop detectors (V1-V6 visual, C1-C4 copy, M1-M3 motion) on the built output, prescribe a concrete replacement for every violation, and gate the build: zero block-severity violations to pass. Report status per detector with evidence."
+    "Prompt": "You are Agent 7 (Anti-Slop Enforcer). Read `.../skills/anti-slop-enforcer/SKILL.md`. After Phase 3: run all 13 deterministic slop detectors (V1-V6 visual, C1-C4 copy, M1-M3 motion) on the built output, prescribe a concrete replacement for every violation, and gate the build: zero block-severity violations to pass. Report status per detector with evidence."
   },
   {
     "TypeName": "self",
     "Role": "Agent 8: Bug Hunter & Fixer",
-    "Prompt": "You are Agent 8 (Bug Hunter & Fixer). Read `.../skills/buildme/bug-hunter/SKILL.md`. After Phase 3: run the full hunt checklist (console/build errors, responsive 320-1440px, keyboard-only walkthrough, contrast, state edge cases), reproduce every bug before fixing, fix root causes with regression guards, re-run the repro to verify, and attach before/after evidence. Gate: zero block + zero major bugs."
+    "Prompt": "You are Agent 8 (Bug Hunter & Fixer). Read `.../skills/bug-hunter/SKILL.md`. After Phase 3: run the browser QA runner (`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<route>`) and then the full hunt checklist (console/build errors, responsive 320-1440px, keyboard-only walkthrough, contrast, state edge cases), reproduce every bug before fixing, fix root causes with regression guards, re-run the repro to verify, and attach before/after evidence. Gate: zero block + zero major bugs."
   },
   {
     "TypeName": "self",
     "Role": "Agent 9: Content & Copy Voice Specialist",
-    "Prompt": "You are Agent 9 (Content & Copy Voice Specialist). Read `.../skills/buildme/content-voice/SKILL.md`. Run early (after Grill Me): write VOICE.md (voice rails, banned words, proof-point inventory), then write all site copy — headlines, CTAs, microcopy, error states, alt text, SEO meta — concrete, proof-backed, zero banned buzzwords. Grep-verify zero banned words before delivery."
+    "Prompt": "You are Agent 9 (Content & Copy Voice Specialist). Read `.../skills/content-voice/SKILL.md`. Run early (after Grill Me): write VOICE.md (voice rails, banned words, proof-point inventory), then write all site copy — headlines, CTAs, microcopy, error states, alt text, SEO meta — concrete, proof-backed, zero banned buzzwords. Grep-verify zero banned words before delivery."
   },
   {
     "TypeName": "self",
     "Role": "Agent 10: Performance & Accessibility Auditor",
-    "Prompt": "You are Agent 10 (Performance & Accessibility Auditor). Read `.../skills/buildme/perf-a11y-auditor/SKILL.md`. After Phase 3: run Lighthouse (2 runs, worst wins) and the keyboard/screen-reader/honesty passes against the fixed budgets (LCP<2.5s, CLS<0.1, INP<200ms, bundle<250KB gz, contrast 4.5:1, touch 44px). Every finding cites its source (WCAG 2.2, Web Vitals, Rams). Gate: zero block findings."
+    "Prompt": "You are Agent 10 (Performance & Accessibility Auditor). Read `.../skills/perf-a11y-auditor/SKILL.md`. After Phase 3: run Lighthouse (2 runs, worst wins; free Chromium command in `references/browser-qa.md`) and the keyboard/screen-reader/honesty passes against the fixed budgets (LCP<2.5s, CLS<0.1, INP<200ms, bundle<250KB gz, contrast 4.5:1, touch 44px). Every finding cites its source (WCAG 2.2, Web Vitals, Rams). Gate: zero block findings."
   },
   {
     "TypeName": "self",
     "Role": "Agent 14: ADK Agent Builder (conditional)",
-    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/buildme/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow) on a free local Ollama model via LiteLlm (no API key, no hosted model), write `AGENT_NOTES.md`, and pass that skill's gates: offline construction check, offline tool tests (`python -m pytest -q agent/tests`), acceptance runs on the local model (`adk run agent ...`), and a no-keys check. If Ollama is not installed, mark the acceptance runs 'not run', never 'passed', and never fall back to a hosted model. Set a call limit with RunConfig(max_llm_calls=N)."
+    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow) on a free local Ollama model via LiteLlm (no API key, no hosted model), write `AGENT_NOTES.md`, and pass that skill's gates: offline construction check, offline tool tests (`python -m pytest -q agent/tests`), acceptance runs on the local model (`adk run agent ...`), and a no-keys check. If Ollama is not installed, mark the acceptance runs 'not run', never 'passed', and never fall back to a hosted model. Set a call limit with RunConfig(max_llm_calls=N)."
   }
 ]
 ```
@@ -205,6 +209,9 @@ independent work concurrently and follow the approved activation matrix:
 ## Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)
 
 Run **Agents 7, 8, 10** as sequential gates after the build:
+
+Start with one runner pass (`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<gate>`) so all three gates read the same screenshots, console/network report and keyboard data. A runner `NEED_SETUP` result marks the affected gate "not run", never passed.
+
 
 1. **Agent 7** — all detectors pass (zero blocks); exemptions only as `exempt-by-brief` with reasons.
 2. **Agent 8** — zero block + major bugs; each fix verified by its own reproduction re-run.
@@ -242,23 +249,23 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
-| **Agent 0** | **Master Orchestrator** | [`master-orchestrator/SKILL.md`](master-orchestrator/SKILL.md) | Plan decomposition, dispatch contracts, token budgets, conflict resolution, session checkpointing |
+| **Agent 0** | **Master Orchestrator** | [`master-orchestrator/SKILL.md`](../master-orchestrator/SKILL.md) | Plan decomposition, dispatch contracts, token budgets, conflict resolution, session checkpointing |
 | **Agent 1** | **Impeccable** | [`impeccable/SKILL.md`](https://github.com/pbakaus/impeccable) | `PRODUCT.md` / `DESIGN.md` setup, 59 anti-pattern rules, craft floor & polish |
 | **Agent 2** | **Frontend Design** | [`frontend-design/SKILL.md`](https://github.com/anthropics/skills) | Color palettes, typography scale, CSS tokens & grid architecture |
 | **Agent 3** | **Taste Skill** | [`taste-skill/SKILL.md`](https://github.com/Leonxlnx/taste-skill) | Brief inference, anti-slop discipline, anti-default styling |
 | **Agent 4** | **UI UX Pro Max** | [`ui-ux-pro-max/SKILL.md`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Component state audit, accessibility (a11y), UX friction & touch targets |
-| **Agent 5** | **Emil's Skills** | [`emil-design-eng/SKILL.md`](https://github.com/emilkowalski/skills) | Fluid animations, spring physics, motion vocabulary & micro-interactions |
-| **Agent 6** | **AI Discoverability (llms.txt)** | [`llm-txt-skill/SKILL.md`](llm-txt-skill/SKILL.md) | `llms.txt` / `llms-full.txt` generation so AI assistants can read and recommend the site |
-| **Agent 7** | **Anti-Slop Enforcer** | [`anti-slop-enforcer/SKILL.md`](anti-slop-enforcer/SKILL.md) | 13 deterministic slop detectors (visual, copy, motion) with veto gate |
-| **Agent 8** | **Bug Hunter & Fixer** | [`bug-hunter/SKILL.md`](bug-hunter/SKILL.md) | Reproduce → fix → verified-fix loop; responsive, a11y, state edge cases; regression guards |
-| **Agent 9** | **Content & Copy Voice** | [`content-voice/SKILL.md`](content-voice/SKILL.md) | VOICE.md, distinctive brand copy, SEO meta, zero banned buzzwords |
-| **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
-| **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
-| **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
-| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
-| **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
-| **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; uses Agent-Reach and local-browser fallback and supplies Agent 11 a cited shortlist |
-| **Feature** | **Design Arena** | [`design-arena/SKILL.md`](design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
+| **Agent 5** | **Emil's Skills** (+ `motion-design-lottie`, `gsap-*` when installed) | [`emil-design-eng/SKILL.md`](https://github.com/emilkowalski/skills) | Fluid animations, spring physics, motion vocabulary & micro-interactions; timing rules and GSAP tweens/timelines/ScrollTrigger |
+| **Agent 6** | **AI Discoverability (llms.txt)** | [`llm-txt-skill/SKILL.md`](../llm-txt-skill/SKILL.md) | `llms.txt` / `llms-full.txt` generation so AI assistants can read and recommend the site |
+| **Agent 7** | **Anti-Slop Enforcer** | [`anti-slop-enforcer/SKILL.md`](../anti-slop-enforcer/SKILL.md) | 13 deterministic slop detectors (visual, copy, motion) with veto gate |
+| **Agent 8** | **Bug Hunter & Fixer** | [`bug-hunter/SKILL.md`](../bug-hunter/SKILL.md) | Reproduce → fix → verified-fix loop; responsive, a11y, state edge cases; regression guards |
+| **Agent 9** | **Content & Copy Voice** | [`content-voice/SKILL.md`](../content-voice/SKILL.md) | VOICE.md, distinctive brand copy, SEO meta, zero banned buzzwords |
+| **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](../perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
+| **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](../reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
+| **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](../token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
+| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](../post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
+| **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](../adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
+| **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](../competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; uses Agent-Reach and local-browser fallback and supplies Agent 11 a cited shortlist |
+| **Feature** | **Design Arena** | [`design-arena/SKILL.md`](../design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---
 
@@ -273,6 +280,8 @@ Agents 1–5 run on the bundled skills (`impeccable-director`, `frontend-archite
 | taste-skill | `github.com/Leonxlnx/taste-skill` |
 | ui-ux-pro-max | `github.com/nextlevelbuilder/ui-ux-pro-max-skill` |
 | emil-design-eng (+ apple-design, review-animations, animation-vocabulary) | `github.com/emilkowalski/skills` |
+| motion-design-lottie (LottieFiles motion-design skill; installed under this name so it does not collide with the Remotion `motion-design` skill) | `github.com/LottieFiles/motion-design-skill` |
+| gsap-* (official GSAP skills) | installed in the shared folder; source not recorded in this repo |
 
 ## Superlite execution
 
