@@ -18,7 +18,7 @@ If a task can only be done with a paid or keyed service, stop that task, mark it
 | Lighthouse / Web Vitals (Agents 10, 13) | Lighthouse CLI run locally (`npx lighthouse <url> --output=json --chrome-flags="--headless"`), or the Chrome DevTools MCP `lighthouse_audit` tool | PageSpeed Insights API with a key, paid monitoring (SpeedCurve, Calibre and similar) |
 | Accessibility checks (Agents 4, 8, 10) | Lighthouse a11y category, Chrome DevTools MCP snapshots, manual keyboard and screen-reader passes | Paid scanners |
 | Screenshots (Agents 8, 12, design arena) | Chrome DevTools MCP `take_screenshot`, or a local headless browser (Playwright, Puppeteer) | Hosted screenshot APIs |
-| Reference and competitor research (Agent 11) | The host agent's built-in web search and page fetch, on public pages only | SERP APIs, Ahrefs, Semrush, Similarweb or any SEO tool that needs a key |
+| Reference and competitor research (Agents 15, 11) | The host agent's built-in web search and page fetch, on public pages only | SERP APIs, Ahrefs, Semrush, Similarweb or any SEO tool that needs a key |
 | AI discoverability (Agents 6, 13) | `llms.txt` checks with `curl`; the host agent's own web search for brand/category queries | Paid AI-visibility trackers; logging in to ChatGPT, Perplexity or others |
 | Icons | Bundled Material Symbols in `assets/icons/` (Apache 2.0) | Paid icon packs |
 | Fonts | System fonts, self-hosted open-licence fonts, or the Google Fonts CDN (no key) | Paid font services that need an account |
@@ -29,3 +29,13 @@ If a task can only be done with a paid or keyed service, stop that task, mark it
 ## Reporting
 
 In `ORCHESTRATOR.md`, keep a **Cost** line: `Cost: $0 — no API keys or paid services used.` If any task was skipped because it needed a paid service, list it there with the free alternative offered.
+
+## Research-provider compatibility
+
+See [tool routing](research-tools.md). Agent-Reach uses only keyless public channels
+without importing authenticated sessions. BrowserAct's documented API requires a
+key; OpenComputer's documented cloud route requires login. Both are disabled by
+default. Use only actual configured capabilities after explicit user authorization
+to override this policy for the named provider. Record exceptions accurately
+instead of emitting an unverified Cost: $0 claim. Host public search/fetch and a
+local browser remain the default fallback.

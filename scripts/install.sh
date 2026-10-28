@@ -58,7 +58,7 @@ echo "Installed $count skills into $SHARED and linked them into the agents found
 
 # Verify the companions and the orchestrator are reachable.
 missing=0
-for name in buildme master-orchestrator impeccable-director frontend-architect taste-specialist ui-ux-auditor motion-specialist; do
+for name in buildme master-orchestrator impeccable-director frontend-architect taste-specialist ui-ux-auditor motion-specialist competitor-researcher; do
   if [ ! -f "$SHARED/$name/SKILL.md" ]; then
     echo "missing: $name" >&2
     missing=1
