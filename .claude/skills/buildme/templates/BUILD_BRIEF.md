@@ -63,5 +63,5 @@ Additional host implementation owners for backend/native/offline tasks:
 ## Rule 1: unfamiliar feature research
 
 List unfamiliar feature/task IDs, implementation owners and constraints. Link each
-GitHub search, candidate comparison, selected approach and rationale from
-research/FEATURE_APPROACHES.md. Mark READY/BLOCKED before implementation dispatch.
+Agent 15 GitHub discovery in research/FEATURE_APPROACHES.md and Agent 11
+comparison in research/FEATURE_REVIEWS.md, plus the selected approach and rationale. Mark READY/BLOCKED before implementation dispatch.

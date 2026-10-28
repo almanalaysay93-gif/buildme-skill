@@ -61,10 +61,12 @@ rounds. Research authorizes no login, forms, messages, purchases or publication.
 
 Read [the research-first protocol](../buildme/references/research-first.md). For each unfamiliar feature
 assigned by Agent 0, search GitHub, inspect suitable open-source projects and record
-an evidence-based comparison in research/FEATURE_APPROACHES.md before the worker
+a cited discovery packet in research/FEATURE_APPROACHES.md before the worker
 codes. This is feature-implementation research, distinct from the three-reference
-competitor shortlist. Inspect up to three candidates per feature and compare at
-least two approaches when available; document sparse/no results honestly. Return
-the findings to the coordinator and implementation owner, then record their
-reuse/adapt/independent implementation decision and rationale. Do not execute
+competitor shortlist. Inspect up to three candidates per feature and supply multiple approaches when
+available; document sparse/no results honestly. Hand the source packet to Agent 11 for independent
+comparison in research/FEATURE_REVIEWS.md, then record the coordinator/worker
+reuse/adapt/independent implementation decision and rationale. Agent 11 owns that
+review file; do not edit it. Respond to its focused evidence requests within the
+existing revision budget. Do not execute
 candidate code or introduce dependencies during discovery.

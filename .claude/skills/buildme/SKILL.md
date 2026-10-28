@@ -43,7 +43,7 @@ See [research tools](references/research-tools.md) for public/keyless operation.
 
 Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before anything else*:
 
-1. Apply **Rule 1**: for every unfamiliar feature, search GitHub for open-source projects, compare approaches and record the decision before implementation. Follow [the research-first protocol](references/research-first.md).
+1. Apply **Rule 1**: for every unfamiliar feature, delegate GitHub discovery to Agent 15 and approach comparison to Agent 11, then record the decision before implementation. Follow [the research-first protocol](references/research-first.md).
 2. Decompose the brief into non-overlapping work units with single owners and explicit contracts.
 3. Write the first checkpoint to `ORCHESTRATOR.md` (phase, decisions, files, next dispatches).
 4. Set per-agent token budgets (≤ 20% of session each) and max 2 revision rounds per agent.
@@ -101,8 +101,9 @@ for that same scope counts; do not restart the interview.
 ## Phase 3: Agent Dispatch
 
 Before each implementation dispatch, require the Rule 1 search/comparison decision
-for unfamiliar work in `research/FEATURE_APPROACHES.md`. If unfamiliar details
-appear mid-task, pause that portion and send it to Agent 15 before continuing.
+for unfamiliar work in `research/FEATURE_APPROACHES.md`. Include Agent 15's discovery and Agent 11's independent comparison from
+`research/FEATURE_REVIEWS.md` in the worker handoff. If unfamiliar details appear
+mid-task, pause that portion and send it through both research agents before continuing.
 
 Use the host's actual delegation tools, or execute roles sequentially if unavailable.
 The prompts below are contract examples, not literal API arguments. Run only
