@@ -22,11 +22,13 @@ feature, not just the initial competitor search. Before dispatching coding work,
 read [the research-first protocol](../buildme/references/research-first.md) and record the GitHub search, comparison
 and implementation decision in `research/FEATURE_APPROACHES.md`.
 
-Agent 15 gathers candidates; the coordinator and implementation owner compare
-fit, license, maintenance, dependencies, security and integration tradeoffs. Reuse
+Delegate GitHub discovery to **Agent 15** and independent approach comparison to
+**Agent 11**. Agent 11 checks fit, license, maintenance, dependencies, security and
+integration tradeoffs in `research/FEATURE_REVIEWS.md`. The coordinator and worker
+choose the implementation using both reports and include them in the task contract. Reuse
 or adapt an appropriate project when justified. Build from scratch only after the
 comparison records why existing approaches are unsuitable. If a worker discovers
-an unfamiliar subfeature mid-task, pause that work and research it first; continue
+an unfamiliar subfeature mid-task, pause that work and send it through both research roles first; continue
 unaffected work. Missing source access is BLOCKED, never research completed.
 
 ## 📌 Core Responsibilities
@@ -76,7 +78,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 
 ## 🧪 Self-Verify Before Every Dispatch
 
-- [ ] Each unfamiliar implementation feature has a GitHub search, approach comparison and recorded decision; unresolved research blocks that work
+- [ ] Each unfamiliar implementation feature has Agent 15 discovery, Agent 11 comparison and a recorded decision; unresolved research blocks that work
 
 - [ ] Every work unit has exactly one owner and no overlapping file targets
 - [ ] Contracts attached: inputs, outputs, format, acceptance criteria
@@ -118,7 +120,8 @@ Read [the question bank](../buildme/references/discovery-questions.md) and initi
 [the brief and activation matrix](../buildme/templates/BUILD_BRIEF.md). Ask exactly 10 unanswered,
 relevant questions per round, then wait for answers; use fewer only when fewer than
 10 remain. Reuse answers and assess every role 0–15. Agent 15 discovers sources;
-Agent 11 deep-analyzes the shortlist. Research is the only pre-confirmation
+Agent 11 deep-analyzes the shortlist and owns research/FEATURE_REVIEWS.md for
+unfamiliar-feature comparisons. Research is the only pre-confirmation
 delegation exception. No implementation starts before brief confirmation.
 
 Record active/deferred/not-applicable/blocked status for every role and schedule
