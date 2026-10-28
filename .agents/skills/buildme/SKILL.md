@@ -208,19 +208,27 @@ Run **Agents 7, 8, 10** as sequential gates after the build:
 
 1. **Agent 7** — all detectors pass (zero blocks); exemptions only as `exempt-by-brief` with reasons.
 2. **Agent 8** — zero block + major bugs; each fix verified by its own reproduction re-run.
-3. **Agent 10** — all metric budgets hit; keyboard + screen-reader + honesty passes complete.
+3. **Agent 10** — agreed performance checks, browser/mobile evidence, keyboard/screen-reader and honesty passes complete. Local diagnostics cannot certify field INP; label missing field data honestly.
 
 Only after all three gates pass does the build advance to Phase 6.
 
 ---
 
-## Phase 6: AI Discoverability (`llms.txt`)
+## Phase 6: Free SEO and AI Discoverability
 
-Run **Agent 6** as the final gate, after the site passes all quality gates:
+Run **Agent 6** as the final public-site SEO gate, after Phase 5 passes. Read
+[the free SEO protocol](references/free-seo.md). Agent 6 runs the bundled local
+artifact audit and reviews crawlability, rendered content, canonical/sitemap
+behavior and applicable schema. Reuse Agent 10's mobile/performance evidence.
+Generate fact-grounded public llms.txt only where appropriate; do not expose
+private product information or promise rankings/AI citations.
 
-1. **Generate `public/llms.txt`** per `llm-txt-skill/SKILL.md`, grounded strictly in `PRODUCT.md` and final site content.
-2. **Verify** the file builds into the deploy output (`dist/llms.txt`) and the self-verify checklist passes.
-3. **Confirm discoverability keywords** are present (product category + location + intent), so AI assistants can recommend the business for free.
+Write SEO_AUDIT.md using [the template](templates/SEO_AUDIT.md). Send findings to
+Agent 0, which assigns the original worker to fix and returns it to the reviewer
+for rechecking. Rerun affected Phase 5 gates after code changes. Two revision
+rounds per agent remain the cap; mandatory failures or missing evidence block
+completion. For private/native-only scope, document why indexing checks are
+NOT_APPLICABLE while preserving functional/mobile/accessibility checks.
 
 ---
 

@@ -142,3 +142,21 @@ The similarly named PyPI package is unrelated and is never installed.
 If you choose `npx skills add https://github.com/almanalaysay93-gif/buildme-skill`,
 that copies skills only: it does not install Agent-Reach. Run the full installer
 from a repository checkout to get both. See [research tools](skills/buildme/references/research-tools.md).
+
+## Free SEO quality checks
+
+Buildme now integrates [selected free Claude SEO capabilities](skills/buildme/references/free-seo.md)
+into existing Agents 6 and 10. Agent 6 checks technical SEO/schema and public
+llms.txt; Agent 10 supplies mobile/performance evidence. Findings return through
+the orchestrator to the responsible worker for fixes and rechecking. Required
+failures and evidence gaps block completion, including at the revision cap.
+
+A pinned MIT subset, provenance, local HTML/robots/sitemap audit and conditional
+Product schema validator ship with the normal skill installation. There is no
+separate SEO plugin, API key, paid extension or model service to install. Private
+and native-only products get explicit SEO exclusions while retaining other QA.
+See the [source/approach decision](skills/buildme/references/seo-integration-decision.md).
+
+Run package tests with `python3 -m unittest discover -s tests -v`. GitHub Actions
+runs these tests plus the installer's Bash syntax and whitespace checks. Passing
+package tests does not establish a generated site's SEO, rankings or field CWV.

@@ -56,3 +56,16 @@ Require `UX_LAWS_AUDIT.md` covering all 14 laws after each build/significant cha
 Coordinate with the UI/UX auditor; record actual interaction-feedback measurements,
 loading/error behavior and accessibility evidence. Send findings to their owners,
 re-audit fixes, and block completion on violations or missing required evidence.
+
+## Claude SEO free visual/performance integration
+
+Read [the free SEO protocol](../buildme/references/free-seo.md). Own
+PERF_A11Y_AUDIT.md and browser/Lighthouse artifacts. Reuse existing local tooling,
+review at 320/375/768/1440 widths (or the approved device matrix), test real mobile
+navigation/overflow/content parity, and send evidence links to Agent 6.
+
+Two Lighthouse runs are lab diagnostics. Do not label TBT or a single scripted
+interaction as field INP or fabricate p75 CWV. Record actual device/tool versions,
+traces, limitations and missing field data. No provider APIs, paid extensions or
+new model service may be activated. Send reproducible findings to the original
+worker via Agent 0 and recheck after fixes; mandatory evidence gaps block PASS.

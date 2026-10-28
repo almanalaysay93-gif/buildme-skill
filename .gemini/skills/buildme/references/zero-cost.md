@@ -38,3 +38,13 @@ public/keyless channels with an explicit public-web backend where supported;
 never import authenticated sessions, configure keys or enable paid channels.
 A configured local browser and host public search/fetch are free fallbacks.
 Installation does not prove live research works; record actual results.
+
+## Free SEO
+
+The [free SEO protocol](free-seo.md) uses a pinned MIT Claude SEO subset, the bundled
+Python-stdlib artifact audit, local browser and local Lighthouse. No Google SDK,
+account/key setup, paid extension, credit usage, API-based ranking tracker, new
+model routing or URL-submission service is activated. Installed skill files include
+the selected audit references and Product validator; no separate plugin is needed.
+The coding host and compute may still have their own existing costs; the audit
+adds no SEO-service subscription or API charge.
