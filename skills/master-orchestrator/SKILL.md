@@ -92,3 +92,22 @@ include the relevant checks in every specialist handoff. After every build or
 significant change, complete `UX_LAWS_AUDIT.md`, fix findings and re-audit before
 completion. The audit is mandatory even when optional UX tools are skipped.
 Unresolved violations or missing evidence block completion; existing repair caps apply.
+
+## Full-build discovery and activation
+
+Read [the question bank](../buildme/references/discovery-questions.md) and initialize
+[the brief and activation matrix](../buildme/templates/BUILD_BRIEF.md). Ask bounded
+rounds, reuse answers and assess every role 0–15. Agent 15 discovers sources;
+Agent 11 deep-analyzes the shortlist. Research is the only pre-confirmation
+delegation exception. No implementation starts before brief confirmation.
+
+Record active/deferred/not-applicable/blocked status for every role and schedule
+quality gates. Native/backend/offline tasks need named implementation owners,
+interfaces, toolchains and appropriate verification. Do not equate assessing all
+roles with forcing unnecessary features or claiming deferred work has passed.
+
+Agent 15 owns only research/COMPETITORS.md, research/REPOSITORIES.md,
+research/SOURCE_LEDGER.md and research/TOOLS.md. It follows
+[tool routing](../buildme/references/research-tools.md) and returns a three-reference
+shortlist. Optional keyed/account providers require explicit recorded policy
+authorization; public-web/local-browser fallback remains available.
