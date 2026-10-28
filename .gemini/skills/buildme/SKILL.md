@@ -33,6 +33,12 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 Agents 1–5 need these skills installed next to `buildme`: `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`. They ship in this repo. Install them with `bash scripts/install.sh` from a clone of the repo. Before Phase 3, confirm each one is present (its `SKILL.md` exists in the shared skills folder). If one is missing, stop, name the missing skill and ask the user to install it. Do not dispatch Agents 1–5 without them.
 
+Agent-Reach and its upstream skill are also required research dependencies.
+`bash scripts/install.sh` installs both the ensemble and Agent-Reach. Confirm
+`agent-reach version`, `agent-reach skill` and `agent-reach channels` succeed before
+claiming research readiness. Skill-only installation does not run this bootstrap.
+See [research tools](references/research-tools.md) for public/keyless operation.
+
 ## Phase 0: Orchestration Setup
 
 Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before anything else*:
@@ -236,7 +242,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
 | **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
-| **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; routes available Agent-Reach/OpenComputer/BrowserAct and supplies Agent 11 a cited shortlist |
+| **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; uses Agent-Reach and local-browser fallback and supplies Agent 11 a cited shortlist |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---

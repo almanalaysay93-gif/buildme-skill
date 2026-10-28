@@ -24,9 +24,9 @@ an explicit implementation owner, toolchain and native validation, beyond web ch
 5. Who are the known competitors, alternatives and aspirational references?
 6. What category, region, language and customer segment should research target?
 7. Which sites/repos do you admire or dislike? May we discover alternatives, and what must differ?
-8. What research budget applies? Which Agent-Reach, OpenComputer or BrowserAct tools
-   are available? Keep public/keyless mode, or explicitly authorize a named provider
-   exception to the no-key/no-account/no-credit policy? Never request secrets in chat.
+8. What research budget applies? Is the bundled Agent-Reach installation ready,
+   and which public sources, regions and local-browser evidence should we prioritize?
+   Keep research public/keyless; do not request credentials or account access.
 
 Routes: Agent 15 discovers sources; Agent 11 deep-analyzes the shortlist.
 

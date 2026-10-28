@@ -25,8 +25,8 @@ Required/not required, tools/knowledge, confirmation boundaries, local hardware/
 frontend integration owner and acceptance prompts:
 
 ## Research capabilities
-Agent-Reach / OpenComputer / BrowserAct availability, schemas/versions, public-source
-scope, budget, fallback, any explicit policy authorization and evidence paths:
+Agent-Reach installation/version, actual public channels/actions/backends,
+local-browser availability, source scope, research budget, fallback and evidence:
 
 ## Acceptance and delivery
 Tests, device checks, previews, deploy authorization, monitoring, runbook:

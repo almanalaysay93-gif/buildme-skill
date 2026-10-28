@@ -2,11 +2,9 @@
 
 > **Design & Development Orchestrator — Agents 0–15 for AI Coding Agents**
 
-One command installs the orchestrator **and every agent skill** as sibling folders under `skills/`.
-
-```bash
-npx skills add https://github.com/almanalaysay93-gif/buildme-skill
-```
+The full installer installs the orchestrator, companion skills and Agent-Reach
+(including its upstream agent skill) together. Python 3.10+, Bash and network access
+are required; uv is installed automatically from Astral if missing.
 
 That registers these skills together:
 
@@ -22,7 +20,8 @@ cd buildme-skill
 bash scripts/install.sh
 ```
 
-The script installs BuildMe and these companions, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`, for Claude Code, Codex, Grok and Antigravity on this machine. It only replaces skills with the same names. If a companion is missing, BuildMe stops before Phase 3 and tells you which one to install.
+The script first installs and sets up Agent-Reach from its official GitHub release,
+then installs BuildMe and these companions, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor` and `motion-specialist`, for Claude Code, Codex, Grok and Antigravity on this machine. It only replaces skills with the same names. If a companion is missing, BuildMe stops before Phase 3 and tells you which one to install.
 
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
@@ -120,10 +119,17 @@ monitoring is deferred until deployment and AI building remains conditional.
 
 ## Competitor and repository discovery
 
-[Agent 15](skills/competitor-researcher/SKILL.md) finds competitors, websites and
-public GitHub references, checks provenance/licenses and hands Agent 11 a shortlist
-for deeper analysis. It supports actual available Agent-Reach, OpenComputer and
-BrowserAct routes, with a public-web/local-browser fallback. These tools are not
-bundled. BrowserAct's API requires a key; documented OpenComputer cloud use requires
-login. Both stay disabled by the default policy unless explicitly overridden.
-See [tool routing and sources](skills/buildme/references/research-tools.md).
+[Agent 15](skills/competitor-researcher/SKILL.md) uses Agent-Reach to find competitors,
+websites and public GitHub references, checks provenance/licenses, and hands Agent 11
+a shortlist for deeper analysis. It reads Agent-Reach's installed upstream skill,
+uses public/keyless routes, and uses a local browser for rendered-page observations.
+
+`bash scripts/install.sh` installs Agent-Reach from its official GitHub release via
+uv, runs setup, shows its upstream installation report, and checks its version,
+agent skill and channel inventory. Incomplete setup fails the installer visibly.
+No account, key, optional channel or authenticated browser session is configured.
+The similarly named PyPI package is unrelated and is never installed.
+
+If you choose `npx skills add https://github.com/almanalaysay93-gif/buildme-skill`,
+that copies skills only: it does not install Agent-Reach. Run the full installer
+from a repository checkout to get both. See [research tools](skills/buildme/references/research-tools.md).

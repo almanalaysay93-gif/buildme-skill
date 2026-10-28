@@ -110,5 +110,6 @@ roles with forcing unnecessary features or claiming deferred work has passed.
 Agent 15 owns only research/COMPETITORS.md, research/REPOSITORIES.md,
 research/SOURCE_LEDGER.md and research/TOOLS.md. It follows
 [tool routing](../buildme/references/research-tools.md) and returns a three-reference
-shortlist. Optional keyed/account providers require explicit recorded policy
-authorization; public-web/local-browser fallback remains available.
+shortlist. The full installer provisions Agent-Reach and its upstream skill. Verify actual
+readiness, use public/keyless routes only, and record any host public-web/local-browser
+fallback. No research dispatch may configure keys or import authenticated sessions.
