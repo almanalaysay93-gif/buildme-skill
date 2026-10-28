@@ -46,8 +46,10 @@ Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before
 
 ## Phase 1: Seed brief and research preflight
 
-Ask the seed questions in [the full-build question bank](references/discovery-questions.md):
-product/job, audience, platform, category/region and constraints. Reuse known answers.
+Start with 10 unanswered questions from [the full-build question bank](references/discovery-questions.md),
+including the seed product/job, audience, platform, category/region and constraints.
+Wait for answers before research or the next round. Use fewer only if fewer than
+10 unanswered, relevant questions remain. Reuse known answers.
 Initialize [BUILD_BRIEF.md](templates/BUILD_BRIEF.md).
 
 Run Agent 15 per [competitor-researcher/SKILL.md](competitor-researcher/SKILL.md) to
@@ -63,8 +65,9 @@ brief approval; implementation agents wait for Phase 2 confirmation.
 
 ## Phase 2: Full-build Grill Me and activation review
 
-Read [all 41 questions in 12 groups](references/discovery-questions.md). Ask rounds
-of 3–6 related questions covering product/platform, market, users/journeys,
+Read [all 41 questions in 12 groups](references/discovery-questions.md). Ask exactly
+10 unanswered, relevant questions per round and wait for answers before the next
+round; use fewer only when fewer than 10 remain. Cover product/platform, market, users/journeys,
 visuals/content, data/backend/auth, integrations/payments, AI, mobile/native/offline,
 motion, accessibility/performance, discoverability/privacy, testing and delivery.
 Reuse supplied answers and research. Give conditional topics a not-applicable

@@ -1,6 +1,10 @@
 # Full-build Grill Me question bank
 
-Ask 3–6 related questions per round. Reuse supplied answers and repository facts;
+Ask exactly 10 unanswered, relevant questions per round, then wait for the user's
+answers before presenting the next round. Use fewer only when fewer than 10
+unanswered, relevant questions remain. Never pad a round or repeat supplied answers.
+Number each question clearly and save answers and remaining questions in
+BUILD_BRIEF.md before advancing. Reuse supplied answers and repository facts;
 do not ask all 41 questions at once. Cover all 12 groups with an answer, agreed
 default, explicit not-applicable reason or unresolved decision. Ask conditional
 follow-ups only when relevant. Silence is not confirmation.
