@@ -65,3 +65,12 @@ Additional host implementation owners for backend/native/offline tasks:
 List unfamiliar feature/task IDs, implementation owners and constraints. Link each
 Agent 15 GitHub discovery in research/FEATURE_APPROACHES.md and Agent 11
 comparison in research/FEATURE_REVIEWS.md, plus the selected approach and rationale. Mark READY/BLOCKED before implementation dispatch.
+
+## Free SEO scope
+
+Public / private / native-only, with rationale:
+Approved indexable routes and excluded private routes:
+Canonical origin / sitemap strategy / applicable schema / languages:
+Agent 6 technical checks and Agent 10 runtime/mobile/performance evidence:
+Current official schema/SEO guidance to verify:
+SEO_AUDIT.md and reports/seo-static.json output paths:

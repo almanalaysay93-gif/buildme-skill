@@ -56,11 +56,11 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 ### 4. Token & Session Durability
 - **Checkpoint often**: after each phase, write `ORCHESTRATOR.md` at the repo root with: current phase, decisions made, files produced, next dispatch plan, and open questions. If the session compacts, the next agent rebuilds context from this file.
 - **De-duplicate context**: never send the full brief to every agent; send the brief once, and send each agent only its slice + file paths.
-- **Cap rounds**: a maximum of 2 revision rounds per agent. After 2 rounds, escalate to the user or accept with a documented caveat.
+- **Cap rounds**: a maximum of 2 revision rounds per agent. After 2 rounds, report/escalate unresolved work. A caveat may document an advisory tradeoff; it cannot waive a mandatory failing or unverified gate.
 
 ### 5. Final Merge & Gate
 - Run a **merge audit**: verify every dispatched output file exists, is non-empty, and matches its contract before Phase 4 synthesis begins.
-- If ≥ 1 agent failed or was killed, **degrade gracefully**: proceed with remaining outputs, note the gaps, and offer a focused re-run of only the missing unit (never re-run the whole ensemble).
+- If ≥ 1 agent failed or was killed, **degrade gracefully**: continue unaffected work and record the gaps. Required deliverables remain FAIL/BLOCKED until fixed and reverified; do not declare the whole build complete with missing mandatory outputs.
 
 ### 6. Conditional Agents
 - Dispatch **Agent 14 (ADK Agent Builder, `adk-agent-builder/SKILL.md`)** only when the confirmed brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow).
@@ -135,3 +135,14 @@ research/SOURCE_LEDGER.md, research/TOOLS.md and research/FEATURE_APPROACHES.md.
 shortlist. The full installer provisions Agent-Reach and its upstream skill. Verify actual
 readiness, use public/keyless routes only, and record any host public-web/local-browser
 fallback. No research dispatch may configure keys or import authenticated sessions.
+
+## Free SEO orchestration and repair routing
+
+Read [the free SEO protocol](../references/free-seo.md). Agent 6 owns the
+public-site technical SEO/schema report; Agent 10 owns visual/mobile/performance
+evidence. They return findings with affected route/file, severity, source,
+reproduction, assigned worker and retest criteria. Dispatch the original worker
+for fixes, then the responsible reviewer to rerun checks. Rerun affected Phase 5
+gates after Phase 6 code changes. No paid extension, API setup or upstream model
+routing is activated. At two rounds, unresolved mandatory failures stay FAIL and
+missing required evidence stays BLOCKED. Never hide either behind a caveat.
