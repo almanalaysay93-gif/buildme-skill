@@ -99,7 +99,7 @@ for usage, accessibility rules and how to add more icons. The icons' `LICENSE` a
 
 ## In-product AI agents (Agent 14)
 
-Agent 14 (`skills/adk-agent-builder/`) builds an AI agent that the product itself runs, using
+Agent 14 (`skills/buildme/adk-agent-builder/`) builds an AI agent that the product itself runs, using
 [Google's Agent Development Kit](https://github.com/google/adk-python) (`google-adk`) on a free
 local model through [Ollama](https://ollama.com) (default `qwen2.5:1.5b`). No API key or hosted
 model is used. The orchestrator dispatches it only when the brief asks for an assistant, a
