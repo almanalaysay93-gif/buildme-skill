@@ -151,6 +151,24 @@ class JourneyTests(unittest.TestCase):
         self.assertIn("left the approved", result["reason"])
         self.assertTrue(agent.closed)
 
+    def test_typing_needs_an_explicit_provider_instead_of_upstream_defaults(self):
+        config = scenario()
+        config["allow_typing"] = True
+        factory = Mock(return_value=FakeAgent(["fill", "DONE"]))
+        with patch.dict(os.environ, {"TYPESAFE_API_KEY": "placeholder", "TEXT_MODEL_API_KEY": "placeholder",
+                                    "TEXT_MODEL_BASE_URL": "", "TEXT_MODEL": ""}):
+            report = jev.run_scenario(config, allow_paid=True, agent_factory=factory)
+            self.assertIn("NEED_SETUP", report["reason"])
+            factory.assert_not_called()
+            os.environ["TEXT_MODEL_BASE_URL"] = "http://external.test/v1"
+            os.environ["TEXT_MODEL"] = "explicit-model"
+            report = jev.run_scenario(config, allow_paid=True, agent_factory=factory)
+            self.assertIn("HTTPS", report["reason"])
+            factory.assert_not_called()
+            os.environ["TEXT_MODEL_BASE_URL"] = "https://configured-provider.test/v1"
+            report = jev.run_scenario(config, allow_paid=True, agent_factory=factory)
+            self.assertEqual(report["journey_status"], "PASS")
+
     def test_errors_are_sanitized(self):
         agent = FakeAgent(["DONE"], error=True)
         result, _ = self.run_case(agent)

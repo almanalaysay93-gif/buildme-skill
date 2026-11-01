@@ -122,10 +122,18 @@ def run_scenario(scenario, allow_paid=False, agent_factory=None):
     if not allow_paid:
         report["reason"] = "DISABLED_BY_DEFAULT: a live run requires explicit --allow-paid and configured providers"
         return report
-    needed = ["TYPESAFE_API_KEY"] + (["TEXT_MODEL_API_KEY"] if scenario.get("allow_typing", False) else [])
+    needed = ["TYPESAFE_API_KEY"] + (["TEXT_MODEL_API_KEY", "TEXT_MODEL_BASE_URL", "TEXT_MODEL"]
+                                    if scenario.get("allow_typing", False) else [])
     if any(not os.environ.get(name) for name in needed):
         report["reason"] = "NEED_SETUP: configure required provider credentials outside chat; none were printed"
         return report
+    if scenario.get("allow_typing", False):
+        endpoint = urlparse(os.environ["TEXT_MODEL_BASE_URL"])
+        local = endpoint.hostname in ("localhost", "127.0.0.1", "::1")
+        if (not endpoint.hostname or endpoint.username or endpoint.password or endpoint.query or endpoint.fragment
+                or (endpoint.scheme != "https" and not (endpoint.scheme == "http" and local))):
+            report["reason"] = "NEED_SETUP: use an explicit HTTPS text-model endpoint, or HTTP on local loopback"
+            return report
     start = time.monotonic()
     phase = "dependency setup"
     agent = None

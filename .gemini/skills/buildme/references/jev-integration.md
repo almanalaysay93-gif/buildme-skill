@@ -64,7 +64,9 @@ book, send messages, delete real data or affect third parties. Origin checks det
 unexpected navigation; they are not a browser/network side-effect sandbox.
 
 Configure TYPESAFE_API_KEY outside chat. If allow_typing is true, also configure
-TEXT_MODEL_API_KEY and the chosen provider/model/base URL as documented upstream.
+TEXT_MODEL_API_KEY, TEXT_MODEL_BASE_URL and TEXT_MODEL explicitly. The adapter
+requires a named provider endpoint/model instead of silently using upstream defaults;
+use HTTPS except for a local loopback model endpoint.
 Buildme reads credentials only after --allow-paid, never prints or persists them,
 and never provisions a provider account. Do not put secrets in scenario JSON.
 
