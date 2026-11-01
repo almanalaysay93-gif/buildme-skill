@@ -1,0 +1,16 @@
+{
+  "id": "fixture-details",
+  "url": "http://127.0.0.1:3000/jev-fixture.html",
+  "goal": "Click Show details. Stop when Fixture ready is visible.",
+  "test_environment": true,
+  "dedicated_test_profile": false,
+  "allowed_origins": ["http://127.0.0.1:3000"],
+  "allow_typing": false,
+  "max_decisions": 8,
+  "max_actions": 4,
+  "requires": [],
+  "checks": [
+    {"type": "text", "value": "Fixture ready"},
+    {"type": "exists", "selector": "#details[data-ready=true]"}
+  ]
+}

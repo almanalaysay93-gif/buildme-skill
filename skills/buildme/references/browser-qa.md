@@ -62,3 +62,10 @@ are not field INP; label them as lab data.
 - A runner result of "not run" (setup missing) is never a pass. Say which check was skipped.
 - The runner does not log in to anything. For pages behind a login, record the gap and test the
   public routes only.
+
+## Optional goal-driven worker
+
+[JEV Ultrafast](jev-integration.md) can help Agent 8 exercise explicitly authorized
+synthetic desktop journeys. It is not free/keyless at runtime and does not replace
+this Playwright runner. Its journey results require independent assertions and
+normal browser/mobile evidence before the orchestrator can close the quality gate.

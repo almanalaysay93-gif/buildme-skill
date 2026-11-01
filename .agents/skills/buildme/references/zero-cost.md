@@ -1,6 +1,7 @@
-# Zero-cost policy: no API keys, no paid services
+# Zero-cost default: no API keys, no paid services
 
-BuildMe must run end to end at no cost. Every agent follows this file.
+BuildMe's default workflow uses no paid/keyed services. Every agent follows this
+file; only the explicit per-run optional JEV exception below changes that scope.
 
 ## The rule
 
@@ -48,3 +49,12 @@ model routing or URL-submission service is activated. Installed skill files incl
 the selected audit references and Product validator; no separate plugin is needed.
 The coding host and compute may still have their own existing costs; the audit
 adds no SEO-service subscription or API charge.
+
+## Narrow optional JEV exception
+
+The default no-key/no-paid policy remains unchanged. The user may separately
+select [JEV](jev-integration.md) and explicitly authorize each synthetic test run
+with --allow-paid. Only that run may use its configured TypeSafe/text-model keys;
+no other agent/provider receives an exception. Installation makes no model calls.
+Record the exception and actual known usage without claiming Cost: $0. If not
+explicitly permitted, JEV stays BLOCKED and required journeys use free Playwright.

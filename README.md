@@ -79,9 +79,9 @@ final review. Its specialty workflow and quality gates remain in charge. No nati
 plugin or model service is required. The reference includes optional native-plugin
 setup and host limitations. Never enable Superlite alongside Superpowers.
 
-## Free to run: no API keys
+## Free by default: no API keys
 
-BuildMe needs no API keys, paid services or accounts. Every agent uses free tools: local
+The default BuildMe workflow needs no API keys, paid services or accounts. It uses free tools: local
 Lighthouse or the Chrome DevTools MCP for audits and screenshots, the host agent's own web
 search for research, bundled Material Symbols icons, and a local Ollama model for in-product AI
 agents. A task that would need a paid service is skipped with a free alternative and never
@@ -160,3 +160,21 @@ See the [source/approach decision](skills/buildme/references/seo-integration-dec
 Run package tests with `python3 -m unittest discover -s tests -v`. GitHub Actions
 runs these tests plus the installer's Bash syntax and whitespace checks. Passing
 package tests does not establish a generated site's SEO, rankings or field CWV.
+
+## Optional JEV Ultrafast journey helper
+
+[JEV Ultrafast](https://github.com/browser-use/jev-ultrafast) is integrated as an
+optional Agent 8 worker for bounded, synthetic desktop journeys. It is MIT-licensed
+but its live policy/text generation uses provider APIs and may incur charges.
+Free Playwright remains the default and mandatory browser-quality evidence.
+
+```bash
+bash scripts/install.sh --with-jev
+```
+
+The optional install pins JEV in a separate Python 3.12 venv and makes no model
+calls. Live runs require a prepared scenario, dedicated test browser, configured
+provider keys and explicit --allow-paid. Without that flag the adapter is disabled
+before reading keys, loading JEV or opening a browser. DONE is independently checked;
+JEV does not certify mobile/accessibility/performance/SEO or overall completion.
+Read [setup, limits and the worker handoff](skills/buildme/references/jev-integration.md).
