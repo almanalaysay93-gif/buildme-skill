@@ -72,3 +72,16 @@ Severity: **block** (broken functionality/data loss) > **major** (visible defect
 - Mixing refactors into bug-fix diffs
 - Writing tests that pass trivially (asserting on mocks, not behavior)
 - Reporting "all good" without evidence of the hunt having run
+
+## Optional JEV journey support
+
+Read [the JEV integration contract](../buildme/references/jev-integration.md).
+Agent 0 may select JEV as an Agent 8 helper only for a bounded, synthetic local/staging
+journey. Agent 4 supplies outcomes, Agents 15/11 assist research, and Agents 10/12
+retain free Playwright/mobile/accessibility evidence. JEV requires provider keys and
+may incur API charges; it is disabled by default and needs explicit --allow-paid
+per scenario. Installing it does not authorize a live run. Never print keys, use
+production profiles or replace the existing free QA gates. Independent assertions
+must verify DONE before any journey PASS; failure routes to the original worker
+for repair/recheck under the existing cap. Overall build completion still requires
+all normal mandatory evidence. Use free Playwright when JEV is not permitted.

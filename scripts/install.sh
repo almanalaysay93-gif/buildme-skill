@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Install BuildMe and its companion skills for Claude Code, Codex, Grok and Antigravity.
 #
-# Usage (from a clone of this repo):  bash scripts/install.sh
+# Usage: bash scripts/install.sh [--with-jev]
 #
 # What it does:
 #   0. Installs Agent-Reach from its official GitHub release, runs setup and verifies its skill.
@@ -16,6 +16,14 @@
 #
 # It replaces only skills with the same name as one in this repo. Other skills are left alone.
 set -euo pipefail
+
+BUILDME_WITH_JEV=0
+for arg in "$@"; do
+  case "$arg" in
+    --with-jev) BUILDME_WITH_JEV=1 ;;
+    *) echo "Usage: bash scripts/install.sh [--with-jev]" >&2; exit 2 ;;
+  esac
+done
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC="$REPO/skills"
@@ -37,6 +45,9 @@ else
   exit 1
 fi
 "$BUILDME_PYTHON" "$REPO/scripts/install_agent_reach.py" --skills-dir "$SHARED"
+if [ "$BUILDME_WITH_JEV" -eq 1 ]; then
+  "$BUILDME_PYTHON" "$REPO/scripts/install_jev.py"
+fi
 
 mkdir -p "$SHARED"
 count=0

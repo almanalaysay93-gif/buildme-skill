@@ -89,6 +89,8 @@ owners where needed; do not promise unavailable hardware or store checks.
 ## 8. Motion and interaction
 
 28. Which transitions, gestures, scroll effects, 3D and motion intensity are useful?
+    For journey testing, keep free Playwright only or also install optional JEV?
+    JEV live runs need configured provider keys and separate per-run API-cost authorization.
 29. What reduced-motion, low-power, slow-network and rendering fallbacks apply?
     What immediate feedback should each action provide?
 

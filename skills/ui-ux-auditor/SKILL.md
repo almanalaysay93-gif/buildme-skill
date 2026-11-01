@@ -42,3 +42,16 @@ Read [the complete UX laws reference](references/ux-laws.md) and [its workflow](
 - Do not measure Lighthouse scores here. Agent 10 owns those.
 - Test with the real page in a browser, not from the code alone, when a browser is available. If it is not, mark those checks "not run".
 - If `ui-ux-pro-max` (upstream) is installed, read it as well.
+
+## Optional JEV journey support
+
+Read [the JEV integration contract](../buildme/references/jev-integration.md).
+Agent 0 may select JEV as an Agent 8 helper only for a bounded, synthetic local/staging
+journey. Agent 4 supplies outcomes, Agents 15/11 assist research, and Agents 10/12
+retain free Playwright/mobile/accessibility evidence. JEV requires provider keys and
+may incur API charges; it is disabled by default and needs explicit --allow-paid
+per scenario. Installing it does not authorize a live run. Never print keys, use
+production profiles or replace the existing free QA gates. Independent assertions
+must verify DONE before any journey PASS; failure routes to the original worker
+for repair/recheck under the existing cap. Overall build completion still requires
+all normal mandatory evidence. Use free Playwright when JEV is not permitted.
