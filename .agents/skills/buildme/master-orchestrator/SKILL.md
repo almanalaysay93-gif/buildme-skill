@@ -69,7 +69,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - If the brief does not need an agent, record "Agent 14: not required" in `ORCHESTRATOR.md`.
 
 ### 7. Zero-Cost Enforcement
-- Read the [zero-cost policy](../references/zero-cost.md) before planning. Default dispatches may not require API keys, paid services, credits or accounts. The only JEV exception is an explicit per-scenario --allow-paid run under the optional JEV contract; record that use accurately instead of a Cost: $0 claim.
+- Read the [zero-cost policy](../references/zero-cost.md) before planning. Dispatches may not require new API keys, paid services, credits or accounts. Use local Agent Desktop and report only measured capabilities.
 - Every contract names the free tool the agent will use (local Lighthouse, Chrome DevTools MCP, host web search, local Ollama).
 - A task that can only be done with a paid service is marked "not run (needs a paid service)" with the closest free alternative; it never blocks or fails the rest of the build.
 - Keep `Cost: $0 — no API keys or paid services used.` in `ORCHESTRATOR.md`.
@@ -86,7 +86,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 - [ ] Per-agent token budget ≤ 20% of session budget
 - [ ] Maximum 2 revision rounds budgeted per agent
 - [ ] Agent 14 dispatched only if the brief needs an in-product AI agent (else "not required" recorded)
-- [ ] Default dispatches need no key/paid service/account; any optional JEV run has explicit per-scenario authorization and truthful cost reporting instead of an assumed `Cost: $0`
+- [ ] Dispatches use local tools without new key/paid-service/account dependencies; cost and missing capabilities are reported truthfully
 
 ---
 
@@ -147,15 +147,16 @@ gates after Phase 6 code changes. No paid extension, API setup or upstream model
 routing is activated. At two rounds, unresolved mandatory failures stay FAIL and
 missing required evidence stays BLOCKED. Never hide either behind a caveat.
 
-## Optional JEV journey support
 
-Read [the JEV integration contract](../references/jev-integration.md).
-Agent 0 may select JEV as an Agent 8 helper only for a bounded, synthetic local/staging
-journey. Agent 4 supplies outcomes, Agents 15/11 assist research, and Agents 10/12
-retain free Playwright/mobile/accessibility evidence. JEV requires provider keys and
-may incur API charges; it is disabled by default and needs explicit --allow-paid
-per scenario. Installing it does not authorize a live run. Never print keys, use
-production profiles or replace the existing free QA gates. Independent assertions
-must verify DONE before any journey PASS; failure routes to the original worker
-for repair/recheck under the existing cap. Overall build completion still requires
-all normal mandatory evidence. Use free Playwright when JEV is not permitted.
+## Agent Desktop UI-control orchestration
+
+Read [the Agent Desktop contract](../references/agent-desktop.md).
+Use the local agent-desktop CLI for primary UI-control journeys: the host agent
+observes the approved app/window, chooses actual snapshot-qualified refs, acts
+semantically and independently re-observes the expected outcome. Read the binary's
+own desktop/platform skills before use. Partial/unproven trees and missing desktop
+permissions/session evidence are BLOCKED, not a pass. No new model provider or keys
+are required. Never automatically repeat an uncertain mutation or escalate to
+physical/headed input. Agent 8 executes, Agent 4 defines outcomes, Agent 0 assigns
+repairs and Agents 10/12 review evidence. Keep Playwright/Lighthouse only for their
+specialized web/viewport/DOM/performance checks; neither tool alone proves full QA.

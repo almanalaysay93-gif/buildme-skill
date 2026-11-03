@@ -1,0 +1,4 @@
+[
+  {"role": "button", "name": "Show details", "states": ["enabled"]},
+  {"role": "statictext", "name": "Ready"}
+]

@@ -2,9 +2,10 @@
 
 > **Design & Development Orchestrator — Agents 0–15 for AI Coding Agents**
 
-The full installer installs the orchestrator, companion skills and Agent-Reach
-(including its upstream agent skill) together. Python 3.10+, Bash and network access
-are required; uv is installed automatically from Astral if missing.
+The full installer installs the orchestrator, companion skills, Agent-Reach and
+Agent Desktop, including the upstream research skill and version-matched desktop
+docs. Python 3.10+, Bash, Node.js 18+/npm and network access are required; uv is
+installed from Astral if missing.
 
 That registers these skills together:
 
@@ -161,20 +162,19 @@ Run package tests with `python3 -m unittest discover -s tests -v`. GitHub Action
 runs these tests plus the installer's Bash syntax and whitespace checks. Passing
 package tests does not establish a generated site's SEO, rankings or field CWV.
 
-## Optional JEV Ultrafast journey helper
 
-[JEV Ultrafast](https://github.com/browser-use/jev-ultrafast) is integrated as an
-optional Agent 8 worker for bounded, synthetic desktop journeys. It is MIT-licensed
-but its live policy/text generation uses provider APIs and may incur charges.
-Free Playwright remains the default and mandatory browser-quality evidence.
+## Agent Desktop orchestration
 
-```bash
-bash scripts/install.sh --with-jev
-```
+[vercel-labs/agent-desktop](https://github.com/vercel-labs/agent-desktop) is the primary
+UI-control tool. The host agent runs observe–act–verify against the approved
+browser/native app using real accessibility refs, then verifies outcomes before
+closing a task. It uses no separate model provider or API key.
 
-The optional install pins JEV in a separate Python 3.12 venv and makes no model
-calls. Live runs require a prepared scenario, dedicated test browser, configured
-provider keys and explicit --allow-paid. Without that flag the adapter is disabled
-before reading keys, loading JEV or opening a browser. DONE is independently checked;
-JEV does not certify mobile/accessibility/performance/SEO or overall completion.
-Read [setup, limits and the worker handoff](skills/buildme/references/jev-integration.md).
+`bash scripts/install.sh` installs pinned agent-desktop@1.1.0 and its version-matched
+skills alongside Agent-Reach. Installation does not grant OS permissions or prove
+GUI readiness: macOS needs Accessibility permission; Linux needs a graphical
+AT-SPI session; Windows needs a compatible app integrity level. Missing access is
+BLOCKED, never silently passed. Existing Playwright/Lighthouse tools remain for
+specialized web/mobile/performance checks.
+
+Read [installation, scoped control and retry rules](skills/buildme/references/agent-desktop.md).

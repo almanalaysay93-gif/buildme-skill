@@ -1,6 +1,6 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free default workflow; optional JEV requires explicit paid-run authorization. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free local workflow using Agent Desktop and specialized web audits. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
@@ -23,7 +23,7 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 ➔ [Post-Deploy: Live Monitoring]
 ```
 
-> **Zero-cost default**: The normal BuildMe workflow uses no API keys, paid services or accounts. Optional JEV runs are a separately authorized exception; see [the JEV contract](references/jev-integration.md). Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
+> **Zero-cost default**: BuildMe uses local Agent Desktop for UI control and specialized web audits, without additional API keys, paid services or accounts. Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
 
 > **Optional branch**: between Phases 2 and 3, run the **Design Arena** (bake-off mode) when the visual direction is uncertain — see `design-arena/SKILL.md`.
 
@@ -210,7 +210,9 @@ independent work concurrently and follow the approved activation matrix:
 
 Run **Agents 7, 8, 10** as sequential gates after the build:
 
-Start with one runner pass (`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<gate>`) so all three gates read the same screenshots, console/network report and keyboard data. A runner `NEED_SETUP` result marks the affected gate "not run", never passed.
+Start GUI journeys with the Agent Desktop observe–act–verify contract. For web
+artifacts, also run `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<gate>`
+so reviewers share viewport screenshots, console/network and keyboard evidence. A runner `NEED_SETUP` result marks the affected gate "not run", never passed.
 
 
 1. **Agent 7** — all detectors pass (zero blocks); exemptions only as `exempt-by-brief` with reasons.
@@ -308,14 +310,14 @@ icons first, keep one icon style per product, make decorative icons hidden from 
 technology, give icon-only controls an accessible name, and keep `LICENSE` and `NOTICE.md`
 with the icons. Do not use third-party brand logos from the icon set.
 
-## Optional JEV Ultrafast journeys
 
-Read [the optional JEV contract](references/jev-integration.md). JEV is a helper
-for Agent 8, not another top-level orchestrator or numbered agent. Agent 0 records
-selection, scenario, synthetic data, approved test environment, profile isolation,
-independent outcome checks and budgets in BUILD_BRIEF.md. Use default free
-Playwright QA unless JEV is explicitly enabled. `--with-jev` installs the pinned
-library in a separate Python 3.12 environment; only `--allow-paid` authorizes a
-scenario's provider calls. Neither flag grants production side effects or replaces
-mobile/accessibility/performance/SEO evidence. Failed journey checks return to the
-responsible worker and are rechecked after repair within the existing limits.
+## Primary UI tool: Agent Desktop
+
+Use [Agent Desktop](references/agent-desktop.md) for the orchestration's browser/native
+GUI control, with the host agent running observe–act–verify. The full installer
+provisions the pinned CLI and its embedded skills without API keys or permission
+prompts. Agent 0 freezes app/window scope and outcomes; Agent 8 executes and routes
+failures back to the implementation owner. A missing graphical session/permission
+blocks the GUI check. Independent outcome evidence is required; success envelopes
+alone are insufficient. Existing Playwright/Lighthouse runners are specialized web
+measurement tools, not the default GUI-control policy or proof of native app QA.
