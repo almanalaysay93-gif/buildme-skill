@@ -1,7 +1,7 @@
 # Zero-cost default: no API keys, no paid services
 
 BuildMe's default workflow uses no paid/keyed services. Every agent follows this
-file; only the explicit per-run optional JEV exception below changes that scope.
+file. Agent Desktop uses the existing host agent; no separate model service is added.
 
 ## The rule
 
@@ -50,11 +50,11 @@ the selected audit references and Product validator; no separate plugin is neede
 The coding host and compute may still have their own existing costs; the audit
 adds no SEO-service subscription or API charge.
 
-## Narrow optional JEV exception
 
-The default no-key/no-paid policy remains unchanged. The user may separately
-select [JEV](jev-integration.md) and explicitly authorize each synthetic test run
-with --allow-paid. Only that run may use its configured TypeSafe/text-model keys;
-no other agent/provider receives an exception. Installation makes no model calls.
-Record the exception and actual known usage without claiming Cost: $0. If not
-explicitly permitted, JEV stays BLOCKED and required journeys use free Playwright.
+## Agent Desktop
+
+The [Agent Desktop contract](agent-desktop.md) uses a pinned local CLI and the
+existing host agent's reasoning. No additional model provider, API key, credits or
+account is needed. The full installer installs the CLI and embedded skills; OS
+permissions and a real graphical session must still be supplied by the user.
+Keep ordinary functional QA, mobile/web measurements and truthful evidence gates.

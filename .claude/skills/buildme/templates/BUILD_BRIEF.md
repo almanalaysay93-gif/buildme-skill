@@ -75,12 +75,12 @@ Agent 6 technical checks and Agent 10 runtime/mobile/performance evidence:
 Current official schema/SEO guidance to verify:
 SEO_AUDIT.md and reports/seo-static.json output paths:
 
-## Optional JEV helper (default off)
 
-Selected / not selected and rationale; Agent 8 owner:
-Optional installation/pinned ref/Python 3.12 readiness:
-Scenario path; disposable app and dedicated test profile (operator confirmed):
-Allowed origins, synthetic data, decision/action budgets and independent outcomes:
-Explicit per-run cost authorization (never inferred from installation):
-Unsupported features requiring Playwright fallback:
-JEV report plus required normal QA evidence and remaining blockers:
+## Agent Desktop UI scope
+
+Approved app, specific window or disambiguation evidence, platform:
+Graphical-session and OS-permission readiness (never inferred from installation):
+Authorized UI tasks, synthetic input and independent application outcomes:
+Snapshot/assertion evidence paths and privacy/redaction handling:
+Specialized web/mobile/DOM/performance checks still required:
+Blocked operations, repair owner and retest criteria:

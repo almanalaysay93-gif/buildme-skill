@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Install BuildMe and its companion skills for Claude Code, Codex, Grok and Antigravity.
 #
-# Usage: bash scripts/install.sh [--with-jev]
+# Usage: bash scripts/install.sh
 #
 # What it does:
-#   0. Installs Agent-Reach from its official GitHub release, runs setup and verifies its skill.
+#   0. Installs Agent-Reach and the pinned local Agent Desktop CLI/skills; no OS permission prompts.
 #   1. Copies every skill folder under skills/ into ~/.agents/skills/ (the shared folder).
 #   2. Links them into ~/.claude/skills and ~/.grok/skills (only if those agents are installed).
 #   3. Links them into ~/.gemini/config/skills (Antigravity global skills).
@@ -17,13 +17,10 @@
 # It replaces only skills with the same name as one in this repo. Other skills are left alone.
 set -euo pipefail
 
-BUILDME_WITH_JEV=0
-for arg in "$@"; do
-  case "$arg" in
-    --with-jev) BUILDME_WITH_JEV=1 ;;
-    *) echo "Usage: bash scripts/install.sh [--with-jev]" >&2; exit 2 ;;
-  esac
-done
+if [ "$#" -ne 0 ]; then
+  echo "Usage: bash scripts/install.sh" >&2
+  exit 2
+fi
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC="$REPO/skills"
@@ -45,9 +42,7 @@ else
   exit 1
 fi
 "$BUILDME_PYTHON" "$REPO/scripts/install_agent_reach.py" --skills-dir "$SHARED"
-if [ "$BUILDME_WITH_JEV" -eq 1 ]; then
-  "$BUILDME_PYTHON" "$REPO/scripts/install_jev.py"
-fi
+"$BUILDME_PYTHON" "$REPO/scripts/install_agent_desktop.py"
 
 mkdir -p "$SHARED"
 count=0
@@ -89,7 +84,7 @@ for name in buildme master-orchestrator impeccable-director frontend-architect t
     missing=1
   fi
 done
-[ "$missing" -eq 0 ] && echo "BuildMe, its companion skills and Agent-Reach are installed."
+[ "$missing" -eq 0 ] && echo "BuildMe, its companion skills, Agent-Reach and Agent Desktop are installed. UI readiness still requires a graphical session and OS permissions."
 
 # Report optional richer companions (read by Agents 2-5 when present; never blocking).
 optional=""

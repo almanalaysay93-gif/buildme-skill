@@ -1,4 +1,4 @@
-# Browser QA runner (free, local)
+# Specialized web QA runner (free, local)
 
 BuildMe's quality gates (Agents 8, 10 and 12) need real browser evidence: screenshots at each
 width, console and network errors, horizontal overflow, and keyboard focus. The bundled runner
@@ -63,9 +63,9 @@ are not field INP; label them as lab data.
 - The runner does not log in to anything. For pages behind a login, record the gap and test the
   public routes only.
 
-## Optional goal-driven worker
+## UI-control ownership
 
-[JEV Ultrafast](jev-integration.md) can help Agent 8 exercise explicitly authorized
-synthetic desktop journeys. It is not free/keyless at runtime and does not replace
-this Playwright runner. Its journey results require independent assertions and
-normal browser/mobile evidence before the orchestrator can close the quality gate.
+[Agent Desktop](agent-desktop.md) is the orchestration's primary browser/native GUI
+control tool. This Playwright runner remains a specialized web-audit tool for
+precise CSS viewports, DOM/console/network and keyboard evidence. It does not
+replace required desktop/native interaction checks when a GUI session is missing.
