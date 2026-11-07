@@ -42,16 +42,20 @@ Before dispatching any subagent, decompose the confirmed brief into:
 > **Rule**: if two agents need the same artifact, one *produces* it and the others *read* it. Never let two agents write to the same file concurrently.
 
 ### 2. Dispatch & Coordination
-- Launch parallel agents only for **independent** work units; serialize anything with shared state.
+- Execute tasks.md sequentially by default. Only explicit [P] tasks with satisfied dependencies and disjoint ownership may run concurrently; preserve Phase 3 dispatch order.
 - Attach a **contract** to every dispatch: exact input files, expected output files, format of the output report, and the acceptance criteria it will be judged on.
 - Set a **timeout and token budget** per agent (rule of thumb: a subagent gets ≤ 20% of the total session budget). Kill and re-dispatch (narrower scope) if it drifts.
 
 ### 3. Conflict Resolution (Tiebreaker Hierarchy)
 When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), resolve in this order:
-1. **User's confirmed brief** (the Design Read) — always wins.
-2. **Anti-slop rule** over aesthetic preference — bland-but-safe loses to distinctive-but-on-brief.
-3. **Cited principle** over opinion — a finding citing Rams/Tufte/Norman beats one that doesn't.
-4. If still tied → ask the user with both options, never silently pick.
+1. Follow host instructions and explicit user-authorized amendments.
+2. constitution.md is the highest project-level authority; workers cannot weaken it.
+3. spec.md defines behavior, plan.md defines the compliant implementation, and
+   tasks.md defines authorized task scope; project_context.md records observed facts.
+4. Research, brief, design/taste and specialist annexes must agree with these files.
+   Pause affected work on conflict; reconcile through the amendment process before
+   continuing. Ask only for unresolved material decisions, not routine choices
+   already authorized. Never silently override a project rule.
 
 ### 4. Token & Session Durability
 - **Checkpoint often**: after each phase, write `ORCHESTRATOR.md` at the repo root with: current phase, decisions made, files produced, next dispatch plan, and open questions. If the session compacts, the next agent rebuilds context from this file.
@@ -80,6 +84,8 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 
 - [ ] Each unfamiliar implementation feature has Agent 15 discovery, Agent 11 comparison and a recorded decision; unresolved research blocks that work
 
+- [ ] Phase 2.5 is READY: all five planning documents are substantive and consistent, with canonical paths/revisions and scope approval recorded
+- [ ] Each dispatch includes constitution/requirement IDs, plan sections and ready Txxx task IDs
 - [ ] Every work unit has exactly one owner and no overlapping file targets
 - [ ] Contracts attached: inputs, outputs, format, acceptance criteria
 - [ ] `ORCHESTRATOR.md` checkpoint exists and is current
@@ -121,8 +127,9 @@ Read [the question bank](../buildme/references/discovery-questions.md) and initi
 relevant questions per round, then wait for answers; use fewer only when fewer than
 10 remain. Reuse answers and assess every role 0–20. Agent 15 discovers sources;
 Agent 11 deep-analyzes the shortlist and owns research/FEATURE_REVIEWS.md for
-unfamiliar-feature comparisons. Research is the only pre-confirmation
-delegation exception. No implementation starts before brief confirmation.
+unfamiliar-feature comparisons. Research and document-only planning are the
+pre-confirmation delegation exceptions. No application implementation starts
+before the completed five-document gate is READY and scope approval is recorded.
 
 Record active/deferred/not-applicable/blocked status for every role and schedule
 quality gates. Native/backend/offline tasks need named implementation owners,
@@ -174,3 +181,20 @@ security, data, caching, architecture or observability gates: use free self-host
 Sentry with verified ingestion/alerting/symbolication or mark BLOCKED. Do not sign
 up for a paid service or put CI/auth tokens in frontend code. All FAIL/BLOCKED
 mandatory gates stop ship; original workers fix and reviewers independently retest.
+
+## Markdown source-of-truth planning
+
+Follow [the Markdown planning contract](../buildme/references/markdown-planning.md).
+Scan the repository into project_context.md; after Grill Me reconcile constitution.md,
+spec.md, plan.md and tasks.md in that order. Own their path/revision map and READY
+assessment in ORCHESTRATOR.md. Reuse native Spec Kit agent commands only when
+available; otherwise record the bundled-template adapter, never fictitious CLI
+success. Preserve existing native feature paths and project principles.
+
+Do not implement an unplanned requirement. Read the current five artifacts in
+every handoff, execute ready T001-style tasks, and keep tasks.md authoritative for
+task content/status rather than generating a second Superlite task list. Schema
+fields/types, boundaries, tool configuration and constitution compliance must be
+resolved in plan.md before implementation. Missing files, contradictions or
+material unknowns are BLOCKED. Amend documents and dependent tasks before scope
+changes; reviewers verify both behavior and documentary compliance before ship.

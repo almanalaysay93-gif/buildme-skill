@@ -20,7 +20,7 @@ Each snapshot is a numbered folder `snapshots/snap-NNN/` containing:
 
 1. **`design.md`** — the full current design system as plain text: color tokens (hex + OKLCH), type scale, spacing scale, radius, shadows, breakpoints, motion easings/durations. Machine-diffable, no prose.
 2. **`components.md`** — inventory of implemented components with their token bindings (which token each component uses, so a token change's blast radius is visible).
-3. **`screenshots/`** — desktop + mobile screenshots of every shipped screen, consistently framed (same viewport widths: 1440 and 390).
+3. **`screenshots/`** — desktop + mobile screenshots of every shipped screen, consistently framed (same viewport widths: 1440 and 390). Capture with `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> <snapshot>/screenshots --widths 390,1440` ([browser QA runner](../references/browser-qa.md)).
 4. **`delta.md`** — the *diff against the previous snapshot*: tokens added/changed/removed, components added/changed, and a one-line "what this snapshot changed" summary. The first snapshot has no delta.
 
 ## 🧭 Snapshot Triggers (the orchestrator calls you at each)
@@ -51,3 +51,14 @@ Each snapshot is a numbered folder `snapshots/snap-NNN/` containing:
 - Including losing Design Arena designs in snapshots
 - Screenshots at inconsistent viewports (makes diffs meaningless)
 - Letting snapshot churn eat the token budget — one snapshot per trigger, no extras
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.

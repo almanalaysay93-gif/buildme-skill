@@ -21,3 +21,11 @@ The canonical workflow defines supporting dispatches for all existing roles,
 repair/revalidation order and mandatory shipping gates. New contracts are in
 [agents/](agents/); the existing [frontend architect update](agents/frontend-architect.md)
 requires rendering-decision.md before code.
+
+## Required files after Grill Me
+
+Before implementation, create/update project_context.md, constitution.md, spec.md,
+plan.md and tasks.md using the [Markdown planning contract](skills/buildme/references/markdown-planning.md).
+They are the build's governing documents; every worker receives their canonical
+paths/revisions and assigned task IDs. No application code or speckit implement
+before Phase 2.5 is READY. Existing agents and the Phase 3 sequence remain intact.

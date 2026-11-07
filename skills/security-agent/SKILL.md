@@ -75,3 +75,14 @@ BLOCKED, never PASS. Send each finding to Agent 0 with its original worker and
 retest criteria. That worker fixes it and this reviewer rechecks; rerun dependent
 gates after changes. Existing two-round revision cap applies: unresolved mandatory
 failures still block ship. Do not include secrets or personal data in reports.
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.

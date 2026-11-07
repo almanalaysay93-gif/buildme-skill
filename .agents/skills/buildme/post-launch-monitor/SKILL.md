@@ -64,3 +64,14 @@ Offer a recurring schedule (weekly default): re-run the checklist, diff `llms.tx
 - "Fixing" the live site without verifying the exact fix deployed (checksum `llms.txt` against the repo copy)
 - Promising search/AI rankings — report observations only
 - Re-running full discovery research every check — diff against the saved baseline instead
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.

@@ -71,10 +71,20 @@ Installing a plugin alone does not wire the specialty skill's contracts into it.
 
 ## Buildme contract
 
-The Master Orchestrator is the sole coordinator. Phase 0 may record setup and
-provisional tasks, but Grill Me confirmation must precede specialist dispatch.
-Keep the task graph and final review in `ORCHESTRATOR.md`. Respect the existing
-20% per-agent token budget and two revision rounds. Preserve design ownership,
-Design Arena selection, token snapshots and the ordered anti-slop → bugs →
-performance/accessibility gates. Generate llms.txt only against the passing build;
-post-launch monitoring starts only after an authorized deployment exists.
+The Master Orchestrator remains the sole coordinator. Scan into project_context.md
+and, after Grill Me, complete constitution.md, spec.md, plan.md and tasks.md before
+any application implementation. Planning-only specialist consultations may precede
+the completed artifact review. The five documents govern the build; templates or
+material contradictions do not pass the Phase 2.5 READY gate. Native Spec Kit is
+optional, and its implementation command cannot bypass this gate.
+
+tasks.md owns the sequential T001-style task list and dependencies; ORCHESTRATOR.md
+records the canonical path/revision map, runtime checkpoint, blockers and final
+review. Do not generate a second task graph. Sequential execution is the default;
+only explicitly [P]-marked, dependency-ready, disjoint work can run concurrently.
+Respect the 20% per-agent token budget, two revision rounds, existing design
+ownership and all Phase 3 dispatches. Follow the canonical Buildme sequence:
+security -> bugs -> performance/a11y -> observability, then snapshots,
+discoverability, content and final architecture/anti-slop sign-off. Update the
+planning artifacts before affected scope changes and rerun impacted gates.
+Live monitoring still waits for an authorized deployment; pre-ship setup does not.

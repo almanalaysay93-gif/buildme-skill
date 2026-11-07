@@ -97,3 +97,14 @@ If Ollama is unavailable, gates 1, 2 and 4 still run. Mark gate 3 "not run (Olla
 - Do not `pip install` into the user's global Python. Add packages to the project with `uv`, or use an isolated `uv tool` copy for checks.
 - Keep the agent's output schema plain text unless the front end needs structured data. If it does, set `output_schema` and test it.
 - Report to the orchestrator: what was built, which gates passed, which were not run and why, and any tool that needs the user's approval before production.
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.
