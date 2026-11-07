@@ -18,7 +18,7 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 
 ```
 [Phase 0: Orchestration Setup] ➔ [Phase 1: Preflight (Reference Analysis)] ➔ [Phase 2: Grill Me Discovery]
-➔ [Phase 3: Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
+➔ [Phase 2.5: Markdown Planning Gate] ➔ [Phase 3: Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
 ➔ [Phase 5: Final Gate Revalidation] ➔ [Phase 6: SEO/Discoverability Revalidation]
 ➔ [Post-Deploy: Live Monitoring]
 ```
@@ -50,10 +50,10 @@ See [research tools](references/research-tools.md) for public/keyless operation.
 Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before anything else*:
 
 1. Apply **Rule 1**: for every unfamiliar feature, delegate GitHub discovery to Agent 15 and approach comparison to Agent 11, then record the decision before implementation. Follow [the research-first protocol](references/research-first.md).
-2. Decompose the brief into non-overlapping work units with single owners and explicit contracts.
+2. Scan the repository and create/update project_context.md with observed identity, stack, libraries, architecture and evidence; provisional work units remain planning-only.
 3. Write the first checkpoint to `ORCHESTRATOR.md` (phase, decisions, files, next dispatches).
 4. Set per-agent token budgets (≤ 20% of session each) and max 2 revision rounds per agent.
-5. Define the tiebreaker hierarchy for conflicts: user brief → anti-slop rule → cited principle → ask user.
+5. Apply the project authority chain: constitution.md -> spec.md -> plan.md -> tasks.md, subject to host instructions and explicit user-authorized amendments. Resolve conflicts before affected implementation.
 
 ---
 
@@ -72,8 +72,8 @@ and writes REFERENCES.md. Never duplicate discovery or fabricate observations.
 If optional competitor research is declined, record both roles' dispositions and
 use known material. Rule 1 still applies to unfamiliar implementation features.
 
-Agent 0 coordinates this preflight. Only research dispatch is allowed before
-brief approval; implementation agents wait for Phase 2 confirmation.
+Agent 0 coordinates this preflight. Research and document-only planning dispatch are allowed before final artifact
+review; no application implementation starts before the Phase 2.5 gate is READY.
 
 ---
 
@@ -99,15 +99,51 @@ Backend/native/offline needs require named host implementation owners, toolchain
 and platform-specific validation. Frontend specialty roles alone do not implement
 those capabilities. Identify gaps and agree scope before promising completion.
 
-Present the Design Read, brief, activation matrix, unresolved choices and acceptance
-plan. Obtain confirmation before Phase 3 implementation. Existing explicit approval
-for that same scope counts; do not restart the interview.
+Use the answers to complete the Markdown planning gate below. Present the Design
+Read, brief, activation matrix and completed planning artifacts together before
+Phase 3 implementation. Existing explicit approval for the same scope counts;
+do not restart the interview or add repetitive confirmation rounds.
+
+---
+
+## Phase 2.5: Markdown Planning Gate
+
+After Grill Me, follow [the Markdown planning contract](references/markdown-planning.md).
+Create/update these five files from the repository audit, answers and references:
+
+| Artifact | Required purpose | Bundled starting template |
+| --- | --- | --- |
+| project_context.md | Observed app identity, stack, libraries and current architecture | [project_context.md](templates/planning/project_context.md) |
+| constitution.md | Non-negotiable project principles, authority and amendment rules | [constitution.md](templates/planning/constitution.md) |
+| spec.md | Functional requirements, stories, acceptance and scope | [spec.md](templates/planning/spec.md) |
+| plan.md | Technical strategy, schema fields/types, architecture, tools and compliance | [plan.md](templates/planning/plan.md) |
+| tasks.md | Sequential T001-style owned tasks, dependencies and verification | [tasks.md](templates/planning/tasks.md) |
+
+Agent 0 owns the artifact set. Reuse an existing Spec Kit installation's actual
+canonical paths and map them in ORCHESTRATOR.md; otherwise use project-root files.
+Run constitution -> specify -> plan -> tasks using real installed agent commands,
+or the explicitly labeled bundled-template adapter. Never invent a speckit shell
+command or claim native Spec Kit ran when it did not.
+
+Planning-only specialist consultations produce rendering/architecture/data/cache/
+security/operations contracts before the final plan/tasks. They do not authorize
+application code, schema migrations or deployments. The existing Phase 3 order
+remains unchanged for implementation and review dispatches.
+
+**Gate:** no implementation, including speckit implement, until all five substantive
+artifacts are consistent, material unknowns resolved, constitution checks satisfied,
+requirements traced to owned tasks and acceptance checks, and existing scope
+approval recorded. Mark READY/BLOCKED with paths/revisions/evidence in
+ORCHESTRATOR.md. Templates and missing/unverified capabilities are not a pass.
 
 ---
 
 ## Phase 3: Agent Dispatch
 
-Before each implementation dispatch, require the Rule 1 search/comparison decision
+Before each implementation dispatch, require Phase 2.5 READY. Attach the resolved
+five Markdown paths/revisions, constitution IDs, requirement/story IDs, plan
+sections and Txxx task IDs; workers read these before editing. Also require the
+Rule 1 search/comparison decision
 for unfamiliar work in `research/FEATURE_APPROACHES.md`. Include Agent 15's discovery and Agent 11's independent comparison from
 `research/FEATURE_REVIEWS.md` in the worker handoff. If unfamiliar details appear
 mid-task, pause that portion and send it through both research agents before continuing.
@@ -170,8 +206,8 @@ skills by the installer. Their complete checklists and gates are mandatory.
 Non-applicable individual capabilities need cited scope reasons; they do not
 permit skipping an agent. Missing required tooling/evidence is BLOCKED.
 
-**Implementation handoff:** frontend-architect first plans rendering; architecture
-then freezes boundaries; Agent 2 and named feature workers implement within them
+**Implementation handoff:** reuse the Phase 2.5 rendering and architecture plans,
+rechecking their current revisions before implementation; Agent 2 and named feature workers implement within them
 before downstream QA. Single owners serialize shared files. Content lands in its
 listed final stage; use approved brief text during implementation, then have
 Agent 9 finalize it before ship. Token snapshots still run at existing intermediate triggers and
@@ -182,7 +218,9 @@ in this order; final anti-slop follows discoverability and content. Any FAIL or
 BLOCKED mandatory check prevents ship. Agent 0 sends findings to the original
 worker; the reviewer independently rechecks. Re-run security, bugs, perf/a11y,
 observability, snapshots and SEO for affected code/content after later patches.
-After the existing two-round cap, leave unresolved gates FAIL/BLOCKED and escalate.
+Reviewers also verify constitution/spec/plan/task compliance. New scope or material
+discoveries update the five artifacts before further affected code. After the
+existing two-round cap, leave unresolved gates FAIL/BLOCKED and escalate.
 
 ---
 

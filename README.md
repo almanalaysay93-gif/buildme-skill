@@ -199,3 +199,27 @@ release-matched source maps before launch, using self-hosted/local Sentry withou
 a paid subscription. Self-hosted infrastructure still needs resources. Missing
 infrastructure stays BLOCKED. No service is provisioned by installing these skills.
 Premium motion delegates to /designme when requested, with Agent 5 accountable.
+
+## Markdown planning before every build
+
+After Grill Me, Buildme creates/reconciles five governing project documents:
+
+- project_context.md: repository audit, app identity, stack/libraries and architecture.
+- constitution.md: non-negotiable project principles and amendment rules.
+- spec.md: user stories, functional requirements and acceptance scenarios.
+- plan.md: technical strategy, schema fields/types, architecture, tools and compliance.
+- tasks.md: sequential T001-style tasks with dependencies, owners and verification.
+
+The [planning contract](skills/buildme/references/markdown-planning.md) and
+[five templates](skills/buildme/templates/planning/) ship with the normal installer.
+All five must be substantive and consistent before implementation; every agent
+receives their paths/revisions and task IDs. Changes update the documents before
+affected code, and reviewers enforce them alongside existing quality gates.
+
+Use the installed host's actual Spec Kit constitution/specify/plan/tasks/implement
+agent commands when available; otherwise the bundled Markdown adapter produces
+the same required artifacts and records that native Spec Kit was not run. Buildme
+does not silently install Spec Kit. Existing .specify/specs paths are preserved,
+with root document indexes and a canonical path map to avoid competing copies.
+The constitution is the highest project authority subject to host instructions
+and explicit user-authorized amendments. All existing agents remain installed.

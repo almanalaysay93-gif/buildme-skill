@@ -100,3 +100,13 @@ Security scope, applicable 20-check evidence and header/auth test environments:
 Sentry endpoint/self-hosting readiness, redaction/consent, alert test receiver,
 release/source-map verification, dashboards, canary and rollback authorization:
 Premium craft /designme delegation and installed capability:
+
+## Markdown planning gate (before implementation)
+
+Canonical paths / active feature / revisions for project_context.md,
+constitution.md, spec.md, plan.md and tasks.md:
+Native Spec Kit command availability/version or bundled-template adapter mode:
+Repository-scan evidence and unresolved factual unknowns:
+Constitution compliance and FR/US/NFR -> plan -> Txxx -> acceptance coverage:
+Existing scope approval evidence / material decisions still unresolved:
+Agent 0 readiness result (READY / BLOCKED), reasons and next action:

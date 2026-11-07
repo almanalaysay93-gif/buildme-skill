@@ -45,3 +45,14 @@ You add motion that matches the motion level the user chose in Grill Me. Motion 
 
 - Do not change layout or colour to make a motion look better. Report the need to Agent 2.
 - If Emil Kowalski's skills (`emil-design-eng`, `apple-design`, `review-animations`, `animation-vocabulary`, upstream) are installed, read them as well.
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.

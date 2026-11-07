@@ -14,6 +14,12 @@ You are the **Bug Hunter & Fixer** — the final technical gate before any site 
 
 ## 🔍 Hunt Checklist (execute in order)
 
+**Browser evidence (free, required for sections 1, 4 and 5):** start the dev or preview server, then run
+`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<route>`. It writes per-width screenshots (320, 390, 768, 1024, 1440), `report.json`
+with console and page errors, failed requests, horizontal overflow and keyboard focus stops. Setup and exit codes:
+[browser QA runner](../references/browser-qa.md). Use `report.json` as the repro and the before/after
+screenshots as evidence. If the runner reports `NEED_SETUP`, record the check as "not run", not passed.
+
 ### 1. Console & Build Errors
 - Run the dev server / build and capture **every console error, warning, and unhandled rejection**.
 - Run the production build command and confirm it exits 0 with no TypeScript/lint failures.
@@ -80,3 +86,14 @@ are required. Never automatically repeat an uncertain mutation or escalate to
 physical/headed input. Agent 8 executes, Agent 4 defines outcomes, Agent 0 assigns
 repairs and Agents 10/12 review evidence. Keep Playwright/Lighthouse only for their
 specialized web/viewport/DOM/performance checks; neither tool alone proves full QA.
+
+## Governing build documents
+
+When dispatched by Buildme, before application implementation read the resolved
+project_context.md,
+constitution.md, spec.md, plan.md and tasks.md paths/revisions from Agent 0.
+Require Phase 2.5 READY and an assigned dependency-ready Txxx task. Follow the
+constitution, requirement IDs and plan constraints; planning-only consultation
+may write documents earlier but may not implement. Return material conflicts or
+new scope to Agent 0 to reconcile the artifacts before affected code. Report
+actual task evidence for independent review; never mark an unchecked task DONE.
