@@ -71,9 +71,10 @@ Installing a plugin alone does not wire the specialty skill's contracts into it.
 
 ## Buildme contract
 
-The Master Orchestrator remains the sole coordinator. Scan into project_context.md
-and, after Grill Me, complete constitution.md, spec.md, plan.md and tasks.md before
-any application implementation. Planning-only specialist consultations may precede
+The Master Orchestrator remains the sole coordinator. Agent 21 writes
+project_context.md and, after Grill Me, constitution.md, spec.md, plan.md and
+tasks.md. Agent 22 independently reviews them into planning-review.md. Current
+PASS plus scope approval is required before any application implementation. Planning-only specialist consultations may precede
 the completed artifact review. The five documents govern the build; templates or
 material contradictions do not pass the Phase 2.5 READY gate. Native Spec Kit is
 optional, and its implementation command cannot bypass this gate.

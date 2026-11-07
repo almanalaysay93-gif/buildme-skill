@@ -135,5 +135,5 @@ Routes: Agents 0, 8 and 10; Agent 13 only after an authorized live URL exists.
 Write BUILD_BRIEF.md, then complete project_context.md, constitution.md, spec.md,
 plan.md and tasks.md through the Markdown planning gate. Review the complete set
 before implementation; reuse existing scope approval instead of repeating Grill Me.
-Dispatch every Agent 0–13 and 15–20 as defined in SKILL.md; Agent 14 runs only when its trigger is met by the brief. Do not treat any agent or phase as unnecessary without the user's answer; record any block with its reason.
+Dispatch every Agent 0–13 and 15–22 as defined in SKILL.md; Agent 14 runs only when its trigger is met by the brief. Do not treat any agent or phase as unnecessary without the user's answer; record any block with its reason.
 Mandatory quality gates remain required; deferred or blocked work is never passed.

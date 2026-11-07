@@ -1,14 +1,14 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, observability, security, architecture, state/data, caching/offline) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free local workflow using Agent Desktop and specialized web audits. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, planning author/reviewer, observability, security, architecture, state/data, caching/offline) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free local workflow using Agent Desktop and specialized web audits. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
 ---
 
-# 🚀 BuildMe: Design & Development Orchestrator (Agents 0–20) (v5)
+# 🚀 BuildMe: Design & Development Orchestrator (Agents 0–22) (v5)
 
-The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **21 numbered roles (Agents 0–20) plus optional Design Arena**.
+The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **23 numbered roles (Agents 0–22) plus optional Design Arena**.
 
 Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches the ensemble across 6 phases — preflight analysis, design, build, synthesis, quality gates, and AI discoverability — with a Master Orchestrator coordinating every dispatch, versioned design snapshots, and an optional Design Arena mode when direction is uncertain.
 
@@ -23,7 +23,7 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 ➔ [Post-Deploy: Live Monitoring]
 ```
 
-> **Full dispatch rule (every invocation)**: dispatch every agent (0–13, 15–20) and every phase this file defines, in the order and waves it specifies, through the Agent tool. Do not decide on your own that an agent, workflow phase, or quality gate is unnecessary, redundant, or already covered. Each one must end with its output file or result, or with a BLOCKED entry naming the missing dependency and its fix. Agent 14 and Design Arena run only when their stated trigger is met by the confirmed brief, and that decision is recorded with the brief's wording. Skips are allowed only for user-declined optional companions, recorded with the user's answer. Concurrency limits mean waves, not dropped agents.
+> **Full dispatch rule (every invocation)**: dispatch every agent (0–13, 15–22) and every phase this file defines, in the order and waves it specifies, through the Agent tool. Do not decide on your own that an agent, workflow phase, or quality gate is unnecessary, redundant, or already covered. Each one must end with its output file or result, or with a BLOCKED entry naming the missing dependency and its fix. Agent 14 and Design Arena run only when their stated trigger is met by the confirmed brief, and that decision is recorded with the brief's wording. Skips are allowed only for user-declined optional companions, recorded with the user's answer. Concurrency limits mean waves, not dropped agents.
 
 > **Zero-cost default**: BuildMe uses local Agent Desktop for UI control and specialized web audits, without additional API keys, paid services or accounts. Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
 
@@ -50,7 +50,7 @@ See [research tools](references/research-tools.md) for public/keyless operation.
 Run **Agent 0 (Master Orchestrator)** per `master-orchestrator/SKILL.md` *before anything else*:
 
 1. Apply **Rule 1**: for every unfamiliar feature, delegate GitHub discovery to Agent 15 and approach comparison to Agent 11, then record the decision before implementation. Follow [the research-first protocol](references/research-first.md).
-2. Scan the repository and create/update project_context.md with observed identity, stack, libraries, architecture and evidence; provisional work units remain planning-only.
+2. Dispatch Agent 21 for the initial repository scan and provisional project_context.md; Agent 0 records paths and evidence. Final document authoring/review follows Grill Me in Phase 2.5.
 3. Write the first checkpoint to `ORCHESTRATOR.md` (phase, decisions, files, next dispatches).
 4. Set per-agent token budgets (≤ 20% of session each) and max 2 revision rounds per agent.
 5. Apply the project authority chain: constitution.md -> spec.md -> plan.md -> tasks.md, subject to host instructions and explicit user-authorized amendments. Resolve conflicts before affected implementation.
@@ -89,7 +89,7 @@ reason instead of forcing unnecessary features.
 
 Write BUILD_BRIEF.md using [the template](templates/BUILD_BRIEF.md). Include screens,
 flows, stack/platform, scope, data/API contracts, implementation owners, acceptance
-evidence and an activation matrix assessing every Agent 0–20. Dispatch every core
+evidence and an activation matrix assessing every Agent 0–22. Dispatch every core
 role under the full dispatch rule; observability setup runs before launch, live monitoring waits for deployment,
 and Agent 14 runs only when in-product AI is needed.
 Record Design Arena selection and blocked/not-applicable roles with reasons.
@@ -119,8 +119,9 @@ Create/update these five files from the repository audit, answers and references
 | plan.md | Technical strategy, schema fields/types, architecture, tools and compliance | [plan.md](templates/planning/plan.md) |
 | tasks.md | Sequential T001-style owned tasks, dependencies and verification | [tasks.md](templates/planning/tasks.md) |
 
-Agent 0 owns the artifact set. Reuse an existing Spec Kit installation's actual
-canonical paths and map them in ORCHESTRATOR.md; otherwise use project-root files.
+Agent 21 owns and writes the artifact set; Agent 22 independently reviews it.
+Agent 0 coordinates them and owns the final readiness checkpoint. Reuse an
+existing Spec Kit installation's actual canonical paths and map them in ORCHESTRATOR.md; otherwise use project-root files.
 Run constitution -> specify -> plan -> tasks using real installed agent commands,
 or the explicitly labeled bundled-template adapter. Never invent a speckit shell
 command or claim native Spec Kit ran when it did not.
@@ -130,18 +131,32 @@ security/operations contracts before the final plan/tasks. They do not authorize
 application code, schema migrations or deployments. The existing Phase 3 order
 remains unchanged for implementation and review dispatches.
 
-**Gate:** no implementation, including speckit implement, until all five substantive
+**Author -> review -> repair:** dispatch [Agent 21: Markdown Planner](agents/planning-agent.md)
+to build all five files, then [Agent 22: Planning Reviewer](agents/planning-reviewer.md)
+to write [planning-review.md](templates/planning-review.md) against their actual
+contents and repository evidence. Reviewer findings return through Agent 0 to
+Agent 21 for fixes and Agent 22 for re-review. Neither self-approval nor reviewer
+edits to source documents are allowed. Separate contexts are required when the
+host supports delegation; disclose limited independence if roles run sequentially.
+
+**Gate:** no implementation, including speckit implement, until Agent 22 has a
+current PASS for the reviewed paths/revisions/fingerprints and all five substantive
 artifacts are consistent, material unknowns resolved, constitution checks satisfied,
 requirements traced to owned tasks and acceptance checks, and existing scope
 approval recorded. Mark READY/BLOCKED with paths/revisions/evidence in
-ORCHESTRATOR.md. Templates and missing/unverified capabilities are not a pass.
+ORCHESTRATOR.md. Missing/stale review, FAIL or BLOCKED prevents implementation.
+Material changes invalidate PASS and require renewed independent review; the
+planning contract defines the narrow verified progress-only exception. Existing
+two-round repair cap applies; unresolved failures remain blocked. Templates and
+missing/unverified capabilities are not a pass.
 
 ---
 
 ## Phase 3: Agent Dispatch
 
-Before each implementation dispatch, require Phase 2.5 READY. Attach the resolved
-five Markdown paths/revisions, constitution IDs, requirement/story IDs, plan
+Before each implementation dispatch, require Phase 2.5 READY backed by a current
+Agent 22 PASS (or verified progress-only update recorded under the contract).
+Attach the resolved five Markdown paths/revisions, constitution IDs, requirement/story IDs, plan
 sections and Txxx task IDs; workers read these before editing. Also require the
 Rule 1 search/comparison decision
 for unfamiliar work in `research/FEATURE_APPROACHES.md`. Include Agent 15's discovery and Agent 11's independent comparison from
@@ -150,11 +165,11 @@ mid-task, pause that portion and send it through both research agents before con
 
 Use the host's actual delegation tools (sequential role execution only if the host
 has no delegation capability). Full dispatch applies to every existing core role
-and all five new roles. The following dependency sequence is authoritative over
-legacy early-copy or slop-before-bug instructions in companion skills:
+and all added specialist and planning roles. The following dependency sequence
+is authoritative over legacy early-copy or slop-before-bug instructions in companion skills:
 
 ```text
-Grill Me -> Reference Analysis -> frontend-architect (with rendering decision) -> architecture-agent -> state-data-agent -> caching-offline-agent -> motion-specialist (delegate to /designme if premium) -> security-agent -> bug-hunter -> perf-a11y-auditor -> observability-agent -> token-snapshotter -> llm-txt-skill -> content-voice -> anti-slop-enforcer
+Grill Me -> Reference Analysis -> planning-agent -> planning-reviewer -> frontend-architect (with rendering decision) -> architecture-agent -> state-data-agent -> caching-offline-agent -> motion-specialist (delegate to /designme if premium) -> security-agent -> bug-hunter -> perf-a11y-auditor -> observability-agent -> token-snapshotter -> llm-txt-skill -> content-voice -> anti-slop-enforcer
 ```
 
 The seed-reference preflight may still happen in Phase 1, but after the full
@@ -165,21 +180,25 @@ before frontend-architect begins. Reuse evidence; do not duplicate web research.
 | --- | --- | --- |
 | 1 | Grill Me (Agent 0) | Confirmed BUILD_BRIEF.md; 10 unanswered relevant questions per round; full activation matrix |
 | 2 | Reference Analysis (Agents 15 then 11) | Cited research shortlist, REFERENCES.md and unfamiliar-feature decisions |
-| 3 | [frontend-architect](../frontend-architect/SKILL.md) (Agent 2; [update](agents/frontend-architect.md)) | rendering-decision.md first: route -> strategy -> why; no code before rendering and architecture decisions |
-| 4 | [architecture-agent](agents/architecture-agent.md) (Agent 20) | architecture.md, architecture-rules.json; folder tree, boundaries, tokens; then Agent 2 implements tokens/base components within these rules |
-| 5 | [state-data-agent](agents/state-data-agent.md) (Agent 17) | state-architecture.md and data layer; every fetch has loading/empty/error/retry and cancellation |
-| 6 | [caching-offline-agent](agents/caching-offline-agent.md) (Agent 18) | caching-strategy.md, service-worker.js, precache manifest, offline fallback UI, sync queue |
-| 7 | [motion-specialist](../motion-specialist/SKILL.md) (Agent 5) | Token-bound motion, reduced-motion fallback and measured checks; delegate premium visual/motion work to /designme when the brief requests premium craft |
-| 8 | [security-agent](agents/security-agent.md) (Agent 16) | security-audit.md; all 20 checks, risk, exact patches and retests; FAIL blocks ship |
-| 9 | [bug-hunter](../bug-hunter/SKILL.md) (Agent 8) | Reproduction -> owner fix -> independent retest; zero block/major bugs |
-| 10 | [perf-a11y-auditor](../perf-a11y-auditor/SKILL.md) (Agent 10) | Mobile/browser, keyboard/screen-reader and measured performance evidence; no block findings |
-| 11 | [observability-agent](agents/observability-agent.md) (Agent 19) | observability-setup.md, Sentry config, logging wrapper, dashboards.md, rollback-plan.md; verified ingestion, alerts and source maps |
-| 12 | [token-snapshotter](../token-snapshotter/SKILL.md) (Agent 12) | Versioned tokens, bindings, screenshots at 1440/390 and drift delta |
-| 13 | [llm-txt-skill](../llm-txt-skill/SKILL.md) (Agent 6) | SEO_AUDIT.md and truthful public llms.txt; private/native indexing exclusions require reasons |
-| 14 | [content-voice](../content-voice/SKILL.md) (Agent 9) | VOICE.md, final proof-backed copy and metadata; reconcile Agent 6 artifacts after copy changes |
-| 15 | [anti-slop-enforcer](../anti-slop-enforcer/SKILL.md) (Agent 7) | All 13 detectors plus architecture-rules.json checks; zero block violations |
+| 3 | [planning-agent](agents/planning-agent.md) (Agent 21; Phase 2.5) | Five substantive governing Markdown documents; sole author, no self-approval |
+| 4 | [planning-reviewer](agents/planning-reviewer.md) (Agent 22; Phase 2.5) | planning-review.md; independent current PASS or repair/block |
+| 5 | [frontend-architect](../frontend-architect/SKILL.md) (Agent 2; [update](agents/frontend-architect.md)) | rendering-decision.md first: route -> strategy -> why; no code before rendering and architecture decisions |
+| 6 | [architecture-agent](agents/architecture-agent.md) (Agent 20) | architecture.md, architecture-rules.json; folder tree, boundaries, tokens; then Agent 2 implements tokens/base components within these rules |
+| 7 | [state-data-agent](agents/state-data-agent.md) (Agent 17) | state-architecture.md and data layer; every fetch has loading/empty/error/retry and cancellation |
+| 8 | [caching-offline-agent](agents/caching-offline-agent.md) (Agent 18) | caching-strategy.md, service-worker.js, precache manifest, offline fallback UI, sync queue |
+| 9 | [motion-specialist](../motion-specialist/SKILL.md) (Agent 5) | Token-bound motion, reduced-motion fallback and measured checks; delegate premium visual/motion work to /designme when the brief requests premium craft |
+| 10 | [security-agent](agents/security-agent.md) (Agent 16) | security-audit.md; all 20 checks, risk, exact patches and retests; FAIL blocks ship |
+| 11 | [bug-hunter](../bug-hunter/SKILL.md) (Agent 8) | Reproduction -> owner fix -> independent retest; zero block/major bugs |
+| 12 | [perf-a11y-auditor](../perf-a11y-auditor/SKILL.md) (Agent 10) | Mobile/browser, keyboard/screen-reader and measured performance evidence; no block findings |
+| 13 | [observability-agent](agents/observability-agent.md) (Agent 19) | observability-setup.md, Sentry config, logging wrapper, dashboards.md, rollback-plan.md; verified ingestion, alerts and source maps |
+| 14 | [token-snapshotter](../token-snapshotter/SKILL.md) (Agent 12) | Versioned tokens, bindings, screenshots at 1440/390 and drift delta |
+| 15 | [llm-txt-skill](../llm-txt-skill/SKILL.md) (Agent 6) | SEO_AUDIT.md and truthful public llms.txt; private/native indexing exclusions require reasons |
+| 16 | [content-voice](../content-voice/SKILL.md) (Agent 9) | VOICE.md, final proof-backed copy and metadata; reconcile Agent 6 artifacts after copy changes |
+| 17 | [anti-slop-enforcer](../anti-slop-enforcer/SKILL.md) (Agent 7) | All 13 detectors plus architecture-rules.json checks; zero block violations |
 
-**Preserve all existing roles:** Agent 0 coordinates throughout. Dispatch Agent 1
+**Preserve all existing roles:** Agent 0 coordinates throughout. The Phase 2.5
+author/review dispatches above are reused when current; do not run a second
+planning workflow merely because Phase 3 repeats their positions. Dispatch Agent 1
 (Impeccable Director) to initialize PRODUCT.md / DESIGN.md after references and
 before Agent 2; Agent 3 (Taste Specialist) reviews architecture/design decisions;
 Agent 4 (UI/UX Auditor) reviews journeys/states during the data/offline/motion
@@ -201,7 +220,7 @@ through the installed designme skill, keep Agent 5 accountable for outputs, and
 retain local/free tools. If the required skill is missing, mark that handoff
 BLOCKED with the install remedy rather than silently skipping it.
 
-All five new agents are bundled under agents/ and also registered as companion
+All specialty and planning agents are bundled under agents/ and also registered as companion
 skills by the installer. Their complete checklists and gates are mandatory.
 Non-applicable individual capabilities need cited scope reasons; they do not
 permit skipping an agent. Missing required tooling/evidence is BLOCKED.
@@ -280,7 +299,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 ---
 
-## 🛠️ Skill Ensemble Reference (Agents 0–20)
+## 🛠️ Skill Ensemble Reference (Agents 0–22)
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
@@ -305,6 +324,8 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 18** | **Caching + Offline** | [agents/caching-offline-agent.md](agents/caching-offline-agent.md) | Versioned caches, offline fallback and safe sync |
 | **Agent 19** | **Observability** | [agents/observability-agent.md](agents/observability-agent.md) | Sentry, alerting, source maps, tests, rollback; owns Agent 13 live work |
 | **Agent 20** | **Architecture** | [agents/architecture-agent.md](agents/architecture-agent.md) | Modules, boundaries, tokens and machine-readable enforcement |
+| **Agent 21** | **Markdown Planner / Author** | [agents/planning-agent.md](agents/planning-agent.md) | Writes and repairs the five governing files |
+| **Agent 22** | **Independent Planning Reviewer** | [agents/planning-reviewer.md](agents/planning-reviewer.md) | Read-only source review; PASS/FAIL/BLOCKED gates implementation |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](../design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---

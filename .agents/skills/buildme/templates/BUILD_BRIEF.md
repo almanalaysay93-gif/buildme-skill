@@ -60,6 +60,8 @@ deliverables; never mark them passed.
 | 18 | Caching + Offline | pending | Cache busting, invalidation, offline/sync | | |
 | 19 | Observability | pending | Pre-launch Sentry/alerts/source maps; owns live monitoring | | |
 | 20 | Architecture | pending | Folder tree, dependency boundaries, token enforcement | | |
+| 21 | Markdown Planner / Author | pending | Writes and repairs the five governing Markdown files | Phase 2.5 | |
+| 22 | Independent Planning Reviewer | pending | Current independent PASS before implementation | Phase 2.5 after Agent 21 | planning-review.md |
 
 Design Arena selected/skipped and reason:
 Open decisions, capability gaps and agreed defaults:
@@ -110,3 +112,7 @@ Repository-scan evidence and unresolved factual unknowns:
 Constitution compliance and FR/US/NFR -> plan -> Txxx -> acceptance coverage:
 Existing scope approval evidence / material decisions still unresolved:
 Agent 0 readiness result (READY / BLOCKED), reasons and next action:
+
+Planning author (Agent 21) and independent reviewer (Agent 22) identities/mode:
+planning-review.md verdict, findings, repair rounds and reviewed fingerprints:
+Review freshness / progress-only update diff, evidence and baseline if applicable:

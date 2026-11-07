@@ -1,6 +1,6 @@
 # 🚀 BuildMe Skill (`/Buildme`) — v5
 
-> **Design & Development Orchestrator — Agents 0–20 for AI Coding Agents**
+> **Design & Development Orchestrator — Agents 0–22 for AI Coding Agents**
 
 The full installer installs the orchestrator, companion skills, Agent-Reach and
 Agent Desktop, including the upstream research skill and version-matched desktop
@@ -9,7 +9,7 @@ installed from Astral if missing.
 
 That registers these skills together:
 
-`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`, `competitor-researcher`, `security-agent`, `state-data-agent`, `caching-offline-agent`, `observability-agent`, `architecture-agent`
+`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`, `competitor-researcher`, `security-agent`, `state-data-agent`, `caching-offline-agent`, `observability-agent`, `architecture-agent`, `planning-agent`, `planning-reviewer`
 
 ### Install BuildMe and its companion skills (required)
 
@@ -26,7 +26,7 @@ then installs BuildMe and these companions, `impeccable-director`, `frontend-arc
 
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
-Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 23 installed skills.
+Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 25 installed skills.
 
 Optional upstream upgrades (richer than the bundled role skills):
 
@@ -72,6 +72,8 @@ mid-task. See [the protocol](skills/buildme/references/research-first.md).
 | 18 | caching-offline-agent |
 | 19 | observability-agent |
 | 20 | architecture-agent |
+| 21 | planning-agent |
+| 22 | planning-reviewer |
 | Feature | design-arena |
 
 ## License
@@ -129,7 +131,7 @@ integrations, AI, mobile/native/offline, motion, accessibility/performance,
 discoverability, testing and operations. Questions arrive 10 at a time, with answers collected before the next round
 (and fewer only when fewer unanswered, relevant questions remain);
 existing answers are reused. Approve the [brief and activation matrix](skills/buildme/templates/BUILD_BRIEF.md)
-before implementation. Every Agent 0–20 is assessed; applicable roles run,
+before implementation. Every Agent 0–22 is assessed; applicable roles run,
 monitoring is deferred until deployment and AI building remains conditional.
 
 ## Competitor and repository discovery
@@ -223,3 +225,17 @@ does not silently install Spec Kit. Existing .specify/specs paths are preserved,
 with root document indexes and a canonical path map to avoid competing copies.
 The constitution is the highest project authority subject to host instructions
 and explicit user-authorized amendments. All existing agents remain installed.
+
+## Planning author and independent reviewer
+
+After Grill Me/reference analysis, [Agent 21](agents/planning-agent.md) plans and
+writes the five governing Markdown files. [Agent 22](agents/planning-reviewer.md)
+checks the actual documents against the repository and confirmed requirements,
+then writes planning-review.md with PASS / FAIL / BLOCKED and exact findings.
+Agent 0 routes fixes back to Agent 21 and requests Agent 22 re-review; only a
+current PASS and scope approval allow implementation. The reviewer cannot edit
+its source documents, and the author cannot approve itself. Material changes
+require renewed review; unresolved findings block implementation at the existing
+two-round repair cap. All existing agents remain; the installer includes both new
+skills. Independent contexts are used when available, with truthful disclosure
+if the host only supports sequential role execution.
