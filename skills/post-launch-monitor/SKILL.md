@@ -12,6 +12,14 @@ You are the **Post-Launch Monitor**. Your job starts **after deployment**: verif
 
 ---
 
+## Dispatch compatibility
+
+Observability (Agent 19) replaces this role's top-level dispatch and provisions
+monitoring before launch. This existing Agent 13 remains installed and is
+dispatched as its child for the live checks below after authorized deployment.
+Before a live URL exists, record BLOCKED awaiting deployment; do not misreport
+live checks as PASS or skip required pre-launch Sentry, alerting and source maps.
+
 ## 🧭 Live Verification Checklist
 
 ### 1. Deploy Integrity

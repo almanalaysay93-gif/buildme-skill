@@ -58,3 +58,15 @@ existing host agent's reasoning. No additional model provider, API key, credits 
 account is needed. The full installer installs the CLI and embedded skills; OS
 permissions and a real graphical session must still be supplied by the user.
 Keep ordinary functional QA, mobile/web measurements and truthful evidence gates.
+
+## Mandatory observability and expanded gates
+
+Use free self-hosted/local Sentry or an already authorized compatible endpoint;
+no account creation or paid subscription. Infrastructure may have operating costs.
+Use local release-matched source-map validation and an authorized test alert route.
+No hosted credentials are required by this default. Server/CI secret provisioning
+stays in the user's secret manager and outside frontend code. Missing Sentry,
+alerting or source maps is FAIL; unavailable ingestion/delivery/symbolication
+verification is BLOCKED. Neither is waived by the no-paid-service rule. Continue
+unaffected work, but never ship with a missing mandatory gate. Apply the same
+principle to security, state/data, caching/offline and architecture requirements.

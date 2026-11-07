@@ -1,6 +1,6 @@
-# 🚀 BuildMe Skill (`/Buildme`) — v4
+# 🚀 BuildMe Skill (`/Buildme`) — v5
 
-> **Design & Development Orchestrator — Agents 0–15 for AI Coding Agents**
+> **Design & Development Orchestrator — Agents 0–20 for AI Coding Agents**
 
 The full installer installs the orchestrator, companion skills, Agent-Reach and
 Agent Desktop, including the upstream research skill and version-matched desktop
@@ -9,7 +9,7 @@ installed from Astral if missing.
 
 That registers these skills together:
 
-`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`, `competitor-researcher`
+`buildme`, `master-orchestrator`, `impeccable-director`, `frontend-architect`, `taste-specialist`, `ui-ux-auditor`, `motion-specialist`, `llm-txt-skill`, `anti-slop-enforcer`, `bug-hunter`, `content-voice`, `perf-a11y-auditor`, `reference-analyzer`, `token-snapshotter`, `post-launch-monitor`, `design-arena`, `adk-agent-builder`, `competitor-researcher`, `security-agent`, `state-data-agent`, `caching-offline-agent`, `observability-agent`, `architecture-agent`
 
 ### Install BuildMe and its companion skills (required)
 
@@ -26,7 +26,7 @@ then installs BuildMe and these companions, `impeccable-director`, `frontend-arc
 
 Re-run the same command after pulling. Do not install only the repo root — the CLI needs the flat `skills/<name>/SKILL.md` layout (nested files under `skills/buildme/` are shadowed and ignored).
 
-Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 18 installed skills.
+Then type `/Buildme`. The orchestrator dispatches all agents in-session; they do not appear as separate chat bots, they appear as 23 installed skills.
 
 Optional upstream upgrades (richer than the bundled role skills):
 
@@ -67,6 +67,11 @@ mid-task. See [the protocol](skills/buildme/references/research-first.md).
 | 13 | post-launch-monitor |
 | 14 (conditional) | adk-agent-builder |
 | 15 | competitor-researcher |
+| 16 | security-agent |
+| 17 | state-data-agent |
+| 18 | caching-offline-agent |
+| 19 | observability-agent |
+| 20 | architecture-agent |
 | Feature | design-arena |
 
 ## License
@@ -86,7 +91,7 @@ The default BuildMe workflow needs no API keys, paid services or accounts. It us
 Lighthouse or the Chrome DevTools MCP for audits and screenshots, the host agent's own web
 search for research, bundled Material Symbols icons, and a local Ollama model for in-product AI
 agents. A task that would need a paid service is skipped with a free alternative and never
-reported as passed. See [the zero-cost policy](skills/buildme/references/zero-cost.md).
+reported as passed. Missing mandatory gates still block ship. See [the zero-cost policy](skills/buildme/references/zero-cost.md).
 
 Optional free setup for Agent 14 and audits: [Node.js](https://nodejs.org) (for `npx lighthouse`),
 [Ollama](https://ollama.com) with `ollama pull qwen2.5:1.5b`, and `uv` for the Python packages.
@@ -124,7 +129,7 @@ integrations, AI, mobile/native/offline, motion, accessibility/performance,
 discoverability, testing and operations. Questions arrive 10 at a time, with answers collected before the next round
 (and fewer only when fewer unanswered, relevant questions remain);
 existing answers are reused. Approve the [brief and activation matrix](skills/buildme/templates/BUILD_BRIEF.md)
-before implementation. Every Agent 0–15 is assessed; applicable roles run,
+before implementation. Every Agent 0–20 is assessed; applicable roles run,
 monitoring is deferred until deployment and AI building remains conditional.
 
 ## Competitor and repository discovery
@@ -178,3 +183,19 @@ BLOCKED, never silently passed. Existing Playwright/Lighthouse tools remain for
 specialized web/mobile/performance checks.
 
 Read [installation, scoped control and retry rules](skills/buildme/references/agent-desktop.md).
+
+## Expanded agent dispatch
+
+Five new [agent contracts](agents/) add security, state/data, caching/offline,
+observability and architecture without removing existing agents. The frontend
+architect now writes rendering-decision.md per route before code. The exact
+[Phase 3 order](skills/buildme/SKILL.md#phase-3-agent-dispatch) ends with anti-slop,
+which also checks architecture-rules.json. Every mandatory FAIL/BLOCKED gate stops
+ship and returns through the original worker/reviewer repair loop.
+
+Observability replaces the top-level post-launch-monitor dispatch; Agent 13 stays
+installed as its live-check child. Setup includes Sentry, verified alerts and
+release-matched source maps before launch, using self-hosted/local Sentry without
+a paid subscription. Self-hosted infrastructure still needs resources. Missing
+infrastructure stays BLOCKED. No service is provisioned by installing these skills.
+Premium motion delegates to /designme when requested, with Agent 5 accountable.

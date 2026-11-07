@@ -133,5 +133,5 @@ Routes: Agents 0, 8 and 10; Agent 13 only after an authorized live URL exists.
     acceptance plan match what you want built?
 
 Write BUILD_BRIEF.md using the bundled template and confirm it before implementation.
-Assess every Agent 0–15; activate applicable responsibilities, not unnecessary work.
+Dispatch every Agent 0–13 and 15–20 as defined in SKILL.md; Agent 14 runs only when its trigger is met by the brief. Do not treat any agent or phase as unnecessary without the user's answer; record any block with its reason.
 Mandatory quality gates remain required; deferred or blocked work is never passed.

@@ -1,14 +1,14 @@
 ---
 name: buildme
-description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, post-launch monitoring) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free local workflow using Agent Desktop and specialized web audits. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
+description: "Activates when the user types /Buildme, /buildme, or asks to build a web app using the multi-agent build ensemble. Runs reference analysis, Grill Me discovery, coordinates specialized subagents (orchestration, references, design, taste, a11y, motion, copy, llms.txt, anti-slop, bug hunting, perf/a11y, token snapshots, observability, security, architecture, state/data, caching/offline) plus Design Arena, conditional ADK building (Agent 14) and competitor/repository discovery (Agent 15) for in-product AI agents, to build high-craft, AI-discoverable, bug-free UIs. Free local workflow using Agent Desktop and specialized web audits. Not for a standalone one-screen design bake-off (use design-arena) or for adding an AI agent to an existing product on its own (use adk-agent-builder)."
 metadata:
   triggers: /Buildme, /buildme, buildme, 5 agent build, build with design ensemble, 10 agent build, 13 agent build
   slash_command: /Buildme
 ---
 
-# 🚀 BuildMe: Design & Development Orchestrator (Agents 0–15) (v4)
+# 🚀 BuildMe: Design & Development Orchestrator (Agents 0–20) (v5)
 
-The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **16 numbered roles (Agents 0–15) plus optional Design Arena**.
+The **BuildMe** skill orchestrates a high-craft frontend development workflow powered by **21 numbered roles (Agents 0–20) plus optional Design Arena**.
 
 Before any code is generated, BuildMe runs a **Grill Me** discovery interview to understand your vision, aesthetic preferences, tech stack, and specs. It then dispatches the ensemble across 6 phases — preflight analysis, design, build, synthesis, quality gates, and AI discoverability — with a Master Orchestrator coordinating every dispatch, versioned design snapshots, and an optional Design Arena mode when direction is uncertain.
 
@@ -19,9 +19,11 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 ```
 [Phase 0: Orchestration Setup] ➔ [Phase 1: Preflight (Reference Analysis)] ➔ [Phase 2: Grill Me Discovery]
 ➔ [Phase 3: Agent Dispatch] ➔ [Phase 4: Integration & Craft Synthesis]
-➔ [Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)] ➔ [Phase 6: AI Discoverability (llms.txt)]
+➔ [Phase 5: Final Gate Revalidation] ➔ [Phase 6: SEO/Discoverability Revalidation]
 ➔ [Post-Deploy: Live Monitoring]
 ```
+
+> **Full dispatch rule (every invocation)**: dispatch every agent (0–13, 15–20) and every phase this file defines, in the order and waves it specifies, through the Agent tool. Do not decide on your own that an agent, workflow phase, or quality gate is unnecessary, redundant, or already covered. Each one must end with its output file or result, or with a BLOCKED entry naming the missing dependency and its fix. Agent 14 and Design Arena run only when their stated trigger is met by the confirmed brief, and that decision is recorded with the brief's wording. Skips are allowed only for user-declined optional companions, recorded with the user's answer. Concurrency limits mean waves, not dropped agents.
 
 > **Zero-cost default**: BuildMe uses local Agent Desktop for UI control and specialized web audits, without additional API keys, paid services or accounts. Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
 
@@ -87,8 +89,9 @@ reason instead of forcing unnecessary features.
 
 Write BUILD_BRIEF.md using [the template](templates/BUILD_BRIEF.md). Include screens,
 flows, stack/platform, scope, data/API contracts, implementation owners, acceptance
-evidence and an activation matrix assessing every Agent 0–15. Activate applicable
-roles; defer monitoring until deployment and Agent 14 unless in-product AI is needed.
+evidence and an activation matrix assessing every Agent 0–20. Dispatch every core
+role under the full dispatch rule; observability setup runs before launch, live monitoring waits for deployment,
+and Agent 14 runs only when in-product AI is needed.
 Record Design Arena selection and blocked/not-applicable roles with reasons.
 Do not invent AI, public SEO or animation solely to fill the roster.
 
@@ -109,87 +112,77 @@ for unfamiliar work in `research/FEATURE_APPROACHES.md`. Include Agent 15's disc
 `research/FEATURE_REVIEWS.md` in the worker handoff. If unfamiliar details appear
 mid-task, pause that portion and send it through both research agents before continuing.
 
-Use the host's actual delegation tools, or execute roles sequentially if unavailable.
-The prompts below are contract examples, not literal API arguments. Run only
-independent work concurrently and follow the approved activation matrix:
+Use the host's actual delegation tools (sequential role execution only if the host
+has no delegation capability). Full dispatch applies to every existing core role
+and all five new roles. The following dependency sequence is authoritative over
+legacy early-copy or slop-before-bug instructions in companion skills:
 
-```json
-[
-  {
-    "TypeName": "self",
-    "Role": "Agent 1: Impeccable Design Director",
-    "Prompt": "You are Agent 1 (Impeccable Design Director). Read `.../skills/impeccable-director/SKILL.md` (bundled; if the optional upstream `impeccable` skill is installed, also read `.../skills/impeccable/SKILL.md`). Initialize design context (PRODUCT.md and DESIGN.md), run anti-pattern scans against the 59 deterministic detector rules, enforce craft floor standards, and audit visual hierarchy and identity."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 2: Lead Frontend Architect",
-    "Prompt": "You are Agent 2 (Lead Frontend Architect). Read `.../skills/frontend-architect/SKILL.md` (bundled; if the optional upstream `frontend-design` skill is installed, also read `.../skills/frontend-design/SKILL.md`). Establish the core CSS design system, typography scale, custom OKLCH/HSL color palette, grid layout architecture, responsive container rules, and base UI component structure. Source all icons from the bundled Material Symbols set in `.../skills/buildme/assets/icons/` (see `.../skills/buildme/references/icons.md`)."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 3: Anti-Slop Taste Specialist",
-    "Prompt": "You are Agent 3 (Anti-Slop Taste Specialist). Read `.../skills/taste-specialist/SKILL.md` (bundled; if the optional upstream `taste-skill` is installed, also read `.../skills/taste-skill/SKILL.md`). Enforce anti-default discipline (eliminating generic AI purple gradients, slate card grids, and cookie-cutter layouts). Apply contextual vibe alignment and high-taste visual decisions based on the project brief."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 4: UI/UX & A11y Auditor",
-    "Prompt": "You are Agent 4 (UI/UX & A11y Auditor). Read `.../skills/ui-ux-auditor/SKILL.md` (bundled; if the optional upstream `ui-ux-pro-max` is installed, also read `.../skills/ui-ux-pro-max/SKILL.md`). Audit component interaction states (hover, active, focus, disabled, loading, empty, error), touch target sizing, contrast ratios, keyboard navigation, cognitive load reduction, and user flow friction points."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 5: Emil's Motion & Animation Specialist",
-    "Prompt": "You are Agent 5 (Emil's Motion & Animation Specialist). Read `.../skills/motion-specialist/SKILL.md` (bundled; if the optional upstream `emil-design-eng` skill is installed, also read `.../skills/emil-design-eng/SKILL.md` and its references `apple-design`, `review-animations`, `animation-vocabulary` from `emilkowalski/skills`). Implement buttery-smooth CSS/Framer motion transitions, fluid spring physics, gesture affordances, and micro-interaction polish. If present, also read `.../skills/motion-design-lottie/SKILL.md` for timing, easing and choreography rules, and `.../skills/gsap-core/SKILL.md` plus the gsap skill matching the stack (`gsap-react`, `gsap-scrolltrigger` or `gsap-timeline`) when GSAP is the chosen engine."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 12: Design Token Snapshotter",
-    "Prompt": "You are Agent 12 (Design Token Snapshotter). Read `.../skills/token-snapshotter/SKILL.md`. Take versioned snapshots at each trigger: after the design system lands (snap-001), after arena-winner application, after every quality-gate fix round, after copy lands, and pre-deploy (snap-final). Each snapshot: diffable design.md tokens, component token bindings, consistent-viewport screenshots (1440 + 390), and a delta.md vs the previous snapshot. Run drift guard checks and provide diffs on demand."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 13: Post-Launch Monitor",
-    "Prompt": "You are Agent 13 (Post-Launch Monitor). Read `.../skills/post-launch-monitor/SKILL.md`. After deployment: verify deploy integrity (live URL, no 404s, llms.txt serving byte-identical to repo, robots.txt, sitemap), run live Lighthouse against budgets, baseline AI discoverability exposure (record observed facts vs a saved baseline), and write monitor/MONITOR.md. Report observations only — never promise rankings."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 6: AI Discoverability & llms.txt Specialist",
-    "Prompt": "You are Agent 6 (AI Discoverability & llms.txt Specialist). Read `.../skills/llm-txt-skill/SKILL.md`. In Phase 6, after the Phase 5 quality gates pass: generate a spec-compliant llms.txt (and llms-full.txt if needed) at public/llms.txt so AI assistants (ChatGPT, Claude, Perplexity) can correctly understand and recommend the business/product. Derive all content from PRODUCT.md and final site content; self-verify against the checklist."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 7: Anti-Slop Enforcer",
-    "Prompt": "You are Agent 7 (Anti-Slop Enforcer). Read `.../skills/anti-slop-enforcer/SKILL.md`. After Phase 3: run all 13 deterministic slop detectors (V1-V6 visual, C1-C4 copy, M1-M3 motion) on the built output, prescribe a concrete replacement for every violation, and gate the build: zero block-severity violations to pass. Report status per detector with evidence."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 8: Bug Hunter & Fixer",
-    "Prompt": "You are Agent 8 (Bug Hunter & Fixer). Read `.../skills/bug-hunter/SKILL.md`. After Phase 3: run the browser QA runner (`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<route>`) and then the full hunt checklist (console/build errors, responsive 320-1440px, keyboard-only walkthrough, contrast, state edge cases), reproduce every bug before fixing, fix root causes with regression guards, re-run the repro to verify, and attach before/after evidence. Gate: zero block + zero major bugs."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 9: Content & Copy Voice Specialist",
-    "Prompt": "You are Agent 9 (Content & Copy Voice Specialist). Read `.../skills/content-voice/SKILL.md`. Run early (after Grill Me): write VOICE.md (voice rails, banned words, proof-point inventory), then write all site copy — headlines, CTAs, microcopy, error states, alt text, SEO meta — concrete, proof-backed, zero banned buzzwords. Grep-verify zero banned words before delivery."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 10: Performance & Accessibility Auditor",
-    "Prompt": "You are Agent 10 (Performance & Accessibility Auditor). Read `.../skills/perf-a11y-auditor/SKILL.md`. After Phase 3: run Lighthouse (2 runs, worst wins; free Chromium command in `references/browser-qa.md`) and the keyboard/screen-reader/honesty passes against the fixed budgets (LCP<2.5s, CLS<0.1, INP<200ms, bundle<250KB gz, contrast 4.5:1, touch 44px). Every finding cites its source (WCAG 2.2, Web Vitals, Rams). Gate: zero block findings."
-  },
-  {
-    "TypeName": "self",
-    "Role": "Agent 14: ADK Agent Builder (conditional)",
-    "Prompt": "You are Agent 14 (ADK Agent Builder). Dispatch ONLY when the brief needs an AI agent inside the product (assistant, chat, tool-using agent, multi-step AI workflow); otherwise report 'not required'. Read `.../skills/adk-agent-builder/SKILL.md`. Build the agent in `agent/` with google-adk (LlmAgent, tools, Workflow) on a free local Ollama model via LiteLlm (no API key, no hosted model), write `AGENT_NOTES.md`, and pass that skill's gates: offline construction check, offline tool tests (`python -m pytest -q agent/tests`), acceptance runs on the local model (`adk run agent ...`), and a no-keys check. If Ollama is not installed, mark the acceptance runs 'not run', never 'passed', and never fall back to a hosted model. Set a call limit with RunConfig(max_llm_calls=N)."
-  }
-]
+```text
+Grill Me -> Reference Analysis -> frontend-architect (with rendering decision) -> architecture-agent -> state-data-agent -> caching-offline-agent -> motion-specialist (delegate to /designme if premium) -> security-agent -> bug-hunter -> perf-a11y-auditor -> observability-agent -> token-snapshotter -> llm-txt-skill -> content-voice -> anti-slop-enforcer
 ```
 
-**Dependency order (orchestrator enforces):**
-- **Preflight**: Agent 15 discovers from seed answers; Agent 11 deep-analyzes the shortlist. Both feed Grill Me before implementation.
-- **Early (before build)**: Agent 9 (copy) and Agents 1–3 (design system) feed the build.
-- **Build**: Agent 2 + Agent 5 (parallel, token vs motion work units).
-- **Conditional (in-product AI agent only)**: Agent 14 (ADK) runs in parallel with Agent 2 after Agents 1–3 and 9 are done. It owns only `agent/`, so it does not overlap the frontend work units. Its gates run before Agent 7.
-- **Late gates (after build)**: Agents 7, 8, 10 (run in this order — slop → bugs → perf/a11y).
-- **Final**: Agent 6 (llms.txt) on the verified, passing build.
+The seed-reference preflight may still happen in Phase 1, but after the full
+Grill Me confirmation Agent 11 reconciles REFERENCES.md with the confirmed brief
+before frontend-architect begins. Reuse evidence; do not duplicate web research.
+
+| Order | Dispatch and contract | Required output / acceptance |
+| --- | --- | --- |
+| 1 | Grill Me (Agent 0) | Confirmed BUILD_BRIEF.md; 10 unanswered relevant questions per round; full activation matrix |
+| 2 | Reference Analysis (Agents 15 then 11) | Cited research shortlist, REFERENCES.md and unfamiliar-feature decisions |
+| 3 | [frontend-architect](../frontend-architect/SKILL.md) (Agent 2; [update](agents/frontend-architect.md)) | rendering-decision.md first: route -> strategy -> why; no code before rendering and architecture decisions |
+| 4 | [architecture-agent](agents/architecture-agent.md) (Agent 20) | architecture.md, architecture-rules.json; folder tree, boundaries, tokens; then Agent 2 implements tokens/base components within these rules |
+| 5 | [state-data-agent](agents/state-data-agent.md) (Agent 17) | state-architecture.md and data layer; every fetch has loading/empty/error/retry and cancellation |
+| 6 | [caching-offline-agent](agents/caching-offline-agent.md) (Agent 18) | caching-strategy.md, service-worker.js, precache manifest, offline fallback UI, sync queue |
+| 7 | [motion-specialist](../motion-specialist/SKILL.md) (Agent 5) | Token-bound motion, reduced-motion fallback and measured checks; delegate premium visual/motion work to /designme when the brief requests premium craft |
+| 8 | [security-agent](agents/security-agent.md) (Agent 16) | security-audit.md; all 20 checks, risk, exact patches and retests; FAIL blocks ship |
+| 9 | [bug-hunter](../bug-hunter/SKILL.md) (Agent 8) | Reproduction -> owner fix -> independent retest; zero block/major bugs |
+| 10 | [perf-a11y-auditor](../perf-a11y-auditor/SKILL.md) (Agent 10) | Mobile/browser, keyboard/screen-reader and measured performance evidence; no block findings |
+| 11 | [observability-agent](agents/observability-agent.md) (Agent 19) | observability-setup.md, Sentry config, logging wrapper, dashboards.md, rollback-plan.md; verified ingestion, alerts and source maps |
+| 12 | [token-snapshotter](../token-snapshotter/SKILL.md) (Agent 12) | Versioned tokens, bindings, screenshots at 1440/390 and drift delta |
+| 13 | [llm-txt-skill](../llm-txt-skill/SKILL.md) (Agent 6) | SEO_AUDIT.md and truthful public llms.txt; private/native indexing exclusions require reasons |
+| 14 | [content-voice](../content-voice/SKILL.md) (Agent 9) | VOICE.md, final proof-backed copy and metadata; reconcile Agent 6 artifacts after copy changes |
+| 15 | [anti-slop-enforcer](../anti-slop-enforcer/SKILL.md) (Agent 7) | All 13 detectors plus architecture-rules.json checks; zero block violations |
+
+**Preserve all existing roles:** Agent 0 coordinates throughout. Dispatch Agent 1
+(Impeccable Director) to initialize PRODUCT.md / DESIGN.md after references and
+before Agent 2; Agent 3 (Taste Specialist) reviews architecture/design decisions;
+Agent 4 (UI/UX Auditor) reviews journeys/states during the data/offline/motion
+handoffs before security. These are supporting checkpoints, not replacements for
+any stage above. Their existing skill contracts still apply.
+
+Agent 13 (Post-Launch Monitor) remains installed and is dispatched by Agent 19
+as a compatibility child work unit for its existing live-integrity checklist and
+monitor/MONITOR.md. Agent 19 replaces its top-level dispatch and owns monitoring
+setup before ship. Before deployment, Agent 13 records BLOCKED awaiting authorized
+live URL; this defers only live evidence, never pre-ship observability setup.
+Agent 14 remains conditional for in-product AI, with sole ownership of agent/;
+complete its local-model/no-keys gates before the security review. Design Arena
+retains its confirmed-brief trigger. Never drop a core role due to concurrency
+limits: queue non-overlapping work in waves.
+
+For premium motion, /designme means premium craft, not a paid service. Delegate
+through the installed designme skill, keep Agent 5 accountable for outputs, and
+retain local/free tools. If the required skill is missing, mark that handoff
+BLOCKED with the install remedy rather than silently skipping it.
+
+All five new agents are bundled under agents/ and also registered as companion
+skills by the installer. Their complete checklists and gates are mandatory.
+Non-applicable individual capabilities need cited scope reasons; they do not
+permit skipping an agent. Missing required tooling/evidence is BLOCKED.
+
+**Implementation handoff:** frontend-architect first plans rendering; architecture
+then freezes boundaries; Agent 2 and named feature workers implement within them
+before downstream QA. Single owners serialize shared files. Content lands in its
+listed final stage; use approved brief text during implementation, then have
+Agent 9 finalize it before ship. Token snapshots still run at existing intermediate triggers and
+again after final copy/repair changes; the listed snapshot is the main checkpoint.
+
+**Repair loop:** security -> bugs -> performance/a11y -> observability are evaluated
+in this order; final anti-slop follows discoverability and content. Any FAIL or
+BLOCKED mandatory check prevents ship. Agent 0 sends findings to the original
+worker; the reviewer independently rechecks. Re-run security, bugs, perf/a11y,
+observability, snapshots and SEO for affected code/content after later patches.
+After the existing two-round cap, leave unresolved gates FAIL/BLOCKED and escalate.
 
 ---
 
@@ -206,38 +199,40 @@ independent work concurrently and follow the approved activation matrix:
 
 ---
 
-## Phase 5: Quality Gates (Anti-Slop + Bug Hunt + Perf/A11y)
+## Phase 5: Final Gate Revalidation
 
-Run **Agents 7, 8, 10** as sequential gates after the build:
+Phase 3 establishes the authoritative dispatch order. After Phase 4 integration,
+verify all artifacts still match the integrated build. Reuse unchanged evidence;
+rerun affected reviews in their Phase 3 relative order (security, bug hunter,
+perf/a11y, observability, token snapshot, llms.txt, content, final anti-slop).
+Agent 7 checks architecture-rules.json against real source and built output,
+including dependency boundaries and token use, as well as all 13 slop detectors.
 
-Start GUI journeys with the Agent Desktop observe–act–verify contract. For web
-artifacts, also run `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<gate>`
-so reviewers share viewport screenshots, console/network and keyboard evidence. A runner `NEED_SETUP` result marks the affected gate "not run", never passed.
+Start primary GUI journeys with the Agent Desktop observe–act–verify contract.
+For web artifacts also run `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/<gate>`
+for shared mobile/viewport screenshots, console/network and keyboard evidence.
+NEED_SETUP or unavailable session/permissions means BLOCKED, never passed.
+Performance reports distinguish lab checks from unmeasured field INP.
 
-
-1. **Agent 7** — all detectors pass (zero blocks); exemptions only as `exempt-by-brief` with reasons.
-2. **Agent 8** — zero block + major bugs; each fix verified by its own reproduction re-run.
-3. **Agent 10** — agreed performance checks, browser/mobile evidence, keyboard/screen-reader and honesty passes complete. Local diagnostics cannot certify field INP; label missing field data honestly.
-
-Only after all three gates pass does the build advance to Phase 6.
+All required new-agent gates and existing bug, UX-law, security, accessibility,
+architecture and craft gates must pass before ship. Monitoring setup is mandatory
+before launch; live deployment checks wait for an authorized deployment.
 
 ---
 
-## Phase 6: Free SEO and AI Discoverability
+## Phase 6: Free SEO and AI Discoverability Revalidation
 
-Run **Agent 6** as the final public-site SEO gate, after Phase 5 passes. Read
-[the free SEO protocol](references/free-seo.md). Agent 6 runs the bundled local
-artifact audit and reviews crawlability, rendered content, canonical/sitemap
-behavior and applicable schema. Reuse Agent 10's mobile/performance evidence.
-Generate fact-grounded public llms.txt only where appropriate; do not expose
-private product information or promise rankings/AI citations.
+Agent 6 first runs in the Phase 3 position above; this phase revalidates its
+[free SEO protocol](references/free-seo.md) and SEO_AUDIT.md against final copy
+and integrated artifacts. Do not use this phase to move the initial dispatch
+after content or bypass the final anti-slop review. Check final canonical/sitemap,
+rendered content, schema, llms.txt and exposure of private content; reuse Agent 10's
+mobile evidence. Public content changes from Agent 9 must refresh Agent 6 outputs.
+Private/native scope gets reasoned indexing exclusions while retaining other QA.
 
-Write SEO_AUDIT.md using [the template](templates/SEO_AUDIT.md). Send findings to
-Agent 0, which assigns the original worker to fix and returns it to the reviewer
-for rechecking. Rerun affected Phase 5 gates after code changes. Two revision
-rounds per agent remain the cap; mandatory failures or missing evidence block
-completion. For private/native-only scope, document why indexing checks are
-NOT_APPLICABLE while preserving functional/mobile/accessibility checks.
+Agent 0 routes repairs to the original worker, then the reviewer rechecks affected
+gates in Phase 3 order and Agent 7 signs off last. Missing required evidence and
+unresolved mandatory failures block completion at the two-round revision cap.
 
 ---
 
@@ -247,7 +242,7 @@ When the visual direction is uncertain or the current design is a local maximum,
 
 ---
 
-## 🛠️ Skill Ensemble Reference (Agents 0–15)
+## 🛠️ Skill Ensemble Reference (Agents 0–20)
 
 | Agent | Assigned Skill | Location | Key Function |
 |---|---|---|---|
@@ -264,9 +259,14 @@ When the visual direction is uncertain or the current design is a local maximum,
 | **Agent 10** | **Perf & A11y Auditor** | [`perf-a11y-auditor/SKILL.md`](../perf-a11y-auditor/SKILL.md) | Web Vitals budgets, WCAG 2.2 AA, keyboard/screen-reader passes, Rams honesty audit |
 | **Agent 11** | **Reference Analyzer** | [`reference-analyzer/SKILL.md`](../reference-analyzer/SKILL.md) | Pre-Grill Me tear-down of 2–3 reference/competitor sites → Steal/Beat/Avoid brief |
 | **Agent 12** | **Token Snapshotter** | [`token-snapshotter/SKILL.md`](../token-snapshotter/SKILL.md) | Versioned, diffable design-system snapshots at every phase trigger + drift guard |
-| **Agent 13** | **Post-Launch Monitor** | [`post-launch-monitor/SKILL.md`](../post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
+| **Agent 13** | **Post-Launch Monitor (compatibility child of Agent 19)** | [`post-launch-monitor/SKILL.md`](../post-launch-monitor/SKILL.md) | Live deploy verification, llms.txt checksum, live Lighthouse, AI-discoverability baseline |
 | **Agent 14** (conditional) | **ADK Agent Builder** | [`adk-agent-builder/SKILL.md`](../adk-agent-builder/SKILL.md) | In-product AI agent with Google ADK (LlmAgent, tools, Workflow graphs), tests and run gates; runs only when the brief needs an agent |
 | **Agent 15** | **Competitor & Repository Researcher** | [`competitor-researcher/SKILL.md`](../competitor-researcher/SKILL.md) | Discovers competitors, websites and repos; uses Agent-Reach and local-browser fallback and supplies Agent 11 a cited shortlist |
+| **Agent 16** | **Security Gate** | [agents/security-agent.md](agents/security-agent.md) | 20 checks, exact patches, mandatory ship gate |
+| **Agent 17** | **State + Data** | [agents/state-data-agent.md](agents/state-data-agent.md) | State ownership, fetch contracts, retry/cancellation |
+| **Agent 18** | **Caching + Offline** | [agents/caching-offline-agent.md](agents/caching-offline-agent.md) | Versioned caches, offline fallback and safe sync |
+| **Agent 19** | **Observability** | [agents/observability-agent.md](agents/observability-agent.md) | Sentry, alerting, source maps, tests, rollback; owns Agent 13 live work |
+| **Agent 20** | **Architecture** | [agents/architecture-agent.md](agents/architecture-agent.md) | Modules, boundaries, tokens and machine-readable enforcement |
 | **Feature** | **Design Arena** | [`design-arena/SKILL.md`](../design-arena/SKILL.md) | Informed vs blind design bake-off; user judges, winner ships |
 
 ---

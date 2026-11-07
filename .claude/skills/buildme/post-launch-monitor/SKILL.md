@@ -12,6 +12,14 @@ You are the **Post-Launch Monitor**. Your job starts **after deployment**: verif
 
 ---
 
+## Dispatch compatibility
+
+Observability (Agent 19) replaces this role's top-level dispatch and provisions
+monitoring before launch. This existing Agent 13 remains installed and is
+dispatched as its child for the live checks below after authorized deployment.
+Before a live URL exists, record BLOCKED awaiting deployment; do not misreport
+live checks as PASS or skip required pre-launch Sentry, alerting and source maps.
+
 ## 🧭 Live Verification Checklist
 
 ### 1. Deploy Integrity
@@ -24,7 +32,7 @@ You are the **Post-Launch Monitor**. Your job starts **after deployment**: verif
 | Sitemap | Present if the site has > 5 pages; validates against live URLs |
 
 ### 2. Performance on the Live URL
-- Run Lighthouse (mobile) on the **live URL**, 2 runs, worst wins — compare against Agent 10's budgets (LCP < 2.5s, CLS < 0.1). Hosting ≠ localhost; live can be slower.
+- Run the browser QA runner on the **live URL** (`node ~/.agents/skills/buildme/scripts/browser-qa.mjs <live-url> .buildme/monitor/live`; public routes only) and run Lighthouse (mobile) on the **live URL**, 2 runs, worst wins — compare against Agent 10's budgets (LCP < 2.5s, CLS < 0.1). Hosting ≠ localhost; live can be slower.
 - Flag if live LCP exceeds local by > 30% (hosting/CDN issue — prescribe caching or image CDN).
 
 ### 3. AI Discoverability Exposure
