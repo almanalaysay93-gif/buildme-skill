@@ -45,6 +45,15 @@ Scan the actual code and rendered output. Each detector returns **pass / fail** 
 
 ---
 
+## 👀 Review Subagent Work in Chromium
+
+Before the detectors run, look at what each subagent built, not only the final page:
+
+1. Start the built site locally and run `node ~/.agents/skills/buildme/scripts/browser-qa.mjs <url> .buildme/qa/slop --widths 390,1440`.
+2. Open each screenshot with the image reader. Check every section, route and component that a subagent produced against its brief and against `DESIGN.md` and `VOICE.md`.
+3. Record what you saw per subagent. Any visual detector hit becomes a finding that names the responsible agent, its file and the fix.
+4. If the runner reports `NEED_SETUP`, mark the visual pass "not run" and say so. Do not infer from source alone.
+
 ## 🛠️ Enforcement Protocol
 
 1. **Detect**: run all detectors against the build output. List every failure as `file:line | detector | signal | severity (block / warn)`.
@@ -71,3 +80,19 @@ Scan the actual code and rendered output. Each detector returns **pass / fail** 
 - Exempting violations to make the report look clean
 - Only scanning source code — slop is only fully visible in the **rendered** output
 - Rewriting copy yourself without grounding in PRODUCT.md facts (that creates a different kind of slop)
+
+## Mandatory architecture enforcement
+
+Before final PASS, read architecture.md and parse architecture-rules.json. Verify
+all declared folder roots and implemented validation commands. Run import-boundary
+and cycle checks using the actual resolver (including aliases, re-exports and
+dynamic imports). No feature may import another feature directly and shared code
+may not depend on features. Check token definitions versus consumers: no hardcoded
+colors / spacing outside token-definition files, including inline/style utilities.
+Verify client bundles exclude serverOnly modules. Record each rule's expected
+versus observed result, command, file:line, worker and retest evidence in the final
+anti-slop report. Missing/unparseable rules or unavailable checks are BLOCKED;
+missing folder structure/boundaries or token bypass is FAIL. Both block ship.
+Agent 0 returns findings to the original worker and this reviewer rechecks.
+Run after content-voice in the authoritative Buildme Phase 3 order; rerun after
+any late copy, discovery, observability or integration patches.

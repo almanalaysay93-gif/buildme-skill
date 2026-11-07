@@ -14,7 +14,8 @@ routes; private/account pages must not be exposed to satisfy SEO checks.
 
 - Agent 6 owns SEO_SCOPE.md, SEO_AUDIT.md and reports/seo-static.json. It audits
   technical SEO, final content metadata, crawl controls, sitemaps, schema and
-  grounded llms.txt after Phase 5. It does not promise rankings or AI citations.
+  grounded llms.txt in Phase 3 after token snapshots and before content-voice;
+  refresh after final copy and revalidate in Phase 6. It does not promise rankings or AI citations.
 - Agent 10 owns PERF_A11Y_AUDIT.md and browser/Lighthouse artifacts. Reuse its
   mobile, desktop, keyboard, accessibility and performance evidence; do not start
   a duplicate performance ensemble. Agent 12 supplies matched screenshots.

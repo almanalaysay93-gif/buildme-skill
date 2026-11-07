@@ -52,9 +52,14 @@ deliverables; never mark them passed.
 | 10 | Performance/A11y Auditor | pending | Measured quality/accessibility | | |
 | 11 | Reference Analyzer | pending | Shortlisted reference teardown | | |
 | 12 | Token Snapshotter | pending | Token drift and viewport evidence | | |
-| 13 | Post-Launch Monitor | pending | Only after authorized deployment | | |
+| 13 | Post-Launch Monitor (Agent 19 child) | pending | Live evidence only after authorized deployment | | |
 | 14 | ADK Agent Builder | pending | Only for in-product AI | | |
 | 15 | Competitor Researcher | pending | Discover competitors/repos/sites | | |
+| 16 | Security Gate | pending | All 20 security checks; FAIL blocks ship | | |
+| 17 | State + Data | pending | Fetch states, invalidation, retry/cancellation | | |
+| 18 | Caching + Offline | pending | Cache busting, invalidation, offline/sync | | |
+| 19 | Observability | pending | Pre-launch Sentry/alerts/source maps; owns live monitoring | | |
+| 20 | Architecture | pending | Folder tree, dependency boundaries, token enforcement | | |
 
 Design Arena selected/skipped and reason:
 Open decisions, capability gaps and agreed defaults:
@@ -84,3 +89,14 @@ Authorized UI tasks, synthetic input and independent application outcomes:
 Snapshot/assertion evidence paths and privacy/redaction handling:
 Specialized web/mobile/DOM/performance checks still required:
 Blocked operations, repair owner and retest criteria:
+
+## Rendering, architecture, state and operations contracts
+
+Per-route rendering strategy and client exclusions / CSR SEO + LCP mitigation:
+Architecture folder tree, boundaries, owners, token sources and enforcement commands:
+State owners, query keys, invalidation, retry/cancellation and mutation idempotency:
+Cache keys, versions, TTLs, offline scope, storage quota and sync/conflict policy:
+Security scope, applicable 20-check evidence and header/auth test environments:
+Sentry endpoint/self-hosting readiness, redaction/consent, alert test receiver,
+release/source-map verification, dashboards, canary and rollback authorization:
+Premium craft /designme delegation and installed capability:

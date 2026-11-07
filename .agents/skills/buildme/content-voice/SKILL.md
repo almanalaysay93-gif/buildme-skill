@@ -40,3 +40,12 @@ unlock · elevate · revolutionize · seamless · cutting-edge · world-class ·
 - [ ] Every claim has a proof point or is softened to opinion ("we think")
 - [ ] Every CTA states a concrete result
 - [ ] Meta title/description written per page
+
+## Buildme dispatch timing
+
+Follow the canonical Buildme Phase 3 order: initial content-voice dispatch follows
+llm-txt-skill and precedes final anti-slop-enforcer. Reuse brief facts, write VOICE.md
+before final copy, then deliver all route copy. Hand changed public metadata and
+claims back to Agent 6 to refresh and verify llms.txt/schema; rerun affected
+snapshots and QA, with Agent 7 signing off last. Do not use legacy early-copy
+instructions to reorder the authoritative sequence.

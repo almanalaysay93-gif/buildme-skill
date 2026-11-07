@@ -71,7 +71,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 ### 7. Zero-Cost Enforcement
 - Read the [zero-cost policy](../references/zero-cost.md) before planning. Dispatches may not require new API keys, paid services, credits or accounts. Use local Agent Desktop and report only measured capabilities.
 - Every contract names the free tool the agent will use (local Lighthouse, Chrome DevTools MCP, host web search, local Ollama).
-- A task that can only be done with a paid service is marked "not run (needs a paid service)" with the closest free alternative; it never blocks or fails the rest of the build.
+- A task that can only be done with a paid service is marked "not run (needs a paid service)" with the closest free alternative; continue unaffected work, but it cannot waive a mandatory shipping gate.
 - Keep `Cost: $0 — no API keys or paid services used.` in `ORCHESTRATOR.md`.
 
 ---
@@ -119,7 +119,7 @@ Unresolved violations or missing evidence block completion; existing repair caps
 Read [the question bank](../references/discovery-questions.md) and initialize
 [the brief and activation matrix](../templates/BUILD_BRIEF.md). Ask exactly 10 unanswered,
 relevant questions per round, then wait for answers; use fewer only when fewer than
-10 remain. Reuse answers and assess every role 0–15. Agent 15 discovers sources;
+10 remain. Reuse answers and assess every role 0–20. Agent 15 discovers sources;
 Agent 11 deep-analyzes the shortlist and owns research/FEATURE_REVIEWS.md for
 unfamiliar-feature comparisons. Research is the only pre-confirmation
 delegation exception. No implementation starts before brief confirmation.
@@ -160,3 +160,17 @@ are required. Never automatically repeat an uncertain mutation or escalate to
 physical/headed input. Agent 8 executes, Agent 4 defines outcomes, Agent 0 assigns
 repairs and Agents 10/12 review evidence. Keep Playwright/Lighthouse only for their
 specialized web/viewport/DOM/performance checks; neither tool alone proves full QA.
+
+## Expanded Phase 3 dispatch and ship gates
+
+Read ../SKILL.md Phase 3 as the authoritative dispatch sequence. Dispatch
+Agents 16–20 using ../agents/ contracts and keep every existing role.
+Agent 2 writes rendering-decision.md before code; Agent 20 freezes architecture
+before feature implementation. Agent 7 checks architecture-rules.json last.
+Agent 19 owns pre-launch observability and dispatches retained Agent 13 for live
+checks after authorized deployment. Keep live-only waiting distinct from missing
+pre-ship Sentry/alerts/source maps. The zero-cost policy cannot waive mandatory
+security, data, caching, architecture or observability gates: use free self-hosted
+Sentry with verified ingestion/alerting/symbolication or mark BLOCKED. Do not sign
+up for a paid service or put CI/auth tokens in frontend code. All FAIL/BLOCKED
+mandatory gates stop ship; original workers fix and reviewers independently retest.
