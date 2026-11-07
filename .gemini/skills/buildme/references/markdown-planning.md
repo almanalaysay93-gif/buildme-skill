@@ -1,8 +1,9 @@
 # Markdown planning contract — before implementation
 
 These five living Markdown artifacts are the basis and rules for every Buildme
-build. After Grill Me, Agent 0 must create/reconcile all five before authorizing
-any application implementation or Spec Kit implement command. Templates are
+build. After Grill Me, Agent 0 dispatches Agent 21 to create/reconcile all five
+and Agent 22 to independently review them before authorizing any application
+implementation or Spec Kit implement command. Templates are
 starting points, not completed project documents. Do not produce pretend app
 specifications for the skill repository merely because Buildme itself is updated.
 
@@ -19,10 +20,12 @@ than generating a second plan or task graph.
 
 ## Paths and ownership
 
-Agent 0 owns the five documents and their version/approval record. Specialists
-supply planning inputs through the coordinator; only a designated owner edits a
-file. Default to project-root project_context.md, constitution.md, spec.md,
-plan.md and tasks.md. Preserve existing content and reconcile changes; never
+Agent 21 (planning-agent) is the sole author of the five documents and their
+revisions. Agent 22 (planning-reviewer) owns only planning-review.md and must not
+edit the documents under review. Agent 0 coordinates specialist inputs, repair
+dispatch and the path/approval checkpoint; it cannot self-award review PASS.
+Default to project-root project_context.md, constitution.md, spec.md, plan.md
+and tasks.md. Preserve existing content and reconcile changes; never
 blindly overwrite an existing constitution or another feature's spec/tasks.
 
 If Spec Kit is already in use, preserve its actual resolved paths: commonly
@@ -37,7 +40,7 @@ features updates indexes; it never overwrites another feature's artifacts.
 
 ## Sequence and responsibilities
 
-1. **Repository scan -> project_context.md.** Agent 0 scans existing code and
+1. **Repository scan -> project_context.md.** Agent 21 scans existing code and
    records identity, stack/library versions, architecture, data/auth, tests, CI,
    design system and current constraints with file/command evidence. Never expose
    secrets. This scan can begin in Phase 0; after Grill Me reconcile its findings
@@ -58,9 +61,12 @@ features updates indexes; it never overwrites another feature's artifacts.
 5. **Tasks -> tasks.md.** Convert the plan to sequential T001, T002, ... work units
    with stories/requirements/principles, dependencies, single owners, exact files,
    outputs, acceptance commands and evidence. Preserve Phase 3 dispatch order.
-6. **Consistency gate -> implementation.** Agent 0 reviews the complete documents
-   and traceability, records READY or BLOCKED with reasons in ORCHESTRATOR.md,
-   and presents them with the brief. Reuse existing explicit scope approval;
+6. **Independent review -> implementation.** Agent 22 reads the complete actual
+   documents and repository evidence, verifies traceability and writes
+   planning-review.md with PASS / FAIL / BLOCKED and exact findings. Agent 0 routes
+   repairs to Agent 21 and re-review to Agent 22; only a current PASS permits
+   Agent 0 to record READY in ORCHESTRATOR.md and present the set with the brief.
+   Reuse existing explicit scope approval;
    request clarification only for genuinely unresolved material decisions.
    Only READY documents permit application implementation / speckit implement.
 
@@ -84,10 +90,9 @@ sources. A worker prompt, local preference or generated code cannot silently
 weaken the constitution. Facts contradicting a proposal require reconciliation,
 not falsifying project_context.md.
 
-When a requirement conflicts, pause the affected work. Agent 0 either chooses a
-compliant approach or obtains the explicit user amendment needed, records its
-reason/version and updates spec -> plan -> tasks plus impacted annexes before
-resuming. Do not ask again for already authorized routine choices. Retain the
+When a requirement conflicts, pause the affected work. Agent 0 coordinates a compliant approach or the explicit user amendment needed;
+Agent 21 records the reason/version and updates spec -> plan -> tasks plus impacted
+annexes. Agent 22 re-reviews the changes before affected implementation resumes. Do not ask again for already authorized routine choices. Retain the
 existing mandatory quality gates and two-round repair cap.
 
 ## Spec Kit commands and truthful fallback
@@ -100,7 +105,7 @@ Older integrations may expose /speckit.constitution, /speckit.specify,
 /speckit-implement. Inspect availability and version. These are agent invocations,
 not commands to pass blindly to Bash. Never run implement before the document gate.
 
-If unavailable, Agent 0 uses the five bundled templates to execute equivalent
+If unavailable, Agent 21 uses the five bundled templates to execute equivalent
 planning and records `Mode: Buildme Markdown adapter; native Spec Kit not run`.
 No Spec Kit CLI installation, initialized project, account or successful command
 execution is implied by installing Buildme. Do not run init over an existing
@@ -126,3 +131,38 @@ constitution only when authorized, then reconcile spec/plan/tasks before further
 affected code. Keep revisions and a change record; do not rewrite documents just
 to excuse already-built deviations. Rerun impacted acceptance/security/mobile/
 architecture/observability gates and keep the final anti-slop sign-off last.
+
+## Independent planning-review gate
+
+Always dispatch [Agent 21](../agents/planning-agent.md) then
+[Agent 22](../agents/planning-reviewer.md) in Phase 2.5. Use the
+[review report template](../templates/planning-review.md). Preserve every existing
+role and the implementation dispatch order. Planning author/reviewer work can
+start before READY because it creates and verifies that gate, but neither agent
+may implement application code during this stage. Agent 0 remains coordinator.
+
+Agent 22 reports per-document and per-check PASS / FAIL / BLOCKED, exact finding
+IDs, severity, file/section, linked principle/requirement/task, evidence, repair
+owner Agent 21 and objective retest. It verifies repo facts, constraints, schema/
+tools/architecture feasibility, requirement coverage, ordered task dependencies,
+canonical links and no material unknowns or unfilled template prompts. The author
+cannot write the review report; the reviewer cannot patch the five source files.
+Use separate host agents/contexts when available; a host with no delegation must
+disclose a sequential read-only reviewer pass and its limited independence.
+
+Record actual canonical paths, revisions and SHA-256 fingerprints of all five
+documents and material annexes in planning-review.md. Agent 0 validates review
+freshness against the current files before READY. Missing/stale review, FAIL or
+BLOCKED prevents implementation; file existence or a planner self-check cannot
+substitute. Two repair rounds maximum: Agent 21 fixes -> Agent 22 rechecks. Retain
+open findings and escalate unresolved failures at the cap, without a waiver.
+
+Any material change to scope, principles, requirements, schema, strategy, task
+ownership/dependencies/acceptance or an input fact/annex invalidates review PASS
+and Phase 2.5 READY for affected work. Agent 21 updates the dependent documents,
+then Agent 22 re-reviews before continuation. Routine tasks.md status/evidence
+updates after verified execution are the sole progress-only exception: Agent 0
+must inspect and record the diff proving no scope, owner, dependency, acceptance
+or other governing content changed, and record the new progress fingerprint with
+the approved baseline. Mixed or ambiguous changes require Agent 22 review. Never
+use this exception to mark unverified tasks DONE or weaken a requirement.

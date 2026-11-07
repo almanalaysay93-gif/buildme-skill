@@ -84,7 +84,7 @@ When agents disagree (e.g., Agent 2's palette vs Agent 3's anti-slop veto), reso
 
 - [ ] Each unfamiliar implementation feature has Agent 15 discovery, Agent 11 comparison and a recorded decision; unresolved research blocks that work
 
-- [ ] Phase 2.5 is READY: all five planning documents are substantive and consistent, with canonical paths/revisions and scope approval recorded
+- [ ] Phase 2.5 is READY: Agent 21 authored the five documents, Agent 22 independently passed the current paths/revisions/fingerprints, and scope approval is recorded
 - [ ] Each dispatch includes constitution/requirement IDs, plan sections and ready Txxx task IDs
 - [ ] Every work unit has exactly one owner and no overlapping file targets
 - [ ] Contracts attached: inputs, outputs, format, acceptance criteria
@@ -125,7 +125,7 @@ Unresolved violations or missing evidence block completion; existing repair caps
 Read [the question bank](../references/discovery-questions.md) and initialize
 [the brief and activation matrix](../templates/BUILD_BRIEF.md). Ask exactly 10 unanswered,
 relevant questions per round, then wait for answers; use fewer only when fewer than
-10 remain. Reuse answers and assess every role 0–20. Agent 15 discovers sources;
+10 remain. Reuse answers and assess every role 0–22. Agent 15 discovers sources;
 Agent 11 deep-analyzes the shortlist and owns research/FEATURE_REVIEWS.md for
 unfamiliar-feature comparisons. Research and document-only planning are the
 pre-confirmation delegation exceptions. No application implementation starts
@@ -185,9 +185,10 @@ mandatory gates stop ship; original workers fix and reviewers independently rete
 ## Markdown source-of-truth planning
 
 Follow [the Markdown planning contract](../references/markdown-planning.md).
-Scan the repository into project_context.md; after Grill Me reconcile constitution.md,
-spec.md, plan.md and tasks.md in that order. Own their path/revision map and READY
-assessment in ORCHESTRATOR.md. Reuse native Spec Kit agent commands only when
+Dispatch Agent 21 to scan into project_context.md and, after Grill Me, author
+constitution.md, spec.md, plan.md and tasks.md. Dispatch Agent 22 to independently
+review the actual files into planning-review.md. Own the canonical path/revision
+map and READY checkpoint in ORCHESTRATOR.md; never self-author review PASS. Reuse native Spec Kit agent commands only when
 available; otherwise record the bundled-template adapter, never fictitious CLI
 success. Preserve existing native feature paths and project principles.
 
@@ -198,3 +199,17 @@ fields/types, boundaries, tool configuration and constitution compliance must be
 resolved in plan.md before implementation. Missing files, contradictions or
 material unknowns are BLOCKED. Amend documents and dependent tasks before scope
 changes; reviewers verify both behavior and documentary compliance before ship.
+
+## Planning author and independent reviewer
+
+Agent 21 (planning-agent) owns writing/repairing the five governing Markdown
+files. Agent 22 (planning-reviewer) owns only planning-review.md and independently
+checks their contents, repository evidence, coverage, feasibility and compliance.
+Dispatch both after Grill Me and reference reconciliation before implementation.
+Route findings Agent 22 -> Agent 0 -> Agent 21 -> Agent 22. Do not let the author
+approve itself or the reviewer silently fix source files. Current PASS plus scope
+approval is necessary for READY; stale/missing review, FAIL or BLOCKED stops code.
+Use separate contexts where supported; otherwise disclose limited independence.
+Material amendments require renewed review. Verify and record any narrow
+progress-only task-status update under the planning contract. At two repair
+rounds, unresolved mandatory findings remain blocked and are escalated.
