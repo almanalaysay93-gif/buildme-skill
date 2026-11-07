@@ -23,6 +23,8 @@ Before any code is generated, BuildMe runs a **Grill Me** discovery interview to
 ➔ [Post-Deploy: Live Monitoring]
 ```
 
+> **Full dispatch rule (every invocation)**: dispatch every agent (0–13, 15) and every phase this file defines, in the order and waves it specifies, through the Agent tool. Do not decide on your own that an agent, workflow phase, or quality gate is unnecessary, redundant, or already covered. Each one must end with its output file or result, or with a BLOCKED entry naming the missing dependency and its fix. Agent 14 and Design Arena run only when their stated trigger is met by the confirmed brief, and that decision is recorded with the brief's wording. Skips are allowed only for user-declined optional companions, recorded with the user's answer. Concurrency limits mean waves, not dropped agents.
+
 > **Zero-cost default**: BuildMe uses local Agent Desktop for UI control and specialized web audits, without additional API keys, paid services or accounts. Every agent uses the free tools listed in [the zero-cost policy](references/zero-cost.md); a task that would need a paid service is marked "not run" and given a free alternative.
 
 > **Optional branch**: between Phases 2 and 3, run the **Design Arena** (bake-off mode) when the visual direction is uncertain — see `design-arena/SKILL.md`.
